@@ -1032,7 +1032,7 @@
                                         <th>Название сферы</th>
                                         <th>Предмет-основа</th>
                                         <th>Покупка в /spheres</th>
-                                        <th>Перезарядка 30%</th>
+                                        <th>Полная зарядка 20%</th>
                                         <th>Активные эффекты в руке</th>
                                         <th>Особенности и применение</th>
                                     </tr>
@@ -1042,7 +1042,7 @@
                                         <td><strong>Сфера Ветра</strong></td>
                                         <td>Заряд ветра</td>
                                         <td><span class="chance-badge">15 000 ₽</span></td>
-                                        <td><span class="chance-badge">4 500 ₽</span></td>
+                                        <td><span class="chance-badge">3 000 ₽</span></td>
                                         <td><strong>Прыгучесть II</strong> и <strong>Плавное падение</strong></td>
                                         <td>Увеличивает высоту прыжка и гасит скорость падения при спуске с обрывов. Сфера программно заблокирована от расхода при правом клике.</td>
                                     </tr>
@@ -1050,7 +1050,7 @@
                                         <td><strong>Сфера Скорости</strong></td>
                                         <td>Сердце моря</td>
                                         <td><span class="chance-badge">20 000 ₽</span></td>
-                                        <td><span class="chance-badge">6 000 ₽</span></td>
+                                        <td><span class="chance-badge">4 000 ₽</span></td>
                                         <td><strong>Скорость II</strong> и <strong>Спешка I</strong></td>
                                         <td>Повышает скорость перемещения по пересеченной местности и ускоряет разрушение блоков киркой при проходке шахт.</td>
                                     </tr>
@@ -1058,7 +1058,7 @@
                                         <td><strong>Сфера Жизни</strong></td>
                                         <td>Сгусток слизи</td>
                                         <td><span class="chance-badge guaranteed">25 000 ₽</span></td>
-                                        <td><span class="chance-badge guaranteed">7 500 ₽</span></td>
+                                        <td><span class="chance-badge guaranteed">5 000 ₽</span></td>
                                         <td><strong>Регенерация I</strong></td>
                                         <td>Обеспечивает постоянное восполнение здоровья владельца в затяжных боях, снижая расход золотых яблок и зелий.</td>
                                     </tr>
@@ -1066,7 +1066,7 @@
                                         <td><strong>Сфера Невидимости</strong></td>
                                         <td>Мембрана фантома</td>
                                         <td><span class="chance-badge guaranteed">25 000 ₽</span></td>
-                                        <td><span class="chance-badge guaranteed">7 500 ₽</span></td>
+                                        <td><span class="chance-badge guaranteed">5 000 ₽</span></td>
                                         <td><strong>Невидимость</strong> и <strong>Ночное зрение</strong></td>
                                         <td>Маскирует владельца от визуального обнаружения и одновременно освещает подземные выработки и ночной ландшафт без установки факелов.</td>
                                     </tr>
@@ -1074,7 +1074,7 @@
                                         <td><strong>Сфера Силы</strong></td>
                                         <td>Огненный порошок</td>
                                         <td><span class="chance-badge amber">30 000 ₽</span></td>
-                                        <td><span class="chance-badge amber">9 000 ₽</span></td>
+                                        <td><span class="chance-badge amber">6 000 ₽</span></td>
                                         <td><strong>Сила I</strong></td>
                                         <td>Повышает базовый урон оружия ближнего боя при удержании сферы в основной или левой руке во время сражений с боссами и зачистки данжей.</td>
                                     </tr>
@@ -1082,7 +1082,7 @@
                                         <td><strong>Сфера Защиты</strong></td>
                                         <td>Звезда Незера</td>
                                         <td><span class="chance-badge amber">35 000 ₽</span></td>
-                                        <td><span class="chance-badge amber">10 500 ₽</span></td>
+                                        <td><span class="chance-badge amber">7 000 ₽</span></td>
                                         <td><strong>Сопротивление урону I</strong> и <strong>Огнестойкость</strong></td>
                                         <td>Снижает входящий физический урон на 20% и полностью исключает урон от лавы и огня в Нижнем мире и на арене боссов.</td>
                                     </tr>
@@ -1093,18 +1093,22 @@
 
                     <article class="card col-6">
                         <span class="card-kicker">Механика заряда и перезарядка</span>
-                        <h3 class="card-title">20 минут активной работы и зарядка за 30% цены</h3>
+                        <h3 class="card-title">45 минут активной работы, пауза на нуле и зарядка за 20%</h3>
                         <p class="card-text">
-                            Каждая Мистическая Сфера имеет номинальный ресурс <strong>1200 секунд</strong>, то есть <strong>20 минут</strong> активного удержания в основной правой или второй левой руке. При нахождении сферы в обычных слотах инвентаря, рюкзаке или сундуке таймер останавливается и заряд не расходуется. После исчерпания ресурса в меню <code class="inline-cmd">/spheres</code> выполняется полная перезарядка сферы за <strong>30% от ее базовой стоимости</strong>, при этом все уплаченные средства направляются напрямую в Казну сервера.
+                            Каждая Мистическая Сфера имеет номинальный ресурс <strong>2700 секунд</strong>, то есть <strong>45 минут</strong> активного удержания в основной правой или второй левой руке. При нахождении сферы в обычных слотах инвентаря, рюкзаке или сундуке таймер останавливается и заряд не расходуется. Когда счетчик достигает <strong>0:00</strong>, сфера не исчезает: ее эффекты просто ставятся на паузу до следующего пополнения. Перезарядка в меню <code class="inline-cmd">/spheres</code> рассчитывается пропорционально потраченному времени исходя из <strong>20% от базовой стоимости</strong> сферы при минимальном взносе 500 ₽, а все средства направляются напрямую в Казну сервера.
                         </p>
                         <div class="stat-row">
                             <div class="stat-chip">
                                 <span class="stat-chip-label">Полный ресурс сферы</span>
-                                <span class="stat-chip-val">1200 секунд · 20 минут</span>
+                                <span class="stat-chip-val">2700 секунд · 45 минут</span>
                             </div>
                             <div class="stat-chip">
-                                <span class="stat-chip-label">Полная перезарядка</span>
-                                <span class="stat-chip-val">30% стоимости в /spheres</span>
+                                <span class="stat-chip-label">На отметке 0:00</span>
+                                <span class="stat-chip-val">Не пропадает, эффекты на паузе</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Пропорциональная зарядка</span>
+                                <span class="stat-chip-val">До 20% цены в /spheres</span>
                             </div>
                         </div>
                     </article>
