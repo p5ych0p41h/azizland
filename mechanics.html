@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Механика, кланы и экономика | Вики AZIZLAND</title>
+    <meta name="description" content="Справочник по выживанию на сервере AZIZLAND: мир 40000 на 40000 блоков, приваты территорий с защитой от заливов, 6 уровней кланов, экономика, добыча спавнеров Шелковым касанием, сундуки смерти и голосовой чат.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <img src="assets/logo.png" alt="Герб AZIZLAND" class="brand-crest">
+                <span class="brand-name">AZIZ<span>LAND</span></span>
+            </a>
+            <nav class="nav-menu" aria-label="Основная навигация">
+                <a href="index.html" class="nav-item">Главная</a>
+                <a href="halloween.html" class="nav-item">Тыквенный спас</a>
+                <a href="magic.html" class="nav-item">Магия</a>
+                <a href="bosses.html" class="nav-item">Ивенты</a>
+                <a href="mechanics.html" class="nav-item active">Механика</a>
+                <a href="stats.html" class="nav-item">Статистика</a>
+                <a href="rules.html" class="nav-item">Правила</a>
+            </nav>
+            <div class="nav-status-pill">
+                <span class="status-dot" id="navStatusDot"></span>
+                <span id="navStatusText">В сети</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="eyebrow">Справочник выживания</div>
+                <h1 class="hero-title">Устройство сервера, кланы и экономика</h1>
+                <p class="hero-lead">
+                    Техническое руководство по системам выживания AZIZLAND: геометрия мира 40 000 на 40 000 блоков, приваты территорий с физической блокировкой потоков жидкостей на границах, шесть уровней развития кланов с Цитаделью и работа замкнутой экономики Центрального Банка и Склада сервера.
+                </p>
+
+                <div class="stat-row" style="margin-top: 28px;">
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Размер мира</span>
+                        <span class="stat-chip-val">40 000 x 40 000</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Лимит приватов</span>
+                        <span class="stat-chip-val">3 базовых + биржа /dom</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Прогрессия кланов</span>
+                        <span class="stat-chip-val">6 уровней, Цитадель и бустеры</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Курс алмаза в /shop</span>
+                        <span class="stat-chip-val">Продажа 30 ₽, покупка 250 ₽</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 1: Размер мира, перемещение и чаты -->
+        <section class="section" id="world-and-navigation">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Раздел 01. Навигация и инвентарь</div>
+                    <h2 class="section-title">Размер мира, перемещение и связь</h2>
+                    <p class="section-desc">
+                        Основной мир рассчитан на долгую игру без тесноты. Здесь легко найти нетронутые биомы для постройки базы, а система сохранения вещей бережет экипировку при случайной гибели.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <article class="card col-6">
+                        <span class="card-kicker">География и телепортация</span>
+                        <h3 class="card-title">Мир 40 000 на 40 000 блоков</h3>
+                        <p class="card-text">
+                            Граница основного мира проходит на координатах от <code class="inline-cmd">-20 000</code> до <code class="inline-cmd">+20 000</code> по осям X и Z. Такого запаса территории хватает, чтобы строить крупные базы и фермы вдали от соседей.
+                        </p>
+                        <p class="card-text">
+                            Для быстрого передвижения работают базовые команды: <code class="inline-cmd">/spawn</code> возвращает на главную площадь, <code class="inline-cmd">/rtp</code> телепортирует в случайную точку неизведанных земель, <code class="inline-cmd">/sethome</code> и <code class="inline-cmd">/home</code> сохраняют и возвращают вас домой, а <code class="inline-cmd">/tpa &lt;ник&gt;</code> и <code class="inline-cmd">/tpaccept</code> позволяют мгновенно переместиться к другу.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Границы X / Z</span>
+                                <span class="stat-chip-val">-20 000 .. +20 000</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Быстрый старт</span>
+                                <span class="stat-chip-val">/rtp и /sethome</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Сохранность снаряжения</span>
+                        <h3 class="card-title">Сундуки смерти и личный рюкзак</h3>
+                        <p class="card-text">
+                            При гибели ваши вещи не разлетаются по земле, не сгорают в лаве и не пропадают во время очистки мира. Весь инвентарь аккуратно складывается в персональный сундук смерти. Чужие игроки не могут открыть ваш сундук, а команда <code class="inline-cmd">/back</code> сразу возвращает вас на место гибели.
+                        </p>
+                        <p class="card-text">
+                            Для самых ценных артефактов, сфер и инструментов доступен переносной рюкзак по командам <code class="inline-cmd">/backpack</code> или <code class="inline-cmd">/bp</code>. Все предметы внутри рюкзака остаются при вас даже после смерти.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Возврат к вещам</span>
+                                <span class="stat-chip-val">/back</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Личный рюкзак</span>
+                                <span class="stat-chip-val">/backpack и /bp</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Голосовое общение</span>
+                        <h3 class="card-title">Встроенный 3D голосовой чат</h3>
+                        <p class="card-text">
+                            На сервере работает позиционный голосовой чат. Громкость голоса зависит от расстояния между персонажами и направления взгляда: вы слышите тех, кто стоит рядом с вами в шахте, на базе или на арене босса.
+                        </p>
+                        <p class="card-text">
+                            Нажмите клавишу <code class="inline-cmd">V</code> для открытия меню настроек звука и голосовых групп, либо клавишу <code class="inline-cmd">M</code> для быстрого отключения микрофона.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Меню голоса</span>
+                                <span class="stat-chip-val">Клавиша V</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Мут микрофона</span>
+                                <span class="stat-chip-val">Клавиша M</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Текстовые каналы</span>
+                        <h3 class="card-title">Локальный [L] и глобальный [G] чат</h3>
+                        <p class="card-text">
+                            Текстовый чат разделен на два канала, чтобы переговоры соседей не мешали общей торговле и обсуждению ивентов.
+                        </p>
+                        <p class="card-text">
+                            Обычные сообщения без спецсимволов отправляются в локальный чат с пометкой <code class="inline-cmd">[L]</code> и видны игрокам в радиусе <strong>150 блоков</strong>. Чтобы написать в глобальный чат на весь сервер с пометкой <code class="inline-cmd">[G]</code>, поставьте восклицательный знак перед текстом: например, <code class="inline-cmd">!привет всем</code>.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Локальный [L]</span>
+                                <span class="stat-chip-val">Радиус 150 блоков</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Глобальный [G]</span>
+                                <span class="stat-chip-val">!сообщение</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 2: Приваты территорий и защита от грифа -->
+        <section class="section" id="protection-and-regions">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Раздел 02. Безопасность построек</div>
+                    <h2 class="section-title">Приваты территорий и защита от грифа</h2>
+                    <p class="section-desc">
+                        Ваши постройки защищены не только правами доступа к сундукам, но и на уровне физики жидкостей, огня и взрывов. Даже если злоумышленник попытается залить базу из-за границы региона, поток остановится на линии привата.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <article class="card col-6">
+                        <span class="card-kicker">Разметка территории и биржа домов</span>
+                        <h3 class="card-title">Базовые приваты, расширение и продажа домов в /dom</h3>
+                        <p class="card-text">
+                            Каждому игроку изначально доступны <strong>3 базовых привата</strong> объемом до <strong>35 000 блоков</strong> каждый, а обладателям статуса VIP доступны <strong>5 базовых приватов</strong> объемом до <strong>75 000 блоков</strong>. В меню недвижимости <code class="inline-cmd">/dom</code> можно докупать неограниченное число дополнительных слотов за рубли или жетоны квестов, увеличивать максимальный объем новых приватов на 25 000 блоков или одним кликом раздвигать границы уже готового привата на 5 блоков во все стороны.
+                        </p>
+                        <p class="card-text">
+                            <strong>Биржа готовых домов:</strong> построенный дом можно выставить на продажу командой <code class="inline-cmd">/dom sell &lt;цена&gt;</code>. Другие игроки могут телепортироваться на осмотр дома правым кликом в меню <code class="inline-cmd">/dom</code> и мгновенно купить участок вместе с постройкой. Купленный на бирже дом выделяется в отдельный слот и не занимает ваши 3 базовых привата. Для защиты экономики от фиктивных сделок сервер удерживает налог <strong>15% от суммы продажи</strong>, но не ниже кадастрового минимума в <strong>35 000 ₽ плюс 1 ₽ за каждый блок объема</strong> региона.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Меню и биржа домов</span>
+                                <span class="stat-chip-val">/dom и /dom sell</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Создание региона</span>
+                                <span class="stat-chip-val">//wand и /rg claim</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Добавить друга</span>
+                                <span class="stat-chip-val">/rg addmember</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Физика границ региона</span>
+                        <h3 class="card-title">Защита от лава-кастов и заливов</h3>
+                        <p class="card-text">
+                            На сервере включена физическая блокировка потоков жидкости на границах чужих территорий. Если кто-то разольет воду или лаву снаружи вашего привата, поток остановится ровно на границе региона и не попадет внутрь участка.
+                        </p>
+                        <p class="card-text">
+                            Кроме того, огонь и лава не поджигают соседние блоки и не распространяются по деревянным или шерстяным постройкам. Сжечь чей-то дом молнией, огнивом или ведром лавы технически невозможно.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Потоки извне</span>
+                                <span class="stat-chip-val">Блокируются на границе</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Распространение огня</span>
+                                <span class="stat-chip-val">Отключено</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Анти-гриф окружения</span>
+                        <h3 class="card-title">Защита от разрушений мобами</h3>
+                        <p class="card-text">
+                            Сражения с монстрами рядом с базой не портят ландшафт и стены. Взрывы криперов, визеров, огненных шаров гастов и зарядов ветра наносят боевой урон существам, но <strong>не разрушают блоки</strong>.
+                        </p>
+                        <p class="card-text">
+                            Эндермены не вытаскивают блоки из построек, зомби не выламывают деревянные двери во время ночных осад, а засеянные грядки не вытаптываются при прыжках игроков и мобов.
+                        </p>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Чистота биомов</span>
+                        <h3 class="card-title">Автоматическая уборка дикой природы</h3>
+                        <p class="card-text">
+                            Чтобы леса вокруг спавна и в мире оставались чистыми, система регенерации леса следит за висящими кронами. Если срубить нижние блоки дерева и уйти, сервер сам дорубит остатки ствола, осыплет листву полезным дропом и высадит на место пня свежий саженец.
+                        </p>
+                        <p class="card-text">
+                            Хаотичные столбы из земли или булыжника в дикой природе постепенно осыпаются сами. При этом <strong>внутри приватов игроков и вокруг спавна</strong> автоматическая очистка никогда не трогает ни один блок.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 3: Система кланов и 6 уровней прогрессии -->
+        <section class="section" id="clans-progression">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Раздел 03. Гильдии и командная игра</div>
+                    <h2 class="section-title">Система кланов и 6 уровней прогрессии</h2>
+                    <p class="section-desc">
+                        Объединяйтесь с друзьями в клан, чтобы пользоваться общим защищенным сейфом, точкой базы и пассивным множителем опыта до <code class="inline-cmd">x1.30</code> для каждого участника.
+                    </p>
+                </div>
+
+                <div class="bento-grid" style="margin-bottom: 24px;">
+                    <article class="card col-6">
+                        <span class="card-kicker">Основание гильдии</span>
+                        <h3 class="card-title">Создание клана без ожидания и удаления</h3>
+                        <p class="card-text">
+                            Создание собственного клана стоит <strong>10 000 рублей</strong> и выполняется одной командой: <code class="inline-cmd">/clan create &lt;тег&gt; &lt;название&gt;</code>. Клан активируется мгновенно без ручной проверки администрацией.
+                        </p>
+                        <p class="card-text">
+                            Созданные кланы закрепляются за владельцем навсегда и не удаляются автоматически, даже если вы решили сделать перерыв в игре.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Стоимость создания</span>
+                                <span class="stat-chip-val">10 000 ₽</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Срок жизни клана</span>
+                                <span class="stat-chip-val">Бессрочно</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Цитадель, казна и бустеры</span>
+                        <h3 class="card-title">Приват Цитадели клана, фонд жетонов и бустеры</h3>
+                        <p class="card-text">
+                            В меню <code class="inline-cmd">/clan</code> лидер может создать отдельный общий <strong>Приват Цитадели клана</strong> командой <code class="inline-cmd">/clan claim</code>, который не занимает личные приваты игроков и автоматически открывает доступ всем участникам гильдии. Максимальный объем Цитадели растет вместе с уровнем клана от <strong>50 000 до 600 000 блоков</strong> и может дополнительно расширяться из казны.
+                        </p>
+                        <p class="card-text">
+                            Казна клана состоит из рублей по команде <code class="inline-cmd">/clan deposit &lt;сумма&gt;</code> и <strong>Фонда Жетонов Квестов</strong> по команде <code class="inline-cmd">/clan donate &lt;число&gt;</code>, куда также автоматически начисляются бонусные жетоны за каждый выполненный участником квест в <code class="inline-cmd">/quests</code>. Из казны и фонда жетонов оплачиваются уровни клана, расширение Цитадели, а также 30-минутные общеклановые бустеры: <strong>«Горное Знамя»</strong> со Спешкой II и Ночным зрением и <strong>«Боевой Рог»</strong> с Силой I, Огнестойкостью и Скоростью I. Рейтинг <code class="inline-cmd">/clan top</code> сортирует гильдии по суммарному <strong>Рейтингу Мощи</strong>, учитывающему уровень, очки активности, фонд жетонов, казну и победы в боях.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="col-5">
+                        <div class="spec-table-wrap" style="height: 100%;">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th>Активность участников</th>
+                                        <th>Очки клана</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Победа над Владыкой Бездны или Тыквенным Жнецом</strong></td>
+                                        <td><span class="chance-badge guaranteed">+100 очков</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Вскрытие мистического аирдропа</strong></td>
+                                        <td><span class="chance-badge guaranteed">+25 очков</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Убийство ночного Тыквоголового Рыцаря</strong></td>
+                                        <td><span class="chance-badge amber">+15 очков</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Правильный ответ в викторине от Азиза</strong></td>
+                                        <td><span class="chance-badge amber">+10 очков</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Получение нового уровня опыта участником</strong></td>
+                                        <td><span class="chance-badge">+2 очка</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Убийство любого обычного монстра</strong></td>
+                                        <td><span class="chance-badge">+1 очко</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Каждые 100 ₽ оборота в государственном магазине</strong></td>
+                                        <td><span class="chance-badge">+1 очко</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-7">
+                        <div class="spec-table-wrap" style="height: 100%;">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th>Уровень и цена</th>
+                                        <th>Порог очков</th>
+                                        <th>Сейф /clan chest</th>
+                                        <th>Бонусы и привилегии клана</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Уровень 1, Старт</strong></td>
+                                        <td><code class="inline-cmd">0 очков</code></td>
+                                        <td><strong>9 слотов</strong></td>
+                                        <td>Базовый тег клана в чате, клановый дом <code class="inline-cmd">/clan home</code> и доступ к общему сейфу.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Уровень 2</strong> · <span class="chance-badge">15 000 ₽</span></td>
+                                        <td><code class="inline-cmd">500 очков</code></td>
+                                        <td><strong>18 слотов</strong></td>
+                                        <td>Пассивный бонус <strong>+15% к опыту</strong> всем участникам и расширенный сейф клана.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Уровень 3</strong> · <span class="chance-badge">35 000 ₽</span></td>
+                                        <td><code class="inline-cmd">1 500 очков</code></td>
+                                        <td><strong>27 слотов</strong></td>
+                                        <td>Пассивный бонус <strong>+25% к опыту</strong> всем участникам и полноценный сундук на 27 слотов.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Уровень 4</strong> · <span class="chance-badge amber">75 000 ₽</span></td>
+                                        <td><code class="inline-cmd">3 500 очков</code></td>
+                                        <td><strong>36 слотов</strong></td>
+                                        <td>Бонус <strong>+35% к опыту</strong> и «Трофей охотника»: шанс 20% получать рубли за убийство монстров.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Уровень 5</strong> · <span class="chance-badge amber">150 000 ₽</span></td>
+                                        <td><code class="inline-cmd">7 000 очков</code></td>
+                                        <td><strong>45 слотов</strong></td>
+                                        <td>Бонус <strong>+50% к опыту</strong> и «Боевое Братство»: аура <strong>Регенерации I и Сопротивления I</strong>, когда рядом в радиусе 25 блоков сражаются 2+ соклановца.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Уровень 6, Королевский</strong> · <span class="chance-badge guaranteed">300 000 ₽</span></td>
+                                        <td><code class="inline-cmd">12 000 очков</code></td>
+                                        <td><strong>54 слота</strong></td>
+                                        <td>Двойной сундук, опыт <strong>+75%</strong>, аура <strong>Силы I + Регенерации I + Сопротивления I</strong> рядом с соклановцами и золотая корона <code class="inline-cmd">👑</code> перед тегом.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Раздел 4: Экономика, Аукцион, Трейды и Спавнеры -->
+        <section class="section" id="economy-and-spawners">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Раздел 04. Торговля и ресурсы</div>
+                    <h2 class="section-title">Центральный Банк, Склад сервера, торговля и спавнеры</h2>
+                    <p class="section-desc">
+                        Экономика сервера построена по замкнутому балансовому контуру в рублях со знаком <code class="inline-cmd">₽</code>. Номинальный ориентир государственного магазина <code class="inline-cmd">/shop</code> по алмазу составляет: <strong>продажа 30 ₽, покупка 250 ₽</strong>.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <article class="card col-12">
+                        <span class="card-kicker">Центральный Банк и Склад сервера · /kazna и /казна</span>
+                        <h3 class="card-title">Устройство Казны, резервный фонд и ступенчатый курс скупки</h3>
+                        <p class="card-text">
+                            На сервере исключена бесконтрольная эмиссия валюты: все денежные выплаты за скупку ресурсов в <code class="inline-cmd">/shop</code>, победы над боссами, аирдропы, викторину и квесты перечисляются непосредственно со счета <strong>Казны сервера</strong>, состояние которого открыто в меню <code class="inline-cmd">/kazna</code> или <code class="inline-cmd">/казна</code>. Стартовый капитал Центрального Банка составляет <strong>1 500 000 ₽</strong>, из которых <strong>250 000 ₽</strong> выделены в неприкосновенный защищенный резерв исключительно под оплату задач викторины и контрактов в <code class="inline-cmd">/quests</code>. Пополнение Казны производится каждые <strong>15 минут</strong> пропорционально числу активных игроков в сети, а также на <strong>100% от суммы всех покупок</strong> игроков в государственном магазине <code class="inline-cmd">/shop</code>, лавке сфер <code class="inline-cmd">/spheres</code>, системе кланов <code class="inline-cmd">/clan</code> и меню недвижимости <code class="inline-cmd">/dom</code>.
+                        </p>
+                        <p class="card-text">
+                            Прием и оборот товаров в государственном магазине связаны с живым <strong>Складом сервера</strong>. Когда в мире находятся активные игроки, шахты и угодья сервера каждые <strong>15 минут</strong> самостоятельно добывают и поддерживают рабочий запас базового сырья в пределах до 44% вместимости, не задевая порог снижения закупочной цены. Покупки игроков в <code class="inline-cmd">/shop</code> расходуют ресурсы со склада, а сдача добычи пополняет ячейки с применением ступенчатого курса скупки: при загрузке <strong>от 0 до 50%</strong> действует полная цена <strong>100%</strong>, <strong>от 50 до 80%</strong> выплачивается <strong>75%</strong>, <strong>от 80 до 99%</strong> выплачивается <strong>50%</strong>, а на отметке <strong>100%</strong> прием временно закрывается до переработки излишков серверным заводом либо выкупа товара другими игроками. Если на сервере никого нет, промыслы и переработка переходят в спящий режим и полностью сохраняют накопленные запасы до возвращения игроков. Суточная квота прямых продаж в <code class="inline-cmd">/shop</code> составляет <strong>60 000 ₽ на одного игрока</strong>.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Стартовый фонд и резерв</span>
+                                <span class="stat-chip-val">1 500 000 ₽ · резерв 250 000 ₽</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Ступени курса скупки</span>
+                                <span class="stat-chip-val">100% · 75% · 50% · стоп на 100%</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Промыслы и завод склада</span>
+                                <span class="stat-chip-val">Каждые 15 мин при живом онлайне</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Суточная квота скупки</span>
+                                <span class="stat-chip-val">60 000 ₽ на игрока</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-4">
+                        <span class="card-kicker">Государственный рынок</span>
+                        <h3 class="card-title">Магазин /shop и /sellgui</h3>
+                        <p class="card-text">
+                            В меню <code class="inline-cmd">/shop</code> выполняются покупка и сдача строительных блоков, руд, сельскохозяйственных культур, провизии, редстоун-элементов и спавнеров, где 1 алмаз принимается по <strong>30 ₽</strong> и продается со склада по <strong>250 ₽</strong>.
+                        </p>
+                        <p class="card-text">
+                            Через окно <code class="inline-cmd">/sellgui</code> осуществляется пакетная сдача добытых ресурсов на Склад сервера с автоматическим расчетом текущего коэффициента заполнения и остатка суточной квоты в 60 000 ₽.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Магазин и сдача</span>
+                                <span class="stat-chip-val">/shop и /sellgui</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Сводка банка</span>
+                                <span class="stat-chip-val">/kazna и /казна</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-4">
+                        <span class="card-kicker">Торговля между игроками</span>
+                        <h3 class="card-title">Аукцион /ah и безопасный /trade</h3>
+                        <p class="card-text">
+                            Трофейную броню, Мистические Сферы, Косу Жнеца и зачарованные книги игроки выставляют на свободном рынке через аукцион <code class="inline-cmd">/ah</code> без ограничений суточной квоты склада. Размещение предмета из активной руки выполняется командой <code class="inline-cmd">/ah sell &lt;цена&gt;</code>.
+                        </p>
+                        <p class="card-text">
+                            Прямой обмен между двумя игроками проводится через двухсторонний интерфейс <code class="inline-cmd">/trade &lt;ник&gt;</code> или по нажатию <code class="inline-cmd">Shift + ПКМ</code> по персонажу с обязательным двойным подтверждением сделки.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Выставить лот</span>
+                                <span class="stat-chip-val">/ah sell &lt;цена&gt;</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Сделка</span>
+                                <span class="stat-chip-val">/trade &lt;ник&gt;</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-4">
+                        <span class="card-kicker">Поддержка на старте</span>
+                        <h3 class="card-title">Бесплатные наборы /kits</h3>
+                        <p class="card-text">
+                            Для начального оснащения без расхода средств из личного баланса на сервере предусмотрены регулярные комплекты снаряжения в меню <code class="inline-cmd">/kits</code>.
+                        </p>
+                        <p class="card-text">
+                            Всем участникам доступны базовый комплект <code class="inline-cmd">/kit start</code>, рацион питания <code class="inline-cmd">/kit food</code>, набор инструментов <code class="inline-cmd">/kit tools</code> и сезонный комплект <code class="inline-cmd">/kit halloween</code>.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Базовые наборы</span>
+                                <span class="stat-chip-val">/kit start, food, tools</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-12">
+                        <span class="card-kicker">Задания и артефакты выживания · /quests и /квесты</span>
+                        <h3 class="card-title">Марафон «Неделька», ежедневные квесты и Лавка Редкостей</h3>
+                        <p class="card-text">
+                            В меню <code class="inline-cmd">/quests</code> или <code class="inline-cmd">/квесты</code> каждые сутки формируются <strong>5 ежедневных заданий на общую сумму 10 000 ₽ и 25 ✪</strong>, работает семидневный марафон <strong>«Неделька»</strong> с профильным испытанием на каждый день недели с понедельника по воскресенье и супер-бонусом <strong>20 000 ₽ и 40 ✪</strong> за выполнение всех семи этапов, а также доступны <strong>3 еженедельных контракта на 32 000 ₽ и 75 ✪</strong> по выработке руд, зачистке монстров, сбору урожая, рыбной ловле и походам в Нижний мир. Выплаты обеспечиваются защищенным резервом Казны сервера и начисляются вместе с валютой <strong>Жетоны Квестов ✪</strong>, при этом для участников кланов дополнительно пополняется общеклановый фонд жетонов.
+                        </p>
+                        <p class="card-text">
+                            Во вкладке <strong>«Лавка Редкостей»</strong> внутри <code class="inline-cmd">/quests</code> за накопленные Жетоны Квестов приобретаются <strong>9 специальных предметов выживания</strong>, недоступных для покупки за обычные рубли:
+                        </p>
+                        <div class="spec-table-wrap" style="margin-top: 14px;">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th>Артефакт выживания</th>
+                                        <th>Стоимость</th>
+                                        <th>Особые свойства и механика</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Шапка-Уменьшайка</strong></td>
+                                        <td><span class="chance-badge">90 ✪</span></td>
+                                        <td>При надевании на голову уменьшает рост персонажа вдвое до 0.5x, позволяет свободно проходить в проемы высотой в 1 блок и дает Скорость I вместе с Защитой IV.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Антитяжёлый кирпич</strong></td>
+                                        <td><span class="chance-badge">100 ✪</span></td>
+                                        <td>Слиток с обратной массой: пока вы держите его в основной или левой руке, гравитация ослабевает, подъем вверх ускоряется, а падение с любой высоты становится плавным и безопасным.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Сапоги Гермеса</strong></td>
+                                        <td><span class="chance-badge">110 ✪</span></td>
+                                        <td>Крылатые незеритовые ботинки, дающие постоянную Скорость II, Прыгучесть I и автоматический шаг на полные блоки высотой до 1.25 блока без нажатия прыжка.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Меч Визер-Скелета</strong></td>
+                                        <td><span class="chance-badge amber">130 ✪</span></td>
+                                        <td>Незеритовый клинок с Остротой V, Заговором огня II и Добычей III. При каждом ударе накладывает на врага Иссушение II на 5 секунд, похищает 25% здоровья в пользу владельца и дает полный иммунитет к иссушению вместе с Огнестойкостью. Также выпадает с шансом 3% при убийстве Визер-Скелетов в Нижнем мире.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Корона Титана</strong></td>
+                                        <td><span class="chance-badge amber">140 ✪</span></td>
+                                        <td>Увеличивает размер персонажа до 1.35x, добавляет 4 дополнительных сердца здоровья и накладывает постоянное Сопротивление урону I.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Лук Снайпера</strong></td>
+                                        <td><span class="chance-badge amber">145 ✪</span></td>
+                                        <td>Высокоточный дальнобойный лук с Силой V, Бесконечностью и Воспламенением. Выпущенные стрелы полностью лишены гравитации, летят строго по прямой линии с увеличенной на 60% скоростью, оставляют лазерный след и наносят на 35% больше урона при попадании с дистанции от 20 блоков.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Элитры-Невидимки</strong></td>
+                                        <td><span class="chance-badge amber">150 ✪</span></td>
+                                        <td>Призрачные крылья с Прочностью V и Починкой. Скрывают силуэт владельца невидимостью во время полета и ношения, но при вступлении в бой с другим игроком маскировка временно спадает на 15 секунд для честного PvP.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Кирка Каменщика</strong></td>
+                                        <td><span class="chance-badge guaranteed">160 ✪</span></td>
+                                        <td>Трофейная незеритовая кирка мастера с чарами <strong>Эффективность X</strong>, Прочность V, Удача III и Починка, которая дополнительно дает эффект Спешки II, пока находится в руке.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Шлем Человека-Паука</strong></td>
+                                        <td><span class="chance-badge guaranteed">180 ✪</span></td>
+                                        <td>Защитный шлем с броней незерита, который прибавляет <strong>5 полных сердец здоровья</strong> до 15 сердец, дает Прыгучесть II, Ночное зрение и позволяет взбираться по любым вертикальным стенам при зажатии клавиши <code class="inline-cmd">Shift</code>.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <article class="card col-12">
+                        <span class="card-kicker">Лавка Удачи и Высшая Магия · /luck и /magicshop</span>
+                        <h3 class="card-title">Лавка Удачи и Алтарь Магии в /shop</h3>
+                        <p class="card-text">
+                            Для любителей риска и крупных вложений прямо из <code class="inline-cmd">/shop</code>, главного меню <code class="inline-cmd">/menu</code> или по командам <code class="inline-cmd">/luck</code> и <code class="inline-cmd">/magicshop</code> открыты шесть испытаний удачи со взносами от 500 ₽ до 25 000 ₽ и алтарь высших чар по цене спавнеров:
+                        </p>
+                        <p class="card-text">
+                            1. <strong>Свитки Судьбы «Двадцать Одно»</strong> по команде <code class="inline-cmd">/21</code>: набор рунических свитков против Хранителя Лавки. Задача состоит в том, чтобы подобраться к сумме 21 ближе соперника без перебора, с выплатой x1.95 за победу, x2.40 за чистое 21 с двух свитков и возможностью удвоить взнос.<br>
+                            2. <strong>Башня Алхимика</strong> по команде <code class="inline-cmd">/tower</code>: восхождение на 5 этажей башни, где на каждом ярусе стоят два чистых эликсира и одна нестабильная колба. Множитель растет от x1.42 до x6.50, а забрать награду можно на любом этаже.<br>
+                            3. <strong>Колесо Стихий</strong> по команде <code class="inline-cmd">/wheel</code>: круг из 12 секторов древних стихий с живым вращением указателя и наградами x1.2, x2.0, x3.5 и x6.0 за сектор «Сердце Эфира».<br>
+                            4. <strong>Слоты «Три Тотема»</strong> по команде <code class="inline-cmd">/slots</code>: три барабана с накопительным кушем Лавки, куда уходит часть несыгравших взносов. Три Тотема Бессмертия срывают весь общий куш.<br>
+                            5. <strong>Сапёр «Сокровищница»</strong> по команде <code class="inline-cmd">/mines</code>: поле из 15 закрытых сундуков, где спрятаны 12 изумрудов и 3 ловушки с динамитом. С каждым открытым изумрудом множитель растет вплоть до x50 с выводом денег после любого хода.<br>
+                            6. <strong>Монетка «Орёл и Решка»</strong> по команде <code class="inline-cmd">/coinflip</code>: мгновенный бросок монеты с выплатой x1.95.<br>
+                            7. <strong>Магазин Высшей Магии</strong> в разделе <code class="inline-cmd">/shop</code> и по команде <code class="inline-cmd">/magicshop</code>: 28 посохов, печатей возвышения и свитков заклинаний от 50 000 ₽ до 2 500 000 ₽ с вероятностью успеха от 15% до 75%.
+                        </p>
+                    </article>
+
+                    <article class="card col-12">
+                        <span class="card-kicker">Фермы опыта и ресурсов</span>
+                        <h3 class="card-title">Добыча спавнеров киркой с «Шелковым касанием»</h3>
+                        <p class="card-text">
+                            На AZIZLAND можно переносить найденные в подземельях и бастионах спавнеры к себе на базу. Если сломать любой спавнер мобов в режиме выживания киркой с чарами «Шелковое касание», он аккуратно выпадет в виде предмета и <strong>сохранит внутри свой тип моба</strong>.
+                        </p>
+                        <p class="card-text">
+                            Поддерживаются все виды существ: Зомби, Скелет, Паук, Пещерный паук, Ифрит, Эндермен, Крипер, Ведьма, Слизень, Лавовый куб, Утопленник, Пиглин и другие. Когда вы поставите добытый спавнер у себя в привате, он сразу начнет призывать именно сохраненного моба. В одном чанке разрешено размещать до 6 спавнеров для постройки качалок опыта и ферм ресурсов без просадок частоты тиков, а обратная продажа спавнеров в государственный магазин отключена для защиты экономики от дюпов.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Условие добычи</span>
+                                <span class="stat-chip-val">Кирка с «Шелковым касанием»</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Лимит на чанк</span>
+                                <span class="stat-chip-val">До 6 спавнеров</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Сохранение типа моба</span>
+                                <span class="stat-chip-val">100% при переносе</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Защита экономики</span>
+                                <span class="stat-chip-val">Скупка спавнеров в /shop отключена</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Сводная таблица команд выживания -->
+        <section class="section" id="commands-summary">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Шпаргалка игрока</div>
+                    <h2 class="section-title">Все основные команды выживания</h2>
+                    <p class="section-desc">
+                        Краткий список команд, которые пригодятся каждый день при строительстве базы, торговле и прокачке клана.
+                    </p>
+                </div>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>Категория</th>
+                                <th>Команда</th>
+                                <th>Назначение</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Перемещение</strong></td>
+                                <td><code class="inline-cmd">/spawn</code>, <code class="inline-cmd">/rtp</code>, <code class="inline-cmd">/sethome</code>, <code class="inline-cmd">/home</code>, <code class="inline-cmd">/tpa &lt;ник&gt;</code></td>
+                                <td>Телепортация на главную площадь, в случайные координаты мира 40 000 x 40 000, домой или к другу.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Сохранение вещей</strong></td>
+                                <td><code class="inline-cmd">/back</code>, <code class="inline-cmd">/backpack</code>, <code class="inline-cmd">/bp</code></td>
+                                <td>Мгновенный возврат к персональному сундуку смерти и открытие невыпадающего рюкзака.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Дома и приваты</strong></td>
+                                <td><code class="inline-cmd">/dom</code>, <code class="inline-cmd">/dom sell &lt;цена&gt;</code>, <code class="inline-cmd">/rg i</code>, <code class="inline-cmd">//wand</code>, <code class="inline-cmd">/rg claim &lt;имя&gt;</code>, <code class="inline-cmd">/rg addmember &lt;имя&gt; &lt;ник&gt;</code></td>
+                                <td>Управление приватами, просмотр владельца любого региона по команде <code class="inline-cmd">/rg i</code>, покупка дополнительных слотов и объема, расширение границ региона на 5 блоков и биржа продажи домов.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Кланы, квесты и топы</strong></td>
+                                <td><code class="inline-cmd">/clan</code>, <code class="inline-cmd">/clan claim</code>, <code class="inline-cmd">/clan donate</code>, <code class="inline-cmd">/clan chest</code>, <code class="inline-cmd">/clan top</code>, <code class="inline-cmd">/quests</code>, <code class="inline-cmd">/killtop</code></td>
+                                <td>Меню гильдии, Приват Цитадели клана до 600 000 блоков, фонд жетонов, клановые бустеры, сейф до 54 слотов, ежедневные квесты выживания и рейтинг бойцов по убийствам <code class="inline-cmd">/killtop</code>.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Казна, магазин и обмен</strong></td>
+                                <td><code class="inline-cmd">/kazna</code>, <code class="inline-cmd">/shop</code>, <code class="inline-cmd">/sellgui</code>, <code class="inline-cmd">/ah</code>, <code class="inline-cmd">/ah sell &lt;цена&gt;</code>, <code class="inline-cmd">/trade &lt;ник&gt;</code></td>
+                                <td>Центральный Банк и Склад сервера, государственный магазин с динамическим курсом скупки, пакетная сдача ресурсов, аукцион игроков и двухсторонний обмен предметами.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Лавка Удачи и Алтарь Магии</strong></td>
+                                <td><code class="inline-cmd">/luck</code>, <code class="inline-cmd">/21</code>, <code class="inline-cmd">/tower</code>, <code class="inline-cmd">/wheel</code>, <code class="inline-cmd">/slots</code>, <code class="inline-cmd">/mines</code>, <code class="inline-cmd">/coinflip</code>, <code class="inline-cmd">/magicshop</code></td>
+                                <td>Шесть испытаний удачи: Свитки «Двадцать Одно», Башня Алхимика, Колесо Стихий, Слоты с общим кушем, Сапёр и Монетка, а также прокачка палочек с шансом успеха.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Наборы и меню</strong></td>
+                                <td><code class="inline-cmd">/menu</code>, <code class="inline-cmd">/kits</code>, <code class="inline-cmd">/kit start</code>, <code class="inline-cmd">/kit food</code>, <code class="inline-cmd">/kit tools</code>, <code class="inline-cmd">/kit halloween</code></td>
+                                <td>Главное меню сервера и бесплатные наборы снаряжения, еды и инструментов.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&#169; 2026 AZIZLAND</span>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZIZLAND: сервер Minecraft 1.21.11. Энциклопедия и подключение</title>
+    <meta name="description" content="Официальный сайт и база знаний сервера Minecraft AZIZLAND на версии 1.21.11. Решай задачи от Азиза. Богатей в игре. Адреса входа: msk.azizland.ru и play.azizland.ru.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="alternate icon" type="image/png" href="assets/server-icon.png">
+    <link rel="stylesheet" href="style.css?v=20261111_1">
+    <style>
+        .compact-table { table-layout: fixed; width: 100%; border-collapse: collapse; }
+        .compact-table th.col-rank, .compact-table td.col-rank { width: 10% !important; text-align: center !important; padding: 0 4px !important; }
+        .compact-table th.col-name, .compact-table td.col-name { width: 42% !important; text-align: left !important; padding-left: 14px !important; padding-right: 10px !important; }
+        .compact-table th.col-mid, .compact-table td.col-mid { width: 22% !important; text-align: center !important; padding: 0 8px !important; }
+        .compact-table th.col-num, .compact-table td.col-num { width: 26% !important; text-align: center !important; padding: 0 10px !important; }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <img src="assets/logo.png" alt="AZIZLAND" class="brand-crest">
+                <span class="brand-name">AZIZ<span>LAND</span></span>
+            </a>
+            <nav class="nav-menu" aria-label="Основная навигация">
+                <a href="index.html" class="nav-item active">Главная</a>
+                <a href="halloween.html" class="nav-item">Тыквенный спас</a>
+                <a href="magic.html" class="nav-item">Магия</a>
+                <a href="bosses.html" class="nav-item">Ивенты</a>
+                <a href="mechanics.html" class="nav-item">Механика</a>
+                <a href="stats.html" class="nav-item">Статистика</a>
+                <a href="rules.html" class="nav-item">Правила</a>
+            </nav>
+            <div class="nav-status-pill">
+                <span class="status-dot" id="navStatusDot"></span>
+                <span id="navStatusText">В сети</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-crest-row">
+                    <img src="assets/logo.png" alt="Герб сервера AZIZLAND" class="hero-crest-large">
+                    <div>
+                        <div class="eyebrow">Minecraft Java Edition 1.21.11</div>
+                        <p class="card-text" style="max-width: 640px;">
+                            На гербе сервера щит объединяет книжную полку и редстоун-факел. Ответы на задачи по физике, программированию и электронике напрямую преобразуются системой в выплаты из Казны сервера и игровые ресурсы.
+                        </p>
+                    </div>
+                </div>
+
+                <h1 class="hero-title">AZIZLAND</h1>
+                <p class="hero-slogan">«Решай задачи от Азиза. <mark>Богатей в игре.</mark>»</p>
+                <p class="hero-lead">
+                    Выживание на версии 1.21.11 с замкнутой экономической системой и едиными правилами для всех участников. Редкое снаряжение, боевые заклинания, Мистические Сферы и клановые уровни добываются в сражениях с мировыми боссами, собираются на верстаке по рецептам 3x3 или оплачиваются из резерва Казны за решение задач викторины и выполнение контрактов.
+                </p>
+
+                <div class="connect-grid">
+                    <div class="connect-card" onclick="copyIp('msk.azizland.ru', 'btnCopyMsk')">
+                        <div class="connect-region">
+                            <span class="region-tag">Для игроков из РФ</span>
+                            <span class="region-badge">Основной вход по России</span>
+                        </div>
+                        <div class="connect-address-row">
+                            <span class="connect-ip">msk.azizland.ru</span>
+                            <button type="button" class="copy-btn" id="btnCopyMsk">Скопировать</button>
+                        </div>
+                        <p class="connect-note">
+                            Прямой московский маршрут с минимальной задержкой и обходом блокировок провайдеров.
+                        </p>
+                    </div>
+
+                    <div class="connect-card" onclick="copyIp('play.azizland.ru', 'btnCopyEu')">
+                        <div class="connect-region">
+                            <span class="region-tag">Для игроков не из РФ</span>
+                            <span class="region-badge">Европа и другие страны</span>
+                        </div>
+                        <div class="connect-address-row">
+                            <span class="connect-ip">play.azizland.ru</span>
+                            <button type="button" class="copy-btn" id="btnCopyEu">Скопировать</button>
+                        </div>
+                        <p class="connect-note">
+                            Международный адрес подключения для игроков из Европы, СНГ и других регионов.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stat-row" style="margin-top: 24px;">
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Версия клиента</span>
+                        <span class="stat-chip-val">1.20.x - 1.21.11</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Размер мира</span>
+                        <span class="stat-chip-val">40 000 x 40 000 блоков</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Текущий онлайн</span>
+                        <span class="stat-chip-val" id="onlineCount">Загрузка...</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Голосовой чат</span>
+                        <span class="stat-chip-val">Встроенный 3D-голос, клавиша V</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Живой рейтинг игроков</div>
+                    <h2 class="section-title">Топ по решенным задачам и балансу</h2>
+                    <p class="section-desc">
+                        Таблицы лидеров обновляются автоматически напрямую с сервера каждые пять минут. Полная экономическая аналитика, графики Казны и остальные рейтинги доступны во вкладке <a href="stats.html" style="color:var(--accent-primary); font-weight:600;">«Статистика»</a>.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#dc2626;">Интеллектуальный капитал</span>
+                                <h3 class="card-title">Топ по решенным задачам</h3>
+                            </div>
+                        </div>
+                        <p class="table-card-desc">
+                            Игроки, давшие больше всего верных ответов в викторине сверху экрана и получившие прямые выплаты из Казны.
+                        </p>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Решено</th>
+                                        <th class="col-num">Премии ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="homeTopQuiz">
+                                    <tr><td class="col-rank rank-medal-1">1</td><td class="col-name"><strong>Farel_Kartel</strong></td><td class="col-mid">47 шт.</td><td class="col-num" style="color:#22c55e;">70 500 ₽</td></tr>
+                                    <tr><td class="col-rank rank-medal-2">2</td><td class="col-name"><strong>abob</strong></td><td class="col-mid">23 шт.</td><td class="col-num" style="color:#22c55e;">34 500 ₽</td></tr>
+                                    <tr><td class="col-rank rank-medal-3">3</td><td class="col-name"><strong>Fortenit</strong></td><td class="col-mid">8 шт.</td><td class="col-num" style="color:#22c55e;">12 000 ₽</td></tr>
+                                    <tr><td class="col-rank">4</td><td class="col-name"><strong>Sakenzel</strong></td><td class="col-mid">6 шт.</td><td class="col-num" style="color:#22c55e;">9 000 ₽</td></tr>
+                                    <tr><td class="col-rank">5</td><td class="col-name"><strong>mig_grig</strong></td><td class="col-mid">5 шт.</td><td class="col-num" style="color:#22c55e;">7 500 ₽</td></tr>
+                                    <tr><td class="col-rank">6</td><td class="col-name"><strong>krotik_pokoyo42</strong></td><td class="col-mid">4 шт.</td><td class="col-num" style="color:#22c55e;">6 000 ₽</td></tr>
+                                    <tr><td class="col-rank">7</td><td class="col-name"><strong>Aleks_FR_VIP</strong></td><td class="col-mid">2 шт.</td><td class="col-num" style="color:#22c55e;">3 000 ₽</td></tr>
+                                    <tr><td class="col-rank">8</td><td class="col-name"><strong>Max1234567890</strong></td><td class="col-mid">2 шт.</td><td class="col-num" style="color:#22c55e;">3 000 ₽</td></tr>
+                                    <tr><td class="col-rank">9</td><td class="col-name"><strong>Goha22</strong></td><td class="col-mid">2 шт.</td><td class="col-num" style="color:#22c55e;">3 000 ₽</td></tr>
+                                    <tr><td class="col-rank">10</td><td class="col-name"><strong>imica42</strong></td><td class="col-mid">1 шт.</td><td class="col-num" style="color:#22c55e;">1 500 ₽</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#22c55e;">Финансовый рейтинг</span>
+                                <h3 class="card-title">Топ по балансу на сервере</h3>
+                            </div>
+                        </div>
+                        <p class="table-card-desc">
+                            Богатейшие участники экономики по объему накопленных средств на личном счете и доле капитала.
+                        </p>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Доля топ-10</th>
+                                        <th class="col-num">Баланс ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="homeTopBalance">
+                                    <tr><td class="col-rank rank-medal-1">1</td><td class="col-name"><strong>Fortenit</strong></td><td class="col-mid">24.2%</td><td class="col-num" style="color:#f59e0b;">2 997 927 ₽</td></tr>
+                                    <tr><td class="col-rank rank-medal-2">2</td><td class="col-name"><strong>krotik_pokoyo42</strong></td><td class="col-mid">15.1%</td><td class="col-num" style="color:#f59e0b;">1 864 236 ₽</td></tr>
+                                    <tr><td class="col-rank rank-medal-3">3</td><td class="col-name"><strong>Andrew_Prime</strong></td><td class="col-mid">9.0%</td><td class="col-num" style="color:#f59e0b;">1 108 411 ₽</td></tr>
+                                    <tr><td class="col-rank">4</td><td class="col-name"><strong>Farel_Kartel</strong></td><td class="col-mid">8.9%</td><td class="col-num" style="color:#f59e0b;">1 100 105 ₽</td></tr>
+                                    <tr><td class="col-rank">5</td><td class="col-name"><strong>32423</strong></td><td class="col-mid">8.7%</td><td class="col-num" style="color:#f59e0b;">1 078 652 ₽</td></tr>
+                                    <tr><td class="col-rank">6</td><td class="col-name"><strong>GroZXC</strong></td><td class="col-mid">8.7%</td><td class="col-num" style="color:#f59e0b;">1 074 296 ₽</td></tr>
+                                    <tr><td class="col-rank">7</td><td class="col-name"><strong>imica42</strong></td><td class="col-mid">7.2%</td><td class="col-num" style="color:#f59e0b;">885 508 ₽</td></tr>
+                                    <tr><td class="col-rank">8</td><td class="col-name"><strong>OmegsBro</strong></td><td class="col-mid">6.7%</td><td class="col-num" style="color:#f59e0b;">835 189 ₽</td></tr>
+                                    <tr><td class="col-rank">9</td><td class="col-name"><strong>abob</strong></td><td class="col-mid">6.1%</td><td class="col-num" style="color:#f59e0b;">749 525 ₽</td></tr>
+                                    <tr><td class="col-rank">10</td><td class="col-name"><strong>cthutq110312</strong></td><td class="col-mid">5.5%</td><td class="col-num" style="color:#f59e0b;">684 088 ₽</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">База знаний</div>
+                    <h2 class="section-title">Энциклопедия сервера</h2>
+                    <p class="section-desc">
+                        Справочные данные на сайте напрямую соответствуют конфигурациям сервера: приведены точные вероятности выпадения предметов, расписание мировых событий по московскому времени, схемы крафта 3x3 и расчетные параметры экономики.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <a href="halloween.html" class="card card-interactive col-6">
+                        <span class="card-kicker">Сезонное событие с 15 октября по 15 ноября</span>
+                        <h3 class="card-title">Тыквенный Спас</h3>
+                        <p class="card-text">
+                            Тыквенные шляпы на мобах с вероятностью 35%, ночной Тыквоголовый Рыцарь с шансом появления 1.5%, мировой босс Тыквенный Жнец на скелетном коне каждые два часа в 45 минут нечетного часа с 09:45 до 23:45 МСК. Приведены таблицы выпадения конфет и осколков, параметры Косы Жнеца и выплаты из Казны сервера.
+                        </p>
+                        <div class="card-link-footer">
+                            <span>Открыть руководство по ивенту</span>
+                            <span>&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="magic.html" class="card card-interactive col-6">
+                        <span class="card-kicker">Крафты 3x3 и артефакты</span>
+                        <h3 class="card-title">Магия, палочки и Сферы стихий</h3>
+                        <p class="card-text">
+                            Схемы сборки волшебной палочки, книги магии, чародейского меча, лука, зеркального щита, талисмана и летающей метлы на верстаке 3x3. Четыре ранга развития мага и характеристики шести Мистических Сфер с ресурсом работы 20 минут и перезарядкой за 30% стоимости.
+                        </p>
+                        <div class="card-link-footer">
+                            <span>Смотреть рецепты и свойства Сфер</span>
+                            <span>&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="bosses.html" class="card card-interactive col-6">
+                        <span class="card-kicker">Ежедневные активности</span>
+                        <h3 class="card-title">Владыка Бездны и мировые события</h3>
+                        <p class="card-text">
+                            Появление главного босса в Энде каждые два часа в 45 минут четного часа с 08:45 до 22:45 МСК, блокировка полета на арене и распределение призового фонда Казны по нанесенному урону. Ежечасные аирдропы с сертификатами Казны, Кровавая Луна каждую пятую ночь и викторина сверху экрана.
+                        </p>
+                        <div class="card-link-footer">
+                            <span>Изучить расписание и тактику</span>
+                            <span>&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="mechanics.html" class="card card-interactive col-6">
+                        <span class="card-kicker">Выживание и экономика</span>
+                        <h3 class="card-title">Казна сервера, кланы, квесты и дома</h3>
+                        <p class="card-text">
+                            Центральный Банк и Склад сервера с динамическим курсом скупки, шесть уровней прокачки клана с общим Приватом Цитадели, ежедневные и еженедельные квесты, добыча спавнеров киркой с «Шелковым касанием», приваты с биржей домов и физическая блокировка потоков лавы на границах участков.
+                        </p>
+                        <div class="card-link-footer">
+                            <span>Перейти к устройству сервера</span>
+                            <span>&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="stats.html" class="card card-interactive col-6">
+                        <span class="card-kicker">Центральный Банк и аналитика в реальном времени</span>
+                        <h3 class="card-title">Живая статистика и Казна сервера</h3>
+                        <p class="card-text">
+                            Автоматические графики резерва Казны и денежной массы, баланс покупок и продаж в магазине, топ самых востребованных товаров и ресурсов, а также рейтинги крупнейших инвесторов, поставщиков Склада и лидеров викторины.
+                        </p>
+                        <div class="card-link-footer">
+                            <span>Открыть графики и сводку Казны</span>
+                            <span>&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="rules.html" class="card card-interactive col-6">
+                        <span class="card-kicker">Порядок и безопасность</span>
+                        <h3 class="card-title">Правила сервера и защита построек</h3>
+                        <p class="card-text">
+                            На сервере ведется автоматическая регистрация всех операций с сундуками, бочками и шалкерами. В разделе изложены правила сохранности построек вне зависимости от наличия привата, перечень допустимых модификаций клиента и порядок восстановления имущества по журналу событий.
+                        </p>
+                        <div class="card-link-footer">
+                            <span>Прочитать свод правил</span>
+                            <span>&rarr;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Первые минуты в игре</div>
+                    <h2 class="section-title">Быстрый старт для нового игрока</h2>
+                    <p class="section-desc">
+                        Основные команды, которые понадобятся сразу после первого подключения к серверу.
+                    </p>
+                </div>
+
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>Шаг</th>
+                                <th>Команда</th>
+                                <th>Что делает</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Регистрация и вход</strong></td>
+                                <td>
+                                    <code class="inline-cmd">/reg пароль повтор</code><br>
+                                    <code class="inline-cmd">/login пароль</code>
+                                </td>
+                                <td>Создает защиту аккаунта при первом входе. При следующих подключениях с того же адреса сессия сохраняется автоматически.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Стартовые наборы</strong></td>
+                                <td>
+                                    <code class="inline-cmd">/kit start</code><br>
+                                    <code class="inline-cmd">/kit halloween</code><br>
+                                    <code class="inline-cmd">/kits</code>
+                                </td>
+                                <td>Выдает базовые инструменты и еду для старта, а также праздничный набор «Тыквенного Спаса» с резной тыквой, конфетами и пирогами.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Главное меню и Казна</strong></td>
+                                <td><code class="inline-cmd">/menu</code>, <code class="inline-cmd">/kazna</code></td>
+                                <td>Открывает навигатор по всем разделам сервера, а также сводку Центрального Банка и Склада с текущим резервом Казны и коэффициентами скупки товаров.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4. Поиск места для базы</strong></td>
+                                <td><code class="inline-cmd">/rtp</code></td>
+                                <td>Переносит персонажа в случайную безопасную координату основного мира размером 40 000 на 40 000 блоков.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5. Приват территории и биржа домов</strong></td>
+                                <td>
+                                    <code class="inline-cmd">//wand</code><br>
+                                    <code class="inline-cmd">/rg claim имя</code><br>
+                                    <code class="inline-cmd">/dom</code>, <code class="inline-cmd">/sethome</code>
+                                </td>
+                                <td>Выдает деревянный топор для фиксации двух противоположных углов участка. Игроку доступны 3 базовых привата по 35 000 блоков, при этом в меню <code class="inline-cmd">/dom</code> выполняются расширение границ участков, покупка дополнительных слотов и торговля готовыми домами.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>6. Общение и торговля</strong></td>
+                                <td>
+                                    <code class="inline-cmd">!сообщение</code><br>
+                                    <code class="inline-cmd">/shop</code>, <code class="inline-cmd">/ah</code>, <code class="inline-cmd">/trade ник</code>
+                                </td>
+                                <td>Сообщения без префикса передаются в локальный чат в радиусе 150 блоков, а символ <code class="inline-cmd">!</code> перед текстом направляет сообщение в глобальный канал на весь сервер.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&#169; 2026 AZIZLAND</span>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="app.js"></script>
+    <script>
+        (async function loadHomeLeaderboards() {
+            function fmtNum(n) {
+                return Math.round(Number(n) || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            }
+            function medalClass(idx) {
+                if (idx === 0) return ' rank-medal-1';
+                if (idx === 1) return ' rank-medal-2';
+                if (idx === 2) return ' rank-medal-3';
+                return '';
+            }
+            const EXCLUDED_ADMIN_SET = new Set([
+                "aziz", "azizaboba", "77phoenix77", "phoenix_", "cracen2", "dahyshechka",
+                "chesnok_fpv", "karas_mentolist", "feyk", "p5ych0p41h", "p1zd6bol",
+                "goodplayer", "egolek", "dmitnik", "popka2014", "ferm_1", "ferm_2"
+            ]);
+            function filterNonAdmin(arr) {
+                return (arr || []).filter(p => {
+                    const n = String(p.name || "").toLowerCase();
+                    return n && !EXCLUDED_ADMIN_SET.has(n) && !n.startsWith("ferm_");
+                });
+            }
+            try {
+                let resp = null;
+                try {
+                    resp = await fetch('https://raw.githubusercontent.com/p5ych0p41h/azizland/telemetry/stats_data.json?t=' + Date.now(), { cache: 'no-store' });
+                } catch (_) {}
+                if (!resp || !resp.ok) {
+                    resp = await fetch('stats_data.json?t=' + Date.now(), { cache: 'no-store' });
+                }
+                if (!resp.ok) return;
+                const data = await resp.json();
+                const quizList = filterNonAdmin((data.quiz && data.quiz.top_solvers) ? data.quiz.top_solvers : []);
+                const balList = filterNonAdmin((data.leaderboards && data.leaderboards.top_balances) ? data.leaderboards.top_balances : []);
+
+                const elQuiz = document.getElementById('homeTopQuiz');
+                if (elQuiz && quizList.length) {
+                    elQuiz.innerHTML = quizList.slice(0, 10).map((p, i) => `
+                        <tr>
+                            <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                            <td class="col-name"><strong>${p.name}</strong></td>
+                            <td class="col-mid">${fmtNum(p.qty)} шт.</td>
+                            <td class="col-num" style="color:#22c55e;">${fmtNum(p.rub || (p.qty * 1500))} ₽</td>
+                        </tr>
+                    `).join('');
+                }
+
+                const elBal = document.getElementById('homeTopBalance');
+                if (elBal && balList.length) {
+                    const top10Sum = balList.slice(0, 10).reduce((s, x) => s + (Number(x.rub) || 0), 0) || 1;
+                    elBal.innerHTML = balList.slice(0, 10).map((p, i) => {
+                        const share = ((Number(p.rub || 0) / top10Sum) * 100).toFixed(1) + '%';
+                        return `
+                        <tr>
+                            <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                            <td class="col-name"><strong>${p.name}</strong></td>
+                            <td class="col-mid">${share}</td>
+                            <td class="col-num" style="color:#f59e0b;">${fmtNum(p.rub)} ₽</td>
+                        </tr>`;
+                    }).join('');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</body>
+</html>

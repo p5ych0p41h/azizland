@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика и Казна сервера: AZIZLAND 1.21.11</title>
+    <meta name="description" content="Живая статистика экономики сервера AZIZLAND: баланс Казны, графики денежной массы, оборот покупок и продаж в магазине, рейтинги игроков, кланов и викторины.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="alternate icon" type="image/png" href="assets/server-icon.png">
+    <link rel="stylesheet" href="style.css?v=20261111_1">
+    <style>
+        .stats-live-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-md);
+            margin-top: 24px;
+        }
+        .stats-live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .live-pulse {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 0 4px var(--accent-green-soft);
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .kpi-card {
+            grid-column: span 3;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-md);
+            padding: 20px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        @media (max-width: 980px) {
+            .kpi-card { grid-column: span 6; }
+        }
+        @media (max-width: 600px) {
+            .kpi-card { grid-column: span 12; }
+        }
+        .kpi-label {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .kpi-value {
+            font-family: var(--font-mono);
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+        .kpi-value.val-green { color: #22c55e; }
+        .kpi-value.val-gold { color: #f59e0b; }
+        .kpi-value.val-red { color: #ef4444; }
+        .kpi-sub {
+            width: 100%;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            border-top: 1px solid var(--border-hairline);
+            padding-top: 10px;
+            white-space: nowrap;
+        }
+        .table-card-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 48px;
+            margin-bottom: 6px;
+        }
+        .table-card-head-titles {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .compact-table-wrap {
+            width: 100%;
+            background-color: var(--bg-canvas);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .compact-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-size: 0.87rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .compact-table th {
+            background-color: var(--bg-elevated);
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 0.71rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            height: 38px;
+            padding: 0 10px;
+            border-bottom: 1px solid var(--border-strong);
+            border-right: 1px solid var(--border-hairline);
+            vertical-align: middle;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .compact-table th:last-child,
+        .compact-table td:last-child {
+            border-right: none;
+        }
+        .compact-table td {
+            height: 41px;
+            padding: 0 10px;
+            border-bottom: 1px solid var(--border-hairline);
+            border-right: 1px solid var(--border-hairline);
+            color: var(--text-secondary);
+            vertical-align: middle;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .compact-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.018);
+        }
+        .compact-table tr:last-child td {
+            border-bottom: none;
+        }
+        .compact-table th.col-rank,
+        .compact-table td.col-rank {
+            width: 10% !important;
+            text-align: center !important;
+            padding: 0 4px !important;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+        .compact-table th.col-name,
+        .compact-table td.col-name {
+            width: 42% !important;
+            text-align: left !important;
+            padding-left: 14px !important;
+            padding-right: 10px !important;
+        }
+        .compact-table th.col-mid,
+        .compact-table td.col-mid {
+            width: 22% !important;
+            text-align: center !important;
+            padding: 0 8px !important;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+        }
+        .compact-table th.col-num,
+        .compact-table td.col-num {
+            width: 26% !important;
+            text-align: center !important;
+            padding: 0 10px !important;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+        .chart-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-top: 20px;
+        }
+        .chart-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+        }
+        .svg-chart-wrap {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .svg-chart {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .ratio-bar-wrap {
+            margin-top: 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-sm);
+            padding: 18px;
+        }
+        .ratio-bar-track {
+            width: 100%;
+            height: 16px;
+            background: rgba(239, 68, 68, 0.25);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            margin: 12px 0;
+        }
+        .ratio-bar-fill-buy {
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            transition: width 0.4s ease;
+        }
+        .ratio-stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+        .mini-bar-bg {
+            width: 100%;
+            height: 5px;
+            background: var(--bg-subtle);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .mini-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        .mini-bar-fill.green { background: #22c55e; }
+        .mini-bar-fill.amber { background: #f59e0b; }
+        .mini-bar-fill.red { background: #dc2626; }
+        .tab-btn-group {
+            display: inline-flex;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-xs);
+            padding: 3px;
+            gap: 4px;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tab-btn.active {
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+        }
+        .mono-num {
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <img src="assets/logo.png" alt="AZIZLAND" class="brand-crest">
+                <span class="brand-name">AZIZ<span>LAND</span></span>
+            </a>
+            <nav class="nav-menu" aria-label="Основная навигация">
+                <a href="index.html" class="nav-item">Главная</a>
+                <a href="halloween.html" class="nav-item">Тыквенный спас</a>
+                <a href="magic.html" class="nav-item">Магия</a>
+                <a href="bosses.html" class="nav-item">Ивенты</a>
+                <a href="mechanics.html" class="nav-item">Механика</a>
+                <a href="stats.html" class="nav-item active">Статистика</a>
+                <a href="rules.html" class="nav-item">Правила</a>
+            </nav>
+            <div class="nav-status-pill">
+                <span class="status-dot" id="navStatusDot"></span>
+                <span id="navStatusText">В сети</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="eyebrow">Центральный Банк и аналитика рынка</div>
+                <h1 class="page-title">Живая статистика сервера</h1>
+                <p class="page-lead">
+                    Сводка формируется автоматически напрямую из базы данных сервера каждые пять минут. Здесь отображаются актуальный резерв Казны, денежная масса на руках у игроков, полный баланс покупок и продаж в магазине <code class="inline-cmd">/shop</code>, а также все рейтинги игроков и кланов.
+                </p>
+
+                <div class="stats-live-bar">
+                    <div class="stats-live-indicator">
+                        <span class="live-pulse"></span>
+                        <span>Автоматическая синхронизация с сервером. Срез данных: <strong id="statUpdatedAt" class="mono-num">10.11.2026 08:46 МСК</strong></span>
+                    </div>
+                    <button type="button" class="copy-btn" id="btnRefreshStats" onclick="fetchLiveStats(true)">Обновить сводку</button>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span class="kpi-label">Текущий резерв Казны</span>
+                        <div class="kpi-value val-green" id="kpiTreasuryBalance">6 545 530 ₽</div>
+                        <div class="kpi-sub">
+                            <span>Старт: 1 000 000 ₽</span>
+                            <strong id="kpiTreasuryGrowth" style="color:#22c55e;">+5 545 530 ₽</strong>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <span class="kpi-label">Куплено в магазине /shop</span>
+                        <div class="kpi-value val-gold" id="kpiShopBuyRub">4 546 772 ₽</div>
+                        <div class="kpi-sub">
+                            <span id="kpiShopBuyTx">Сделок: 1 029</span>
+                            <strong id="kpiShopBuyItems">26 517 шт.</strong>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <span class="kpi-label">Продано на Склад /shop</span>
+                        <div class="kpi-value" id="kpiShopSellRub">159 784 ₽</div>
+                        <div class="kpi-sub">
+                            <span id="kpiShopSellTx">Сделок: 148</span>
+                            <strong id="kpiShopSellItems">20 682 шт.</strong>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <span class="kpi-label">Сумма денег у всех игроков</span>
+                        <div class="kpi-value" id="kpiM1Supply">14 071 172 ₽</div>
+                        <div class="kpi-sub">
+                            <span id="kpiPlayersCount">Игроков: 74</span>
+                            <strong id="kpiCoverage" style="color:#22c55e;">Казна: 55.3%</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kpi-grid" style="margin-top: 16px;">
+                    <div class="kpi-card">
+                        <span class="kpi-label">Чистая прибыль магазина</span>
+                        <div class="kpi-value val-green" id="kpiShopNetProfit">+4 386 988 ₽</div>
+                        <div class="kpi-sub">
+                            <span>Сальдо /shop</span>
+                            <strong>Приток в Казну</strong>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <span class="kpi-label">Доход Казны за сегодня</span>
+                        <div class="kpi-value val-green" id="kpiTodayIncome">+34 196 ₽</div>
+                        <div class="kpi-sub">
+                            <span id="kpiTodayBuyLabel">Магазин: 5 196 ₽</span>
+                            <strong id="kpiTodayOtherIncome">Онлайн и услуги: 29 000 ₽</strong>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <span class="kpi-label">Расход Казны за сегодня</span>
+                        <div class="kpi-value val-red" id="kpiTodayExpense">-11 013 ₽</div>
+                        <div class="kpi-sub">
+                            <span id="kpiTodaySellLabel">Скупка: 13 ₽</span>
+                            <strong id="kpiTodayRewardsExpense">Премии и призы: 11 000 ₽</strong>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <span class="kpi-label">Типичный баланс игрока</span>
+                        <div class="kpi-value" id="kpiMedianBalance">7 326 ₽</div>
+                        <div class="kpi-sub">
+                            <span>Среднее с топом</span>
+                            <strong id="kpiMeanBalance">281 387 ₽</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Макроэкономическая динамика</div>
+                    <h2 class="section-title">График Казны сервера и денежной массы</h2>
+                    <p class="section-desc">
+                        Почасовая история состояния Центрального Банка сервера и суммарного капитала активных игроков. После закрытия старых уязвимостей и запуска динамической дефляции резерв Казны вырос с 1 000 000 ₽ до более чем 6 540 000 ₽.
+                    </p>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <h3 class="card-title" style="margin-bottom:4px;">Резерв Казны и общий капитал игроков по часам МСК</h3>
+                            <p class="card-text">Зеленая линия отражает средства в Казне сервера, янтарная линия показывает суммарный капитал всех реальных игроков сервера</p>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot" style="background:#22c55e;"></span>Резерв Казны сервера</span>
+                            <span class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span>Сумма денег у всех игроков</span>
+                        </div>
+                    </div>
+
+                    <div class="svg-chart-wrap" id="treasuryChartContainer"></div>
+
+                    <div class="ratio-bar-wrap">
+                        <div class="ratio-stats-row">
+                            <span><strong>Приток в Казну от покупок в /shop:</strong> <span id="barBuyLabel" class="mono-num" style="color:#22c55e;">4 546 772 ₽, 96.6% оборота</span></span>
+                            <span><strong>Выплаты из Казны за скупку ресурсов:</strong> <span id="barSellLabel" class="mono-num" style="color:#ef4444;">159 784 ₽, 3.4% оборота</span></span>
+                        </div>
+                        <div class="ratio-bar-track">
+                            <div class="ratio-bar-fill-buy" id="ratioBarBuyFill" style="width: 96.6%;"></div>
+                        </div>
+                        <p class="card-text" style="font-size:0.84rem;">
+                            За счет прогрессивного снижения закупочных цен при переполнении Склада и суточного лимита скупки игроки вкладывают в покупку редких книг, спавнеров, алмазных блоков и расходников в десятки раз больше средств, чем выводят через продажу сырья.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header" style="margin-bottom: 14px;">
+                        <div>
+                            <h3 class="card-title" style="margin-bottom:4px;">Расслоение капитала по группам игроков</h3>
+                            <p class="card-text">На сервере играют участники с разным бюджетом: крупная сумма накоплена у торговцев и лидеров кланов, тогда как большинство активных игроков держат оборотный баланс от 5 000 до 15 000 ₽ и сразу вкладывают заработанные средства в снаряжение, книги и развитие базы</p>
+                        </div>
+                    </div>
+                    <div class="compact-table-wrap">
+                        <table class="compact-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-rank">#</th>
+                                    <th class="col-name">Категория баланса</th>
+                                    <th class="col-mid">Игроков и доля</th>
+                                    <th class="col-num">Сумма в группе</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableWealthTiers"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <h3 class="card-title" style="margin-bottom:4px;">Суточный профиль торговой активности по часам МСК</h3>
+                            <p class="card-text">Распределение объема покупок и продаж в магазине по часам московского времени</p>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot" style="background:#22c55e;"></span>Покупки игроков, доход Казны</span>
+                            <span class="legend-item"><span class="legend-dot" style="background:#dc2626;"></span>Продажи игроков, расход Казны</span>
+                        </div>
+                    </div>
+
+                    <div class="svg-chart-wrap" id="hourlyShopChartContainer"></div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div>
+                            <h3 class="card-title" style="margin-bottom:4px;">Почасовая посещаемость сервера по времени МСК</h3>
+                            <p class="card-text">Пиковая и средняя загрузка мира игроками в разное время суток по московскому времени</p>
+                        </div>
+                        <div class="chart-legend">
+                            <span class="legend-item"><span class="legend-dot" style="background:#38bdf8;"></span>Пиковый онлайн часа</span>
+                            <span class="legend-item"><span class="legend-dot" style="background:#a855f7;"></span>Средний онлайн часа</span>
+                        </div>
+                    </div>
+
+                    <div class="svg-chart-wrap" id="hourlyOnlineChartContainer"></div>
+                </div>
+
+                <div class="bento-grid" style="margin-top: 20px;">
+                    <div class="card col-6">
+                        <span class="card-kicker" style="color:#22c55e;">Откуда приходят деньги в Казну</span>
+                        <h3 class="card-title" style="margin-top:4px;">Все статьи дохода Казны</h3>
+                        <p class="card-text">
+                            Казна пополняется не только от покупок в <code class="inline-cmd">/shop</code>. В доход Центрального Банка идут регулярные бюджетные начисления за активный онлайн каждые 15 минут, покупка и перезарядка Мистических Сфер в <code class="inline-cmd">/spheres</code>, расширение территории и слотов в <code class="inline-cmd">/dom</code>, налог с сделок по домам, а также чистый результат игр в Лавке Удачи <code class="inline-cmd">/luck</code>.
+                        </p>
+                    </div>
+                    <div class="card col-6">
+                        <span class="card-kicker" style="color:#ef4444;">На что расходуется резерв Казны</span>
+                        <h3 class="card-title" style="margin-top:4px;">Все статьи выплат игрокам</h3>
+                        <p class="card-text">
+                            Помимо прямой скупки ресурсов на Склад в <code class="inline-cmd">/shop</code>, из резерва Казны финансируются премии за решение задач викторины, награды за ежедневные квесты и марафон «Неделька» в <code class="inline-cmd">/quests</code>, призовой фонд за победу над мировыми боссами и чистая прибыль игроков при выигрышах в Лавке Удачи <code class="inline-cmd">/luck</code>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Динамический курс скупки</div>
+                    <h2 class="section-title">Живая сводка Склада сервера</h2>
+                    <p class="section-desc">
+                        Актуальные запасы Склада в <code class="inline-cmd">/kazna</code> и действующий процент закупочной цены по каждому ресурсу. Когда в сети есть активные игроки, промыслы сервера каждые 15 минут поддерживают базовый оборот сырья ниже порога 50% с сохранением полного курса скупки 100%, при загрузке от 50% до 80% цена составляет 75%, выше 80% снижается до 50%, а при отсутствии игроков склад переходит в режим ожидания без потери запасов.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#38bdf8;">Шахтерское сырье</span>
+                                <h3 class="card-title" style="margin:0;">Запасы руд и слитков на Складе</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Ресурс</th>
+                                        <th class="col-mid">На складе</th>
+                                        <th class="col-num">Курс скупки</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableWarehouseOres"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#22c55e;">Фермерство и охота</span>
+                                <h3 class="card-title" style="margin:0;">Запасы урожая и трофеев мобов</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Ресурс</th>
+                                        <th class="col-mid">На складе</th>
+                                        <th class="col-num">Курс скупки</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableWarehouseFarms"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Товарная аналитика магазина</div>
+                    <h2 class="section-title">Сколько ресурсов купили и продали</h2>
+                    <p class="section-desc">
+                        Подробная статистика по самым востребованным товарам в <code class="inline-cmd">/shop</code> с момента запуска новой экономической модели. Переключайте сортировку между денежным объемом в рублях и физическим количеством предметов в штуках.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#22c55e;">Пополнение Казны</span>
+                                <h3 class="card-title" style="margin:0;">Топ-10 купленных товаров</h3>
+                            </div>
+                            <div class="tab-btn-group">
+                                <button type="button" class="tab-btn active" id="btnBuyByRub" onclick="switchItemTab('buy', 'rub')">По сумме ₽</button>
+                                <button type="button" class="tab-btn" id="btnBuyByQty" onclick="switchItemTab('buy', 'qty')">По штукам</button>
+                            </div>
+                        </div>
+
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Товар</th>
+                                        <th class="col-mid">Куплено</th>
+                                        <th class="col-num">Сумма ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopBought"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#f59e0b;">Выплаты со Склада</span>
+                                <h3 class="card-title" style="margin:0;">Топ-10 проданных ресурсов</h3>
+                            </div>
+                            <div class="tab-btn-group">
+                                <button type="button" class="tab-btn active" id="btnSellByRub" onclick="switchItemTab('sell', 'rub')">По сумме ₽</button>
+                                <button type="button" class="tab-btn" id="btnSellByQty" onclick="switchItemTab('sell', 'qty')">По штукам</button>
+                            </div>
+                        </div>
+
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Ресурс</th>
+                                        <th class="col-mid">Сдано</th>
+                                        <th class="col-num">Выплачено ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopSold"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Все рейтинги сервера</div>
+                    <h2 class="section-title">Таблицы лидеров по всем направлениям</h2>
+                    <p class="section-desc">
+                        Полный свод рейтингов сервера: состояние игроков, решенные задачи викторины, торговый оборот в магазине, развитие кланов, боевая статистика и время в игре. Все таблицы выровнены по единой симметричной сетке.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#f59e0b;">Финансовый рейтинг</span>
+                                <h3 class="card-title" style="margin:0;">Топ игроков по балансу</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Доля топ-10</th>
+                                        <th class="col-num">Баланс ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopBalances"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#dc2626;">Интеллектуальный капитал</span>
+                                <h3 class="card-title" style="margin:0;">Топ по решенным задачам</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Решено</th>
+                                        <th class="col-num">Премии ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopQuiz"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#22c55e;">Главные инвесторы Казны</span>
+                                <h3 class="card-title" style="margin:0;">Топ покупателей /shop</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Куплено</th>
+                                        <th class="col-num">Потрачено ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopBuyers"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#f59e0b;">Главные поставщики Склада</span>
+                                <h3 class="card-title" style="margin:0;">Топ продавцов /shop</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Сдано</th>
+                                        <th class="col-num">Выручка ₽</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopSellers"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#9333ea;">Клановое могущество</span>
+                                <h3 class="card-title" style="margin:0;">Топ кланов сервера</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Тег клана</th>
+                                        <th class="col-mid">Уровень</th>
+                                        <th class="col-num">Очки вклада</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopClans"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#dc2626;">Воинская слава</span>
+                                <h3 class="card-title" style="margin:0;">Топ бойцов в сражениях</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Ранг арены</th>
+                                        <th class="col-num">Побед в бою</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopPvp"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#0891b2;">Зачистка подземелий</span>
+                                <h3 class="card-title" style="margin:0;">Топ охотников на монстров</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Доля топ-10</th>
+                                        <th class="col-num">Убито мобов</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopMobs"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#22c55e;">Ветераны мира</span>
+                                <h3 class="card-title" style="margin:0;">Топ по времени в игре</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">В сутках</th>
+                                        <th class="col-num">Наиграно часов</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopPlaytime"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#38bdf8;">Глубинная добыча</span>
+                                <h3 class="card-title" style="margin:0;">Топ рудокопов сервера</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Древние обломки</th>
+                                        <th class="col-num">Ценных руд</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopMiners"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#f59e0b;">Искатели реликвий</span>
+                                <h3 class="card-title" style="margin:0;">Топ по квестам и жетонам</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Текущий цикл</th>
+                                        <th class="col-num">Жетонов ✪</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopQuests"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#a855f7;">Покорители просторов</span>
+                                <h3 class="card-title" style="margin:0;">Топ путешественников мира</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">На элитрах</th>
+                                        <th class="col-num">Пройдено км</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopTravelers"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#ef4444;">Суровое выживание</span>
+                                <h3 class="card-title" style="margin:0;">Топ по испытаниям и смертям</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Часов в мире</th>
+                                        <th class="col-num">Погиб раз</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopDeaths"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&#169; 2026 AZIZLAND</span>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="app.js"></script>
+    <script>
+        let currentStatsData = {
+          "updated_at_iso": "2026-11-11T07:13:03+03:00",
+          "updated_at_human": "11.11.2026 07:13 МСК",
+          "online_players": 0,
+          "treasury": {
+            "balance_rub": 7787434.67,
+            "initial_rub": 1000000.00,
+            "net_growth_rub": 6787434.67,
+            "growth_multiplier": 7.79,
+            "today_income_rub": 0.00,
+            "today_shop_buy_rub": 0.00,
+            "today_other_income_rub": 0.00,
+            "today_expense_rub": 0.00,
+            "today_shop_sell_rub": 0.00,
+            "today_rewards_expense_rub": 0.00,
+            "today_net_rub": 0.00,
+            "day_key": "2026-11-11",
+            "m1_supply_rub": 14071171.93,
+            "real_players_count": 74,
+            "active_econ_players_count": 56,
+            "mean_balance_rub": 251238.78,
+            "median_balance_rub": 5032.35,
+            "gini": 0.8232,
+            "coverage_ratio_pct": 55.3,
+            "wealth_tiers": [
+              {"tier":"Миллионеры: от 1 000 000 ₽","players":6,"total_rub":9223627.02,"avg_rub":1537271.17,"share_rub_pct":65.5,"share_players_pct":8.1},
+              {"tier":"Крупный капитал: от 100 000 до 999 999 ₽","players":9,"total_rub":4418816.94,"avg_rub":490979.66,"share_rub_pct":31.4,"share_players_pct":12.2},
+              {"tier":"Средний класс: от 10 000 до 99 999 ₽","players":7,"total_rub":364284.30,"avg_rub":52040.61,"share_rub_pct":2.6,"share_players_pct":9.5},
+              {"tier":"Рабочий бюджет: от 1 000 до 9 999 ₽","players":11,"total_rub":59146.23,"avg_rub":5376.93,"share_rub_pct":0.4,"share_players_pct":14.9},
+              {"tier":"В обороте и развитии: до 1 000 ₽","players":41,"total_rub":5297.44,"avg_rub":129.21,"share_rub_pct":0.0,"share_players_pct":55.4}
+            ]
+          },
+          "shop": {
+            "buy_tx": 1250,
+            "buy_items": 28277,
+            "buy_rub": 4694687.00,
+            "sell_tx": 247,
+            "sell_items": 32727,
+            "sell_rub": 267661.48,
+            "net_profit_rub": 4427025.52,
+            "today_buy_tx": 0,
+            "today_buy_items": 0,
+            "today_buy_rub": 0.00,
+            "today_sell_tx": 0,
+            "today_sell_items": 0,
+            "today_sell_rub": 0.00,
+            "top_bought_by_rub": [
+              {"name":"Алмазный блок","qty":640,"rub":1440000.00,"tx":10},
+              {"name":"Спавнер свиней","qty":15,"rub":750000.00,"tx":2},
+              {"name":"Книга «Починка»","qty":37,"rub":555000.00,"tx":33},
+              {"name":"Зачарованное золотое яблоко","qty":65,"rub":325000.00,"tx":2},
+              {"name":"Тотем бессмертия","qty":82,"rub":205000.00,"tx":19},
+              {"name":"Золотое яблоко","qty":845,"rub":169000.00,"tx":41},
+              {"name":"Книга «Защита IV»","qty":13,"rub":117000.00,"tx":13},
+              {"name":"Книга «Порыв ветра III»","qty":3,"rub":105000.00,"tx":3},
+              {"name":"Булава","qty":3,"rub":105000.00,"tx":3},
+              {"name":"Взрывное зелье","qty":88,"rub":102650.00,"tx":67}
+            ],
+            "top_bought_by_qty": [
+              {"name":"Земля","qty":6660,"rub":13320.00,"tx":107},
+              {"name":"Камень","qty":2337,"rub":4674.00,"tx":35},
+              {"name":"Фейерверк","qty":1762,"rub":17600.00,"tx":83},
+              {"name":"Костный блок","qty":1344,"rub":20160.00,"tx":21},
+              {"name":"Сахарный тростник","qty":845,"rub":4225.00,"tx":26},
+              {"name":"Золотое яблоко","qty":845,"rub":169000.00,"tx":41},
+              {"name":"Кирпичи","qty":832,"rub":12480.00,"tx":13},
+              {"name":"Пузырек опыта","qty":675,"rub":50625.00,"tx":13},
+              {"name":"Алмазный блок","qty":640,"rub":1440000.00,"tx":10},
+              {"name":"Еловые доски","qty":640,"rub":1276.00,"tx":10}
+            ],
+            "top_sold_by_rub": [
+              {"name":"Незеритовый блок","qty":32,"rub":144000.00,"tx":4},
+              {"name":"Алмазный блок","qty":162,"rub":43740.00,"tx":3},
+              {"name":"Жареная свинина","qty":11831,"rub":32911.38,"tx":109},
+              {"name":"Алмаз","qty":590,"rub":13380.00,"tx":3},
+              {"name":"Магнетит","qty":267,"rub":10680.00,"tx":2},
+              {"name":"Мак","qty":5018,"rub":3591.14,"tx":5},
+              {"name":"Жареная говядина","qty":1206,"rub":3570.33,"tx":15},
+              {"name":"Редстоуновый блок","qty":652,"rub":2608.00,"tx":5},
+              {"name":"Незеритовый нагрудник","qty":6,"rub":2400.00,"tx":1},
+              {"name":"Незеритовый слиток","qty":4,"rub":2000.00,"tx":1}
+            ],
+            "top_sold_by_qty": [
+              {"name":"Жареная свинина","qty":11831,"rub":32911.38,"tx":109},
+              {"name":"Мак","qty":5018,"rub":3591.14,"tx":5},
+              {"name":"Булыжник","qty":3341,"rub":346.01,"tx":8},
+              {"name":"Плотный лед","qty":1535,"rub":1535.00,"tx":10},
+              {"name":"Жареная говядина","qty":1206,"rub":3570.33,"tx":15},
+              {"name":"Железный слиток","qty":1082,"rub":1170.45,"tx":8},
+              {"name":"Гнилая плоть","qty":998,"rub":344.20,"tx":14},
+              {"name":"Редстоуновый блок","qty":652,"rub":2608.00,"tx":5},
+              {"name":"Алмаз","qty":590,"rub":13380.00,"tx":3},
+              {"name":"Доски из темного дуба","qty":576,"rub":288.00,"tx":1}
+            ],
+            "top_buyers": [
+              {"name":"Farel_Kartel","qty":5113,"rub":1983379.00,"tx":146},
+              {"name":"krotik_pokoyo42","qty":16001,"rub":1637864.00,"tx":487},
+              {"name":"Andrew_Prime","qty":2443,"rub":826264.00,"tx":283},
+              {"name":"Rat_3000","qty":925,"rub":145705.00,"tx":182},
+              {"name":"Goha22","qty":1,"rub":50000.00,"tx":1},
+              {"name":"frostflux","qty":453,"rub":24953.00,"tx":29},
+              {"name":"TiS2015","qty":763,"rub":14591.00,"tx":43},
+              {"name":"ROMANTOP","qty":8,"rub":4800.00,"tx":8},
+              {"name":"MrVoid","qty":2059,"rub":4191.00,"tx":43},
+              {"name":"Sakenzel","qty":1,"rub":1050.00,"tx":1}
+            ],
+            "top_sellers": [
+              {"name":"krotik_pokoyo42","qty":7054,"rub":99077.70,"tx":11},
+              {"name":"Andrew_Prime","qty":11460,"rub":62093.65,"tx":125},
+              {"name":"Rat_3000","qty":6700,"rub":55707.03,"tx":66},
+              {"name":"MrVoid","qty":256,"rub":10240.00,"tx":1},
+              {"name":"Max1234567890","qty":3642,"rub":8178.45,"tx":7},
+              {"name":"Cool_Boy1","qty":897,"rub":2334.00,"tx":5},
+              {"name":"Farel_Kartel","qty":1830,"rub":1546.80,"tx":11},
+              {"name":"yar2015","qty":145,"rub":580.00,"tx":2},
+              {"name":"Proverkin","qty":92,"rub":448.65,"tx":4},
+              {"name":"ROMANTOP","qty":120,"rub":381.00,"tx":3}
+            ],
+            "hourly_msk": [
+              {"hour":0,"buy_rub":16942.00,"sell_rub":63669.70,"tx":33},
+              {"hour":1,"buy_rub":850.00,"sell_rub":385.20,"tx":6},
+              {"hour":2,"buy_rub":229350.00,"sell_rub":0.00,"tx":19},
+              {"hour":3,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
+              {"hour":4,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
+              {"hour":5,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
+              {"hour":6,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
+              {"hour":7,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
+              {"hour":8,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
+              {"hour":9,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
+              {"hour":10,"buy_rub":640.00,"sell_rub":0.00,"tx":1},
+              {"hour":11,"buy_rub":354281.00,"sell_rub":0.00,"tx":56},
+              {"hour":12,"buy_rub":64544.00,"sell_rub":0.00,"tx":40},
+              {"hour":13,"buy_rub":358732.00,"sell_rub":1926.00,"tx":205},
+              {"hour":14,"buy_rub":10840.00,"sell_rub":988.00,"tx":12},
+              {"hour":15,"buy_rub":1758521.00,"sell_rub":17623.60,"tx":157},
+              {"hour":16,"buy_rub":1411.00,"sell_rub":1204.45,"tx":49},
+              {"hour":17,"buy_rub":9746.00,"sell_rub":513.98,"tx":55},
+              {"hour":18,"buy_rub":83930.00,"sell_rub":26835.00,"tx":55},
+              {"hour":19,"buy_rub":53690.00,"sell_rub":3356.25,"tx":93},
+              {"hour":20,"buy_rub":184804.00,"sell_rub":81212.20,"tx":241},
+              {"hour":21,"buy_rub":944777.00,"sell_rub":65268.10,"tx":239},
+              {"hour":22,"buy_rub":85693.00,"sell_rub":3144.00,"tx":136},
+              {"hour":23,"buy_rub":535936.00,"sell_rub":1535.00,"tx":100}
+            ]
+          },
+          "warehouse": [
+            {"name":"Алмаз","stock":226,"max":1024,"fill_pct":22,"rate_pct":100},
+            {"name":"Незеритовый слиток","stock":22,"max":128,"fill_pct":17,"rate_pct":100},
+            {"name":"Древний обломок","stock":49,"max":256,"fill_pct":19,"rate_pct":100},
+            {"name":"Железный слиток","stock":582,"max":2048,"fill_pct":28,"rate_pct":100},
+            {"name":"Золотой слиток","stock":488,"max":2048,"fill_pct":24,"rate_pct":100},
+            {"name":"Медный слиток","stock":638,"max":2048,"fill_pct":31,"rate_pct":100},
+            {"name":"Изумруд","stock":412,"max":2048,"fill_pct":20,"rate_pct":100},
+            {"name":"Редстоуновая пыль","stock":544,"max":2048,"fill_pct":27,"rate_pct":100},
+            {"name":"Лазурит","stock":506,"max":2048,"fill_pct":25,"rate_pct":100},
+            {"name":"Уголь","stock":656,"max":2048,"fill_pct":32,"rate_pct":100},
+            {"name":"Пшеница","stock":1238,"max":4096,"fill_pct":30,"rate_pct":100},
+            {"name":"Морковь","stock":1088,"max":4096,"fill_pct":27,"rate_pct":100},
+            {"name":"Картофель","stock":1164,"max":4096,"fill_pct":28,"rate_pct":100},
+            {"name":"Тыква","stock":1012,"max":4096,"fill_pct":25,"rate_pct":100},
+            {"name":"Арбуз","stock":976,"max":4096,"fill_pct":24,"rate_pct":100},
+            {"name":"Сахарный тростник","stock":1276,"max":4096,"fill_pct":31,"rate_pct":100},
+            {"name":"Незерский нарост","stock":864,"max":4096,"fill_pct":21,"rate_pct":100},
+            {"name":"Гнилая плоть","stock":1202,"max":4096,"fill_pct":29,"rate_pct":100},
+            {"name":"Кость","stock":1052,"max":4096,"fill_pct":26,"rate_pct":100},
+            {"name":"Порох","stock":826,"max":4096,"fill_pct":20,"rate_pct":100}
+          ],
+          "hourly_online_msk": [
+            {"hour":0,"avg":1.0,"peak":3},
+            {"hour":1,"avg":0.4,"peak":1},
+            {"hour":2,"avg":0.1,"peak":1},
+            {"hour":3,"avg":0.0,"peak":0},
+            {"hour":4,"avg":0.0,"peak":0},
+            {"hour":5,"avg":0.0,"peak":0},
+            {"hour":6,"avg":0.0,"peak":0},
+            {"hour":7,"avg":0.0,"peak":0},
+            {"hour":8,"avg":0.0,"peak":0},
+            {"hour":9,"avg":0.2,"peak":1},
+            {"hour":10,"avg":1.0,"peak":1},
+            {"hour":11,"avg":0.9,"peak":1},
+            {"hour":12,"avg":0.0,"peak":0},
+            {"hour":13,"avg":0.0,"peak":0},
+            {"hour":14,"avg":0.0,"peak":1},
+            {"hour":15,"avg":0.1,"peak":1},
+            {"hour":16,"avg":1.4,"peak":3},
+            {"hour":17,"avg":2.0,"peak":5},
+            {"hour":18,"avg":2.6,"peak":6},
+            {"hour":19,"avg":4.0,"peak":6},
+            {"hour":20,"avg":3.1,"peak":6},
+            {"hour":21,"avg":5.0,"peak":7},
+            {"hour":22,"avg":2.5,"peak":4},
+            {"hour":23,"avg":2.6,"peak":3}
+          ],
+          "quiz": {
+            "total_solved": 100,
+            "top_solvers": [
+              {"name":"Farel_Kartel","qty":47,"rub":70500.00,"tx":0},
+              {"name":"abob","qty":23,"rub":34500.00,"tx":0},
+              {"name":"Fortenit","qty":8,"rub":12000.00,"tx":0},
+              {"name":"Sakenzel","qty":6,"rub":9000.00,"tx":0},
+              {"name":"mig_grig","qty":5,"rub":7500.00,"tx":0},
+              {"name":"krotik_pokoyo42","qty":4,"rub":6000.00,"tx":0},
+              {"name":"Aleks_FR_VIP","qty":2,"rub":3000.00,"tx":0},
+              {"name":"Max1234567890","qty":2,"rub":3000.00,"tx":0},
+              {"name":"Goha22","qty":2,"rub":3000.00,"tx":0},
+              {"name":"imica42","qty":1,"rub":1500.00,"tx":0}
+            ]
+          },
+          "leaderboards": {
+            "top_balances": [
+              {"name":"Fortenit","qty":0,"rub":2997926.81,"tx":0},
+              {"name":"krotik_pokoyo42","qty":0,"rub":1864235.90,"tx":0},
+              {"name":"Andrew_Prime","qty":0,"rub":1108411.25,"tx":0},
+              {"name":"Farel_Kartel","qty":0,"rub":1100105.30,"tx":0},
+              {"name":"32423","qty":0,"rub":1078651.78,"tx":0},
+              {"name":"GroZXC","qty":0,"rub":1074295.98,"tx":0},
+              {"name":"imica42","qty":0,"rub":885508.00,"tx":0},
+              {"name":"OmegsBro","qty":0,"rub":835189.22,"tx":0},
+              {"name":"abob","qty":0,"rub":749525.00,"tx":0},
+              {"name":"cthutq110312","qty":0,"rub":684088.27,"tx":0}
+            ],
+            "top_clans": [
+              {"name":"CHAOS","qty":6,"rub":34759.00,"tx":0},
+              {"name":"MIG","qty":4,"rub":11418.00,"tx":0},
+              {"name":"TVARI","qty":3,"rub":1917.00,"tx":0},
+              {"name":"RIBKI","qty":2,"rub":13396.00,"tx":0},
+              {"name":"FF","qty":2,"rub":1084.00,"tx":0},
+              {"name":"INFER","qty":1,"rub":17.00,"tx":0}
+            ],
+            "top_pvp_kills": [
+              {"name":"Sakenzel","qty":426,"rub":0.00,"tx":0},
+              {"name":"stepa","qty":130,"rub":0.00,"tx":0},
+              {"name":"Fortenit","qty":92,"rub":0.00,"tx":0},
+              {"name":"Farel_Kartel","qty":73,"rub":0.00,"tx":0},
+              {"name":"MrVoid","qty":72,"rub":0.00,"tx":0},
+              {"name":"krotik_pokoyo42","qty":67,"rub":0.00,"tx":0},
+              {"name":"yar2015","qty":65,"rub":0.00,"tx":0},
+              {"name":"Goha22","qty":56,"rub":0.00,"tx":0},
+              {"name":"ilya","qty":37,"rub":0.00,"tx":0},
+              {"name":"imica42","qty":35,"rub":0.00,"tx":0}
+            ],
+            "top_mob_kills": [
+              {"name":"cthutq110312","qty":83958,"rub":0.00,"tx":0},
+              {"name":"Sakenzel","qty":30635,"rub":0.00,"tx":0},
+              {"name":"Farel_Kartel","qty":13425,"rub":0.00,"tx":0},
+              {"name":"Fortenit","qty":11954,"rub":0.00,"tx":0},
+              {"name":"MrVoid","qty":10370,"rub":0.00,"tx":0},
+              {"name":"frostflux","qty":10248,"rub":0.00,"tx":0},
+              {"name":"Proverkin","qty":5583,"rub":0.00,"tx":0},
+              {"name":"32423","qty":5330,"rub":0.00,"tx":0},
+              {"name":"Rohan___Kishibe","qty":5136,"rub":0.00,"tx":0},
+              {"name":"mig_grig","qty":4573,"rub":0.00,"tx":0}
+            ],
+            "top_playtime": [
+              {"name":"cthutq110312","qty":306,"rub":307.00,"tx":0},
+              {"name":"Proverkin","qty":277,"rub":277.40,"tx":0},
+              {"name":"Sakenzel","qty":217,"rub":217.70,"tx":0},
+              {"name":"Fortenit","qty":171,"rub":171.60,"tx":0},
+              {"name":"frostflux","qty":107,"rub":107.30,"tx":0},
+              {"name":"MrVoid","qty":98,"rub":98.10,"tx":0},
+              {"name":"ilya","qty":91,"rub":91.60,"tx":0},
+              {"name":"Aleks_FR_VIP","qty":83,"rub":83.30,"tx":0},
+              {"name":"Farel_Kartel","qty":83,"rub":83.10,"tx":0},
+              {"name":"OmegsBro","qty":75,"rub":75.70,"tx":0}
+            ],
+            "top_miners": [
+              {"name":"Sakenzel","qty":3877,"rub":2673.00,"tx":1202},
+              {"name":"Fortenit","qty":1180,"rub":1005.00,"tx":157},
+              {"name":"cthutq110312","qty":509,"rub":507.00,"tx":0},
+              {"name":"Proverkin","qty":281,"rub":236.00,"tx":33},
+              {"name":"32423","qty":203,"rub":163.00,"tx":38},
+              {"name":"mig_grig","qty":191,"rub":191.00,"tx":0},
+              {"name":"Aleks_FR_VIP","qty":125,"rub":90.00,"tx":17},
+              {"name":"ROMANTOP","qty":119,"rub":119.00,"tx":0},
+              {"name":"yar2015","qty":114,"rub":113.00,"tx":1},
+              {"name":"Farel_Kartel","qty":77,"rub":70.00,"tx":0}
+            ],
+            "top_quests": [
+              {"name":"Fed52","qty":120,"rub":120.00,"tx":5},
+              {"name":"Max1234567890","qty":109,"rub":109.00,"tx":0},
+              {"name":"Andrew_Prime","qty":84,"rub":84.00,"tx":4},
+              {"name":"Farel_Kartel","qty":64,"rub":64.00,"tx":7},
+              {"name":"krotik_pokoyo42","qty":49,"rub":49.00,"tx":9},
+              {"name":"abob","qty":40,"rub":40.00,"tx":0},
+              {"name":"Rat_3000","qty":37,"rub":37.00,"tx":10},
+              {"name":"ROMANTOP","qty":35,"rub":35.00,"tx":5},
+              {"name":"Sakenzel","qty":35,"rub":35.00,"tx":1},
+              {"name":"stepa","qty":30,"rub":30.00,"tx":2}
+            ],
+            "top_travelers": [
+              {"name":"Sakenzel","qty":1067,"rub":1067.10,"tx":578},
+              {"name":"Proverkin","qty":818,"rub":818.00,"tx":315},
+              {"name":"cthutq110312","qty":817,"rub":817.30,"tx":464},
+              {"name":"Farel_Kartel","qty":755,"rub":754.70,"tx":590},
+              {"name":"MrVoid","qty":574,"rub":573.80,"tx":371},
+              {"name":"Fortenit","qty":380,"rub":380.40,"tx":59},
+              {"name":"krotik_pokoyo42","qty":320,"rub":320.30,"tx":250},
+              {"name":"OmegsBro","qty":262,"rub":262.30,"tx":19},
+              {"name":"Aleks_FR_VIP","qty":242,"rub":241.80,"tx":9},
+              {"name":"abob","qty":228,"rub":227.70,"tx":109}
+            ],
+            "top_deaths": [
+              {"name":"Proverkin","qty":1025,"rub":277.40,"tx":0},
+              {"name":"ilya","qty":693,"rub":91.60,"tx":0},
+              {"name":"frostflux","qty":649,"rub":107.30,"tx":0},
+              {"name":"Fortenit","qty":438,"rub":171.60,"tx":0},
+              {"name":"Aleks_FR_VIP","qty":418,"rub":83.30,"tx":0},
+              {"name":"yar2015","qty":402,"rub":53.30,"tx":0},
+              {"name":"Goha22","qty":338,"rub":60.50,"tx":0},
+              {"name":"OmegsBro","qty":309,"rub":75.70,"tx":0},
+              {"name":"Sakenzel","qty":284,"rub":217.70,"tx":0},
+              {"name":"cthutq110312","qty":280,"rub":307.00,"tx":0}
+            ]
+          },
+          "timeseries": [
+            {"time":"09.11 08:00","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 09:00","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 10:00","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 11:00","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 12:00","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 13:00","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 14:00","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 15:04","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 16:04","treasury":6235815.15,"m1":15390048.52,"players":74},
+            {"time":"09.11 17:04","treasury":6248115.15,"m1":15379593.52,"players":74},
+            {"time":"09.11 18:04","treasury":6256155.15,"m1":15372759.52,"players":74},
+            {"time":"09.11 19:00","treasury":6252105.15,"m1":15376202.02,"players":74},
+            {"time":"09.11 20:00","treasury":6276655.15,"m1":15355334.52,"players":74},
+            {"time":"09.11 21:00","treasury":6274100.15,"m1":15357506.27,"players":74},
+            {"time":"09.11 22:00","treasury":6424058.15,"m1":15230041.97,"players":74},
+            {"time":"09.11 23:00","treasury":6484302.15,"m1":15178834.57,"players":74},
+            {"time":"10.11 00:00","treasury":6522347.15,"m1":15146496.32,"players":74},
+            {"time":"10.11 01:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 02:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 03:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 04:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 05:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 06:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 07:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 08:00","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 09:01","treasury":6545530.35,"m1":15126790.60,"players":74},
+            {"time":"10.11 10:01","treasury":6545515.35,"m1":15126803.35,"players":74},
+            {"time":"10.11 11:01","treasury":6563020.35,"m1":15111924.10,"players":74},
+            {"time":"10.11 12:01","treasury":6571505.35,"m1":15104711.85,"players":74},
+            {"time":"10.11 13:01","treasury":6571505.35,"m1":15104711.85,"players":74},
+            {"time":"10.11 14:01","treasury":6571505.35,"m1":15104711.85,"players":74},
+            {"time":"10.11 15:01","treasury":6571505.35,"m1":15104711.85,"players":74},
+            {"time":"10.11 16:01","treasury":6571505.35,"m1":15104711.85,"players":74},
+            {"time":"10.11 17:01","treasury":6545369.62,"m1":15126927.22,"players":74},
+            {"time":"10.11 18:01","treasury":6567684.37,"m1":15107959.68,"players":74},
+            {"time":"10.11 19:01","treasury":6628712.37,"m1":15056085.88,"players":74},
+            {"time":"10.11 20:04","treasury":6723291.97,"m1":14975693.22,"players":74},
+            {"time":"10.11 21:04","treasury":6741471.17,"m1":14960240.90,"players":74},
+            {"time":"10.11 22:04","treasury":8128434.67,"m1":13781321.93,"players":74},
+            {"time":"10.11 23:04","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 00:04","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 01:04","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 02:04","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 03:05","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 04:00","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 05:00","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 06:00","treasury":7787434.67,"m1":14071171.93,"players":74},
+            {"time":"11.11 07:01","treasury":7787434.67,"m1":14071171.93,"players":74}
+          ]
+        };
+
+        let buySortMode = 'rub';
+        let sellSortMode = 'rub';
+
+        const ITEM_NAME_MAP = {
+            "SPLASH POTION": "Взрывное зелье",
+            "SPRUCE PLANKS": "Еловые доски",
+            "DARK OAK PLANKS": "Доски из темного дуба",
+            "OAK PLANKS": "Дубовые доски",
+            "BIRCH PLANKS": "Березовые доски"
+        };
+
+        const EXCLUDED_ADMIN_SET = new Set([
+            "aziz", "azizaboba", "77phoenix77", "phoenix_", "cracen2", "dahyshechka",
+            "chesnok_fpv", "karas_mentolist", "feyk", "p5ych0p41h", "p1zd6bol",
+            "goodplayer", "egolek", "dmitnik", "popka2014", "ferm_1", "ferm_2"
+        ]);
+
+        function filterNonAdmin(arr) {
+            return (arr || []).filter(p => {
+                const n = String(p.name || "").toLowerCase();
+                return n && !EXCLUDED_ADMIN_SET.has(n) && !n.startsWith("ferm_");
+            });
+        }
+
+        function cleanItemName(name) {
+            return ITEM_NAME_MAP[name] || name;
+        }
+
+        function medalClass(idx) {
+            if (idx === 0) return ' rank-medal-1';
+            if (idx === 1) return ' rank-medal-2';
+            if (idx === 2) return ' rank-medal-3';
+            return '';
+        }
+
+        function fmtInt(n) {
+            return Math.round(Number(n) || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
+        function fmtRub(n, showPlus) {
+            const val = Math.round(Number(n) || 0);
+            const sign = val > 0 && showPlus ? "+" : "";
+            return sign + fmtInt(val) + " ₽";
+        }
+
+        function switchItemTab(side, mode) {
+            if (side === 'buy') {
+                buySortMode = mode;
+                document.getElementById('btnBuyByRub').classList.toggle('active', mode === 'rub');
+                document.getElementById('btnBuyByQty').classList.toggle('active', mode === 'qty');
+            } else {
+                sellSortMode = mode;
+                document.getElementById('btnSellByRub').classList.toggle('active', mode === 'rub');
+                document.getElementById('btnSellByQty').classList.toggle('active', mode === 'qty');
+            }
+            renderItemTables(currentStatsData);
+        }
+
+        function padRows(rowsHtmlArray, totalRows) {
+            const out = rowsHtmlArray.slice(0, totalRows);
+            for (let i = out.length; i < totalRows; i++) {
+                out.push(`<tr class="row-empty">
+                    <td class="col-rank">${i + 1}</td>
+                    <td class="col-name">Свободный слот</td>
+                    <td class="col-mid">•</td>
+                    <td class="col-num">0</td>
+                </tr>`);
+            }
+            return out.join('');
+        }
+
+        function renderItemTables(data) {
+            const shop = data.shop || {};
+            const boughtList = buySortMode === 'rub' ? (shop.top_bought_by_rub || []) : (shop.top_bought_by_qty || []);
+            const soldList = sellSortMode === 'rub' ? (shop.top_sold_by_rub || []) : (shop.top_sold_by_qty || []);
+
+            const tbBought = document.getElementById('tableTopBought');
+            tbBought.innerHTML = padRows(boughtList.map((it, idx) => `<tr>
+                <td class="col-rank${medalClass(idx)}">${idx + 1}</td>
+                <td class="col-name"><strong>${cleanItemName(it.name)}</strong></td>
+                <td class="col-mid">${fmtInt(it.qty)} шт.</td>
+                <td class="col-num" style="color:#22c55e;">${fmtRub(it.rub, false)}</td>
+            </tr>`), 10);
+
+            const tbSold = document.getElementById('tableTopSold');
+            tbSold.innerHTML = padRows(soldList.map((it, idx) => `<tr>
+                <td class="col-rank${medalClass(idx)}">${idx + 1}</td>
+                <td class="col-name"><strong>${cleanItemName(it.name)}</strong></td>
+                <td class="col-mid">${fmtInt(it.qty)} шт.</td>
+                <td class="col-num" style="color:#f59e0b;">${fmtRub(it.rub, false)}</td>
+            </tr>`), 10);
+        }
+
+        function pvpRankTitle(kills) {
+            if (kills >= 200) return 'Гладиатор';
+            if (kills >= 100) return 'Полководец';
+            if (kills >= 60) return 'Воевода';
+            if (kills >= 35) return 'Ветеран';
+            return 'Боец';
+        }
+
+        function renderWarehouseTables(data) {
+            const wh = data.warehouse || [];
+            const ores = wh.slice(0, 10);
+            const farms = wh.slice(10, 20);
+
+            function rateBadgeColor(rate) {
+                if (rate >= 100) return '#22c55e';
+                if (rate >= 75) return '#f59e0b';
+                if (rate > 0) return '#fb923c';
+                return '#ef4444';
+            }
+
+            const elOres = document.getElementById('tableWarehouseOres');
+            if (elOres) {
+                elOres.innerHTML = padRows(ores.map((it, i) => `<tr>
+                    <td class="col-rank">${i + 1}</td>
+                    <td class="col-name"><strong>${it.name}</strong></td>
+                    <td class="col-mid">${fmtInt(it.stock)} / ${fmtInt(it.max)}</td>
+                    <td class="col-num" style="color:${rateBadgeColor(it.rate_pct)};">${it.rate_pct}%</td>
+                </tr>`), 10);
+            }
+
+            const elFarms = document.getElementById('tableWarehouseFarms');
+            if (elFarms) {
+                elFarms.innerHTML = padRows(farms.slice(0, 10).map((it, i) => `<tr>
+                    <td class="col-rank">${i + 1}</td>
+                    <td class="col-name"><strong>${it.name}</strong></td>
+                    <td class="col-mid">${fmtInt(it.stock)} / ${fmtInt(it.max)}</td>
+                    <td class="col-num" style="color:${rateBadgeColor(it.rate_pct)};">${it.rate_pct}%</td>
+                </tr>`), 10);
+            }
+        }
+
+        function renderWealthTiers(data) {
+            const el = document.getElementById('tableWealthTiers');
+            if (!el) return;
+            const t = data.treasury || {};
+            const tiers = t.wealth_tiers || [];
+            if (!tiers.length) return;
+            const colors = ['#fbbf24', '#f59e0b', '#22c55e', '#38bdf8', '#a1a1aa'];
+            el.innerHTML = tiers.map((tr, i) => `<tr>
+                <td class="col-rank">${i + 1}</td>
+                <td class="col-name"><strong>${tr.tier}</strong></td>
+                <td class="col-mid">${fmtInt(tr.players)} игр. • ${Number(tr.share_rub_pct || 0).toFixed(1)}% денег</td>
+                <td class="col-num" style="color:${colors[i] || '#f5f5f7'};">${fmtRub(tr.total_rub, false)}</td>
+            </tr>`).join('');
+        }
+
+        function renderLeaderboards(data) {
+            const shop = data.shop || {};
+            const lb = data.leaderboards || {};
+            const buyers = filterNonAdmin(shop.top_buyers);
+            const sellers = filterNonAdmin(shop.top_sellers);
+            const quiz = filterNonAdmin((data.quiz && data.quiz.top_solvers) ? data.quiz.top_solvers : []);
+            const balances = filterNonAdmin(lb.top_balances);
+            const clans = lb.top_clans || [];
+            const pvp = filterNonAdmin(lb.top_pvp_kills);
+            const mobs = filterNonAdmin(lb.top_mob_kills);
+            const playtime = filterNonAdmin(lb.top_playtime);
+            const miners = filterNonAdmin(lb.top_miners);
+            const quests = filterNonAdmin(lb.top_quests);
+            const travelers = filterNonAdmin(lb.top_travelers);
+            const deaths = filterNonAdmin(lb.top_deaths);
+
+            const top10BalSum = balances.slice(0, 10).reduce((s, p) => s + (Number(p.rub) || 0), 0) || 1;
+            document.getElementById('tableTopBalances').innerHTML = padRows(balances.map((p, i) => {
+                const share = ((Number(p.rub || 0) / top10BalSum) * 100).toFixed(1) + '%';
+                return `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${share}</td>
+                    <td class="col-num" style="color:#f59e0b;">${fmtRub(p.rub, false)}</td>
+                </tr>`;
+            }), 10);
+
+            document.getElementById('tableTopQuiz').innerHTML = padRows(quiz.map((p, i) => `
+                <tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${fmtInt(p.qty)} шт.</td>
+                    <td class="col-num" style="color:#22c55e;">${fmtRub(p.rub || (p.qty * 1500), false)}</td>
+                </tr>
+            `), 10);
+
+            document.getElementById('tableTopBuyers').innerHTML = padRows(buyers.map((p, i) => `
+                <tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${fmtInt(p.qty)} шт.</td>
+                    <td class="col-num" style="color:#22c55e;">${fmtRub(p.rub, false)}</td>
+                </tr>
+            `), 10);
+
+            document.getElementById('tableTopSellers').innerHTML = padRows(sellers.map((p, i) => `
+                <tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${fmtInt(p.qty)} шт.</td>
+                    <td class="col-num" style="color:#f59e0b;">${fmtRub(p.rub, false)}</td>
+                </tr>
+            `), 10);
+
+            document.getElementById('tableTopClans').innerHTML = padRows(clans.map((c, i) => `
+                <tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${c.name}</strong></td>
+                    <td class="col-mid">Уровень ${fmtInt(c.qty)}</td>
+                    <td class="col-num" style="color:#a855f7;">${fmtInt(c.rub)} очк.</td>
+                </tr>
+            `), 10);
+
+            document.getElementById('tableTopPvp').innerHTML = padRows(pvp.map((p, i) => `
+                <tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${pvpRankTitle(Number(p.qty || 0))}</td>
+                    <td class="col-num" style="color:#ef4444;">${fmtInt(p.qty)}</td>
+                </tr>
+            `), 10);
+
+            const top10MobsSum = mobs.slice(0, 10).reduce((s, p) => s + (Number(p.qty) || 0), 0) || 1;
+            document.getElementById('tableTopMobs').innerHTML = padRows(mobs.map((p, i) => {
+                const share = ((Number(p.qty || 0) / top10MobsSum) * 100).toFixed(1) + '%';
+                return `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${share}</td>
+                    <td class="col-num" style="color:#38bdf8;">${fmtInt(p.qty)}</td>
+                </tr>`;
+            }), 10);
+
+            document.getElementById('tableTopPlaytime').innerHTML = padRows(playtime.map((p, i) => {
+                const hours = Number(p.rub || p.qty) || 0;
+                const days = (hours / 24).toFixed(1) + ' дн.';
+                return `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${days}</td>
+                    <td class="col-num" style="color:#22c55e;">${hours.toFixed(1)} ч.</td>
+                </tr>`;
+            }), 10);
+
+            const elMiners = document.getElementById('tableTopMiners');
+            if (elMiners) {
+                elMiners.innerHTML = padRows(miners.map((p, i) => `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${fmtInt(p.tx)} шт.</td>
+                    <td class="col-num" style="color:#38bdf8;">${fmtInt(p.qty)} шт.</td>
+                </tr>`), 10);
+            }
+
+            const elQuests = document.getElementById('tableTopQuests');
+            if (elQuests) {
+                elQuests.innerHTML = padRows(quests.map((p, i) => `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${fmtInt(p.tx)} закр.</td>
+                    <td class="col-num" style="color:#f59e0b;">${fmtInt(p.qty)} ✪</td>
+                </tr>`), 10);
+            }
+
+            const elTravelers = document.getElementById('tableTopTravelers');
+            if (elTravelers) {
+                elTravelers.innerHTML = padRows(travelers.map((p, i) => `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${fmtInt(p.tx)} км</td>
+                    <td class="col-num" style="color:#a855f7;">${fmtInt(p.qty)} км</td>
+                </tr>`), 10);
+            }
+
+            const elDeaths = document.getElementById('tableTopDeaths');
+            if (elDeaths) {
+                elDeaths.innerHTML = padRows(deaths.map((p, i) => `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-mid">${Number(p.rub || 0).toFixed(1)} ч.</td>
+                    <td class="col-num" style="color:#ef4444;">${fmtInt(p.qty)}</td>
+                </tr>`), 10);
+            }
+        }
+
+        function renderTreasuryChart(data) {
+            const raw = (data.timeseries || []).filter(pt => pt.treasury > 0);
+            if (!raw.length) return;
+
+            let lastM1 = 1412738;
+            const pts = raw.map(pt => {
+                if (pt.m1 > 0) lastM1 = pt.m1;
+                return { time: pt.time, treasury: pt.treasury, m1: pt.m1 > 0 ? pt.m1 : lastM1 };
+            });
+
+            const W = 960, H = 300;
+            const padL = 78, padR = 24, padT = 20, padB = 42;
+            const plotW = W - padL - padR;
+            const plotH = H - padT - padB;
+
+            let maxVal = 1000000;
+            pts.forEach(p => {
+                if (p.treasury > maxVal) maxVal = p.treasury;
+                if (p.m1 > maxVal) maxVal = p.m1;
+            });
+            maxVal = Math.ceil(maxVal / 1000000) * 1000000;
+
+            const xOf = i => padL + (pts.length <= 1 ? plotW / 2 : (i / (pts.length - 1)) * plotW);
+            const yOf = v => padT + plotH - (v / maxVal) * plotH;
+
+            let gridSvg = '';
+            for (let g = 0; g <= 4; g++) {
+                const val = (maxVal / 4) * g;
+                const y = yOf(val).toFixed(1);
+                const label = (val / 1000000).toFixed(1) + ' млн ₽';
+                gridSvg += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#242429" stroke-dasharray="4 4"/>`;
+                gridSvg += `<text x="${padL - 10}" y="${Number(y) + 4}" text-anchor="end" fill="#71717a" font-size="11" font-family="JetBrains Mono, monospace">${label}</text>`;
+            }
+
+            const tCoords = pts.map((p, i) => `${xOf(i).toFixed(1)},${yOf(p.treasury).toFixed(1)}`);
+            const mCoords = pts.map((p, i) => `${xOf(i).toFixed(1)},${yOf(p.m1).toFixed(1)}`);
+
+            const tArea = `M ${xOf(0).toFixed(1)},${padT + plotH} L ` + tCoords.join(' L ') + ` L ${xOf(pts.length - 1).toFixed(1)},${padT + plotH} Z`;
+            const mArea = `M ${xOf(0).toFixed(1)},${padT + plotH} L ` + mCoords.join(' L ') + ` L ${xOf(pts.length - 1).toFixed(1)},${padT + plotH} Z`;
+
+            let xLabelsSvg = '';
+            const step = Math.max(1, Math.floor(pts.length / 6));
+            pts.forEach((p, i) => {
+                if (i % step === 0 || i === pts.length - 1) {
+                    const x = xOf(i).toFixed(1);
+                    xLabelsSvg += `<text x="${x}" y="${H - 12}" text-anchor="middle" fill="#a1a1aa" font-size="11" font-family="JetBrains Mono, monospace">${p.time}</text>`;
+                }
+            });
+
+            let dotsSvg = '';
+            pts.forEach((p, i) => {
+                const cx = xOf(i).toFixed(1);
+                const cyT = yOf(p.treasury).toFixed(1);
+                const cyM = yOf(p.m1).toFixed(1);
+                dotsSvg += `<circle cx="${cx}" cy="${cyT}" r="3.5" fill="#22c55e"><title>${p.time} • Казна: ${fmtRub(p.treasury, false)}</title></circle>`;
+                dotsSvg += `<circle cx="${cx}" cy="${cyM}" r="3" fill="#f59e0b"><title>${p.time} • У игроков: ${fmtRub(p.m1, false)}</title></circle>`;
+            });
+
+            document.getElementById('treasuryChartContainer').innerHTML = `
+                <svg viewBox="0 0 ${W} ${H}" class="svg-chart" role="img" aria-label="График Казны сервера и денежной массы">
+                    <defs>
+                        <linearGradient id="gradTreasury" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#22c55e" stop-opacity="0.28"/>
+                            <stop offset="100%" stop-color="#22c55e" stop-opacity="0.0"/>
+                        </linearGradient>
+                        <linearGradient id="gradM1" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.18"/>
+                            <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.0"/>
+                        </linearGradient>
+                    </defs>
+                    ${gridSvg}
+                    <path d="${mArea}" fill="url(#gradM1)"/>
+                    <path d="${tArea}" fill="url(#gradTreasury)"/>
+                    <polyline fill="none" stroke="#f59e0b" stroke-width="2" points="${mCoords.join(' ')}"/>
+                    <polyline fill="none" stroke="#22c55e" stroke-width="2.6" points="${tCoords.join(' ')}"/>
+                    ${dotsSvg}
+                    ${xLabelsSvg}
+                </svg>
+            `;
+        }
+
+        function renderHourlyShopChart(data) {
+            const hourly = (data.shop && data.shop.hourly_msk) ? data.shop.hourly_msk : [];
+            if (!hourly.length) return;
+
+            const W = 960, H = 240;
+            const padL = 78, padR = 20, padT = 18, padB = 36;
+            const plotW = W - padL - padR;
+            const plotH = H - padT - padB;
+
+            let maxVal = 100000;
+            hourly.forEach(h => {
+                if (h.buy_rub > maxVal) maxVal = h.buy_rub;
+                if (h.sell_rub > maxVal) maxVal = h.sell_rub;
+            });
+            maxVal = Math.ceil(maxVal / 200000) * 200000;
+
+            let gridSvg = '';
+            for (let g = 0; g <= 3; g++) {
+                const val = (maxVal / 3) * g;
+                const y = (padT + plotH - (val / maxVal) * plotH).toFixed(1);
+                const lbl = val >= 1000000 ? (val / 1000000).toFixed(1) + ' млн ₽' : Math.round(val / 1000) + ' тыс. ₽';
+                gridSvg += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#242429" stroke-dasharray="4 4"/>`;
+                gridSvg += `<text x="${padL - 10}" y="${Number(y) + 4}" text-anchor="end" fill="#71717a" font-size="11" font-family="JetBrains Mono, monospace">${lbl}</text>`;
+            }
+
+            const slotW = plotW / 24;
+            let barsSvg = '';
+            hourly.forEach((h, idx) => {
+                const xBase = padL + idx * slotW;
+                const bH = Math.max(h.buy_rub > 0 ? 3 : 0, (h.buy_rub / maxVal) * plotH);
+                const sH = Math.max(h.sell_rub > 0 ? 3 : 0, (h.sell_rub / maxVal) * plotH);
+                const bY = padT + plotH - bH;
+                const sY = padT + plotH - sH;
+                const barW = Math.max(6, slotW * 0.34);
+
+                barsSvg += `<rect x="${(xBase + slotW * 0.14).toFixed(1)}" y="${bY.toFixed(1)}" width="${barW.toFixed(1)}" height="${bH.toFixed(1)}" rx="2" fill="#22c55e"><title>${String(h.hour).padStart(2,'0')}:00 МСК • Куплено на ${fmtRub(h.buy_rub, false)}</title></rect>`;
+                barsSvg += `<rect x="${(xBase + slotW * 0.52).toFixed(1)}" y="${sY.toFixed(1)}" width="${barW.toFixed(1)}" height="${sH.toFixed(1)}" rx="2" fill="#dc2626"><title>${String(h.hour).padStart(2,'0')}:00 МСК • Продано на ${fmtRub(h.sell_rub, false)}</title></rect>`;
+                barsSvg += `<text x="${(xBase + slotW * 0.5).toFixed(1)}" y="${H - 10}" text-anchor="middle" fill="#a1a1aa" font-size="10.5" font-family="JetBrains Mono, monospace">${String(h.hour).padStart(2,'0')}</text>`;
+            });
+
+            document.getElementById('hourlyShopChartContainer').innerHTML = `
+                <svg viewBox="0 0 ${W} ${H}" class="svg-chart" role="img" aria-label="Почасовая активность магазина">
+                    ${gridSvg}
+                    ${barsSvg}
+                </svg>
+            `;
+        }
+
+        function renderHourlyOnlineChart(data) {
+            const container = document.getElementById('hourlyOnlineChartContainer');
+            if (!container) return;
+            const hourly = data.hourly_online_msk || [];
+            if (!hourly.length) return;
+
+            const W = 960, H = 220;
+            const padL = 78, padR = 20, padT = 18, padB = 36;
+            const plotW = W - padL - padR;
+            const plotH = H - padT - padB;
+
+            let maxVal = 6;
+            hourly.forEach(h => {
+                if (h.peak > maxVal) maxVal = h.peak;
+                if (h.avg > maxVal) maxVal = h.avg;
+            });
+            maxVal = Math.ceil(maxVal / 3) * 3;
+
+            let gridSvg = '';
+            for (let g = 0; g <= 3; g++) {
+                const val = Math.round((maxVal / 3) * g);
+                const y = (padT + plotH - (val / maxVal) * plotH).toFixed(1);
+                gridSvg += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#242429" stroke-dasharray="4 4"/>`;
+                gridSvg += `<text x="${padL - 10}" y="${Number(y) + 4}" text-anchor="end" fill="#71717a" font-size="11" font-family="JetBrains Mono, monospace">${val} игр.</text>`;
+            }
+
+            const slotW = plotW / 24;
+            let barsSvg = '';
+            hourly.forEach((h, idx) => {
+                const xBase = padL + idx * slotW;
+                const pH = Math.max(h.peak > 0 ? 4 : 0, (h.peak / maxVal) * plotH);
+                const aH = Math.max(h.avg > 0 ? 3 : 0, (h.avg / maxVal) * plotH);
+                const pY = padT + plotH - pH;
+                const aY = padT + plotH - aH;
+                const barW = Math.max(6, slotW * 0.34);
+
+                barsSvg += `<rect x="${(xBase + slotW * 0.14).toFixed(1)}" y="${pY.toFixed(1)}" width="${barW.toFixed(1)}" height="${pH.toFixed(1)}" rx="2" fill="#38bdf8"><title>${String(h.hour).padStart(2,'0')}:00 МСК • Пик: ${h.peak} игр.</title></rect>`;
+                barsSvg += `<rect x="${(xBase + slotW * 0.52).toFixed(1)}" y="${aY.toFixed(1)}" width="${barW.toFixed(1)}" height="${aH.toFixed(1)}" rx="2" fill="#a855f7"><title>${String(h.hour).padStart(2,'0')}:00 МСК • Средний онлайн: ${Number(h.avg || 0).toFixed(1)}</title></rect>`;
+                barsSvg += `<text x="${(xBase + slotW * 0.5).toFixed(1)}" y="${H - 10}" text-anchor="middle" fill="#a1a1aa" font-size="10.5" font-family="JetBrains Mono, monospace">${String(h.hour).padStart(2,'0')}</text>`;
+            });
+
+            container.innerHTML = `
+                <svg viewBox="0 0 ${W} ${H}" class="svg-chart" role="img" aria-label="Почасовая посещаемость сервера">
+                    ${gridSvg}
+                    ${barsSvg}
+                </svg>
+            `;
+        }
+
+        function renderAllStats(data) {
+            currentStatsData = data;
+            const t = data.treasury || {};
+            const s = data.shop || {};
+
+            document.getElementById('statUpdatedAt').textContent = data.updated_at_human || 'Актуально';
+            document.getElementById('kpiTreasuryBalance').textContent = fmtRub(t.balance_rub, false);
+            document.getElementById('kpiTreasuryGrowth').textContent = fmtRub(t.net_growth_rub, true);
+
+            document.getElementById('kpiShopBuyRub').textContent = fmtRub(s.buy_rub, false);
+            document.getElementById('kpiShopBuyTx').textContent = 'Сделок: ' + fmtInt(s.buy_tx);
+            document.getElementById('kpiShopBuyItems').textContent = fmtInt(s.buy_items) + ' шт.';
+
+            document.getElementById('kpiShopSellRub').textContent = fmtRub(s.sell_rub, false);
+            document.getElementById('kpiShopSellTx').textContent = 'Сделок: ' + fmtInt(s.sell_tx);
+            document.getElementById('kpiShopSellItems').textContent = fmtInt(s.sell_items) + ' шт.';
+
+            document.getElementById('kpiM1Supply').textContent = fmtRub(t.m1_supply_rub, false);
+            const pCountEl = document.getElementById('kpiPlayersCount');
+            if (pCountEl) pCountEl.textContent = 'Игроков: ' + fmtInt(t.real_players_count || 74);
+            document.getElementById('kpiCoverage').textContent = 'Казна: ' + (t.coverage_ratio_pct || 100).toFixed(1) + '%';
+
+            document.getElementById('kpiShopNetProfit').textContent = fmtRub(s.net_profit_rub, true);
+            document.getElementById('kpiTodayIncome').textContent = fmtRub(t.today_income_rub, true);
+            document.getElementById('kpiTodayExpense').textContent = (t.today_expense_rub > 0 ? '-' : '') + fmtRub(t.today_expense_rub, false);
+
+            const todayShopBuy = Number(t.today_shop_buy_rub != null ? t.today_shop_buy_rub : (s.today_buy_rub || 0));
+            const todayOtherInc = Number(t.today_other_income_rub != null ? t.today_other_income_rub : Math.max(0, (t.today_income_rub || 0) - todayShopBuy));
+            const todayShopSell = Number(t.today_shop_sell_rub != null ? t.today_shop_sell_rub : (s.today_sell_rub || 0));
+            const todayRewardsExp = Number(t.today_rewards_expense_rub != null ? t.today_rewards_expense_rub : Math.max(0, (t.today_expense_rub || 0) - todayShopSell));
+
+            document.getElementById('kpiTodayBuyLabel').textContent = 'Магазин: ' + fmtRub(todayShopBuy, false);
+            document.getElementById('kpiTodayOtherIncome').textContent = 'Услуги: ' + fmtRub(todayOtherInc, false);
+            document.getElementById('kpiTodaySellLabel').textContent = 'Скупка: ' + fmtRub(todayShopSell, false);
+            document.getElementById('kpiTodayRewardsExpense').textContent = 'Премии: ' + fmtRub(todayRewardsExp, false);
+
+            document.getElementById('kpiMedianBalance').textContent = fmtRub(t.median_balance_rub, false);
+            document.getElementById('kpiMeanBalance').textContent = fmtRub(t.mean_balance_rub, false);
+
+            const totalTurnover = (s.buy_rub || 0) + (s.sell_rub || 0);
+            const buyPct = totalTurnover > 0 ? ((s.buy_rub / totalTurnover) * 100).toFixed(1) : '96.6';
+            const sellPct = totalTurnover > 0 ? ((s.sell_rub / totalTurnover) * 100).toFixed(1) : '3.4';
+            document.getElementById('barBuyLabel').textContent = `${fmtRub(s.buy_rub, false)}, ${buyPct}% оборота`;
+            document.getElementById('barSellLabel').textContent = `${fmtRub(s.sell_rub, false)}, ${sellPct}% оборота`;
+            document.getElementById('ratioBarBuyFill').style.width = buyPct + '%';
+
+            renderTreasuryChart(data);
+            renderWealthTiers(data);
+            renderHourlyShopChart(data);
+            renderHourlyOnlineChart(data);
+            renderWarehouseTables(data);
+            renderItemTables(data);
+            renderLeaderboards(data);
+        }
+
+        async function fetchLiveStats(manual) {
+            const btn = document.getElementById('btnRefreshStats');
+            if (manual && btn) btn.textContent = 'Обновление...';
+            try {
+                let resp = null;
+                try {
+                    resp = await fetch('https://raw.githubusercontent.com/p5ych0p41h/azizland/telemetry/stats_data.json?t=' + Date.now(), { cache: 'no-store' });
+                } catch (_) {}
+                if (!resp || !resp.ok) {
+                    resp = await fetch('stats_data.json?t=' + Date.now(), { cache: 'no-store' });
+                }
+                if (resp.ok) {
+                    const fresh = await resp.json();
+                    renderAllStats(fresh);
+                }
+            } catch (e) {
+            } finally {
+                if (manual && btn) {
+                    btn.textContent = 'Обновлено';
+                    setTimeout(() => { btn.textContent = 'Обновить сводку'; }, 1500);
+                }
+            }
+        }
+
+        renderAllStats(currentStatsData);
+        fetchLiveStats(false);
+        setInterval(() => fetchLiveStats(false), 60000);
+    </script>
+</body>
+</html>

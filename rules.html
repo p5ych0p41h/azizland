@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила сервера AZIZLAND</title>
+    <meta name="description" content="Свод правил сервера AZIZLAND: общение в чате, защита построек и приватов, честная экономика и работа систем безопасности.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <img src="assets/logo.png" alt="Герб AZIZLAND" class="brand-crest">
+                <span class="brand-name">AZIZ<span>LAND</span></span>
+            </a>
+            <nav class="nav-menu" aria-label="Навигация по вики">
+                <a href="index.html" class="nav-item">Главная</a>
+                <a href="halloween.html" class="nav-item">Тыквенный спас</a>
+                <a href="magic.html" class="nav-item">Магия</a>
+                <a href="bosses.html" class="nav-item">Ивенты</a>
+                <a href="mechanics.html" class="nav-item">Механика</a>
+                <a href="stats.html" class="nav-item">Статистика</a>
+                <a href="rules.html" class="nav-item active">Правила</a>
+            </nav>
+            <div class="nav-status-pill">
+                <span class="status-dot" id="navStatusDot"></span><span id="navStatusText">В сети</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="eyebrow">Порядок и честная игра</div>
+                <h1 class="hero-title">Правила сервера</h1>
+                <p class="hero-lead">
+                    Настоящий регламент определяет порядок взаимодействия игроков, сохранность построек, работу замкнутой экономики и применение автоматизированных средств контроля на сервере AZIZLAND. Полный перечень пунктов доступен в игре по команде <code class="inline-cmd">/rules</code>.
+                </p>
+                <div class="stat-row" style="margin-top: 24px;">
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Команда в игре</span>
+                        <span class="stat-chip-val">/rules</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Контроль чата</span>
+                        <span class="stat-chip-val">Автофильтр</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Учет вещей</span>
+                        <span class="stat-chip-val">Журнал сундуков</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Защита в бою</span>
+                        <span class="stat-chip-val">Серверный античит</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="rules-list">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Свод правил 1.1 - 4.3</div>
+                    <h2 class="section-title">Четыре основных раздела</h2>
+                    <p class="section-desc">
+                        Заходя на сервер, каждый игрок соглашается соблюдать эти пункты. Незнание правил не освобождает от ответственности.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <!-- Раздел 1 -->
+                    <div class="card col-12">
+                        <div class="card-kicker">Раздел 1</div>
+                        <h3 class="card-title">Чат и общение</h3>
+                        <p class="card-text">
+                            Общий и локальный чат созданы для нормального разговора, торговли и поиска союзников.
+                        </p>
+                        <div class="spec-table-wrap">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 90px;">Пункт</th>
+                                        <th style="width: 260px;">Правило</th>
+                                        <th>Подробное описание и меры</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="chance-badge">1.1</span></td>
+                                        <td><strong>Уважительное отношение к игрокам</strong></td>
+                                        <td>Запрещены оскорбления, травля, унижения и провокации конфликтов.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge">1.2</span></td>
+                                        <td><strong>Запрет нецензурной лексики</strong></td>
+                                        <td>На сервере работает автоматический фильтр чата, который не мешает обычному общению, но блокирует мат и попытки обойти защиту через точки, пробелы или транслит. За намеренный обход фильтра выдается мут.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge">1.3</span></td>
+                                        <td><strong>Без спама и флуда</strong></td>
+                                        <td>Запрещено засорять чат одинаковыми сообщениями, бессмысленным набором букв и злоупотреблять заглавными буквами.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge">1.4</span></td>
+                                        <td><strong>Запрет рекламы</strong></td>
+                                        <td>Любая реклама сторонних серверов, групп или вредоносных ссылок приводит к постоянной блокировке.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Раздел 2 -->
+                    <div class="card col-12">
+                        <div class="card-kicker">Раздел 2</div>
+                        <h3 class="card-title">Постройки, приваты и мировой ландшафт</h3>
+                        <p class="card-text">
+                            Уважение к чужому труду и чистоте игрового мира является главным принципом выживания на сервере.
+                        </p>
+                        <div class="spec-table-wrap">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 90px;">Пункт</th>
+                                        <th style="width: 260px;">Правило</th>
+                                        <th>Подробное описание и меры</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="chance-badge amber">2.1</span></td>
+                                        <td><strong>Полный запрет гриферства</strong></td>
+                                        <td>Запрещено ломать, заливать, застраивать или портить чужие постройки, даже если владелец забыл их заприватить или ошибся с границами региона.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge amber">2.2</span></td>
+                                        <td><strong>Неприкосновенность чужих сундуков</strong></td>
+                                        <td>Запрещено забирать вещи из чужих незаприваченных сундуков, бочек, печек и шалкеров.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge amber">2.3</span></td>
+                                        <td><strong>Ответственность за приват: <code class="inline-cmd">/rg</code></strong></td>
+                                        <td>Обязательно защищайте свой дом деревянным топором с помощью команд <code class="inline-cmd">//wand</code> и <code class="inline-cmd">/rg claim</code>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge amber">2.4</span></td>
+                                        <td><strong>Запрет ловушек</strong></td>
+                                        <td>Нельзя заманивать игроков телепортацией <code class="inline-cmd">/tpa</code> в ямы, порталы или закрытые комнаты с целью убийства.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge amber">2.5</span></td>
+                                        <td><strong>Сохранность ландшафта вокруг построек</strong></td>
+                                        <td>Запрещается оставлять вокруг чужих баз нецелевые раскопки, траншеи и хаотичные столбы блоков.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge amber">2.6</span></td>
+                                        <td><strong>Ограничение лаг-машин</strong></td>
+                                        <td>Автоматизированные фермы допускаются при условии соблюдения норм серверной нагрузки, однако запрещено возводить контуры, целенаправленно снижающие частоту тиков сервера.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Раздел 3 -->
+                    <div class="card col-12">
+                        <div class="card-kicker">Раздел 3</div>
+                        <h3 class="card-title">Честная игра и экономика</h3>
+                        <p class="card-text">
+                            Все игроки находятся в равных условиях. Богатство и снаряжение добываются знаниями, торговлей и трудом.
+                        </p>
+                        <div class="spec-table-wrap">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 90px;">Пункт</th>
+                                        <th style="width: 260px;">Правило</th>
+                                        <th>Подробное описание и меры</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="chance-badge">3.1</span></td>
+                                        <td><strong>Запрет читов и макросов</strong></td>
+                                        <td>Любые чит-клиенты, X-Ray ресурспаки, боевые модификации, полет, автокликеры и скрипты отслеживаются серверным античитом и наказываются блокировкой.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge">3.2</span></td>
+                                        <td><strong>Запрет дюпов и багоюза</strong></td>
+                                        <td>Если вы нашли способ клонирования вещей или накрутки валюты в магазине, сообщите об этом Азизу. Использование эксплойтов ради наживы приводит к обнулению баланса и бану.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge">3.3</span></td>
+                                        <td><strong>Корректные ники и скины</strong></td>
+                                        <td>Запрещены ники, имитирующие администрацию, а также оскорбительные или полностью невидимые скины.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge">3.4</span></td>
+                                        <td><strong>Запрет нечестных твинков</strong></td>
+                                        <td>Нельзя создавать дополнительные аккаунты для обхода бана или получения повторных стартовых наград.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Раздел 4 -->
+                    <div class="card col-12">
+                        <div class="card-kicker">Раздел 4</div>
+                        <h3 class="card-title">Взаимодействие с администрацией</h3>
+                        <p class="card-text">
+                            Порядок решения спорных ситуаций, проведение ивентов и разбор игровых инцидентов.
+                        </p>
+                        <div class="spec-table-wrap">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 90px;">Пункт</th>
+                                        <th style="width: 260px;">Правило</th>
+                                        <th>Подробное описание и меры</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="chance-badge guaranteed">4.1</span></td>
+                                        <td><strong>Здравый смысл и честная игра</strong></td>
+                                        <td>Спорные ситуации, не описанные буквально в пунктах выше, решаются администрацией исходя из здравого смысла и честной игры.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge guaranteed">4.2</span></td>
+                                        <td><strong>Уважение к ивентам и работе админа</strong></td>
+                                        <td>Запрещено мешать проведению серверных ивентов и работе администратора.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge guaranteed">4.3</span></td>
+                                        <td><strong>Запрет обмана при проверках</strong></td>
+                                        <td>Попытка обмана администрации при разборе инцидентов или выдумывание пропажи вещей строго наказывается.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="protection-systems">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Технический контроль 24/7</div>
+                    <h2 class="section-title">Аппаратно-программный контроль и защита</h2>
+                    <p class="section-desc">
+                        Выполнение регламента поддерживается серверными подсистемами, которые в непрерывном режиме регистрируют операции с контейнерами, контролируют параметры сетевых пакетов в бою и фиксируют финансовые транзакции.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="card col-4">
+                        <div class="card-kicker">Система 1. Логирование вещей</div>
+                        <h3 class="card-title">Журнал операций с контейнерами</h3>
+                        <p class="card-text">
+                            В процедуру контроля входят регистрация каждого открытия сундука, бочки, шалкера, воронки или раздатчика, а также фиксация изъятия и вложения предметов с привязкой к метке времени, имени игрока, координатам и идентификатору региона.
+                        </p>
+                        <p class="card-text">
+                            При несанкционированном изъятии ресурсов из незаприваченного контейнера по записям журнала восстанавливаются полный перечень предметов и точное время операции.
+                        </p>
+                    </div>
+
+                    <div class="card col-4">
+                        <div class="card-kicker">Система 2. Защита в бою и мире</div>
+                        <h3 class="card-title">Серверный контроль пакетов</h3>
+                        <p class="card-text">
+                            На уровне ядра выполняются анализ траектории перемещения, проверка дистанции удара, угловой скорости наведения и частоты кликов. Система автоматически отсекает модифицированные пакеты, полет и программные автокликеры.
+                        </p>
+                        <p class="card-text">
+                            При этом штатные задержки соединения и динамика сражений с боссами учитываются фильтрами без ложных срабатываний.
+                        </p>
+                    </div>
+
+                    <div class="card col-4">
+                        <div class="card-kicker">Система 3. Безопасная торговля</div>
+                        <h3 class="card-title">Контроль экономики и сделок</h3>
+                        <p class="card-text">
+                            Все операции с Казной и Складом <code class="inline-cmd">/kazna</code>, переводы <code class="inline-cmd">/pay</code>, лоты аукциона <code class="inline-cmd">/ah</code> и сделки в <code class="inline-cmd">/shop</code> документируются в базе данных, а для прямого обмена используется защищенный интерфейс <code class="inline-cmd">/trade</code>.
+                        </p>
+                        <p class="card-text">
+                            Передача ценных предметов выполняется через окно <code class="inline-cmd">/trade &lt;ник&gt;</code> с двухсторонним подтверждением без выбрасывания вещей на поверхность.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&#169; 2026 AZIZLAND</span>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тыквенный спас и Тыквенный Жнец : Вики сервера AZIZLAND</title>
+    <meta name="description" content="Полное руководство по осеннему событию «Тыквенный Спас» на сервере AZIZLAND: даты с 15 октября по 15 ноября, мобы в тыквенных шляпах, Тыквоголовый Рыцарь, мировой босс Тыквенный Жнец и обмен осколков в меню /halloween.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-halloween">
+
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <img src="assets/logo.png" alt="Герб AZIZLAND" class="brand-crest">
+                <span class="brand-name">AZIZ<span>LAND</span></span>
+            </a>
+            <nav class="nav-menu" aria-label="Основная навигация">
+                <a href="index.html" class="nav-item">Главная</a>
+                <a href="halloween.html" class="nav-item active">Тыквенный спас</a>
+                <a href="magic.html" class="nav-item">Магия</a>
+                <a href="bosses.html" class="nav-item">Ивенты</a>
+                <a href="mechanics.html" class="nav-item">Механика</a>
+                <a href="stats.html" class="nav-item">Статистика</a>
+                <a href="rules.html" class="nav-item">Правила</a>
+            </nav>
+            <div class="nav-status-pill">
+                <span class="status-dot" id="navStatusDot"></span>
+                <span id="navStatusText">В сети</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <svg class="cobweb-corner cobweb-top-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M200 0L0 200M200 0L60 200M200 0L130 200M200 0L0 130M200 0L0 60" stroke="#f59e0b" stroke-width="1.2"/>
+                <path d="M165 0C165 20 180 35 200 35M130 0C135 40 160 65 200 70M90 0C100 65 135 100 200 110M45 0C65 90 110 135 200 155M0 0C30 115 85 170 200 200" stroke="#ea580c" stroke-width="1.1"/>
+            </svg>
+            <svg class="cobweb-corner cobweb-top-right" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M220 0L0 220M220 0L70 220M220 0L145 220M220 0L0 145M220 0L0 70" stroke="#f59e0b" stroke-width="1.2"/>
+                <path d="M180 0C180 22 198 40 220 40M140 0C146 45 175 74 220 80M95 0C108 72 148 112 220 125M48 0C70 100 120 150 220 172M0 0C34 128 92 186 220 220" stroke="#ea580c" stroke-width="1.1"/>
+            </svg>
+
+            <div class="container">
+                <div class="eyebrow">Ежегодное осеннее событие : 15 октября по 15 ноября</div>
+                <div class="hero-crest-row">
+                    <svg class="hero-crest-large" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Светильник Джека">
+                        <rect x="31" y="6" width="10" height="9" rx="2" fill="#462e1c" stroke="#f59e0b" stroke-width="1.5"/>
+                        <path d="M36 14C20 14 8 24 8 40C8 56 20 64 36 64C52 64 64 56 64 40C64 24 52 14 36 14Z" fill="#1e140d" stroke="#ea580c" stroke-width="2.5"/>
+                        <path d="M36 14C26 14 20 25 20 40C20 55 26 64 36 64C46 64 52 55 52 40C52 25 46 14 36 14Z" stroke="#ea580c" stroke-width="1.5" stroke-opacity="0.65"/>
+                        <polygon points="21,34 29,28 31,37" fill="#f59e0b"/>
+                        <polygon points="51,34 43,28 41,37" fill="#f59e0b"/>
+                        <polygon points="36,37 33,43 39,43" fill="#ea580c"/>
+                        <path d="M19 48L25 53L30 49L36 54L42 49L47 53L53 48L49 57L42 54L36 59L30 54L23 57L19 48Z" fill="#f59e0b"/>
+                    </svg>
+                    <div>
+                        <h1 class="hero-title" style="margin-bottom: 6px;">Тыквенный Спас</h1>
+                        <p class="hero-slogan" style="margin-bottom: 0;">Охота за «Тыквенными осколками» и битва с <mark>Тыквенным Жнецом</mark></p>
+                    </div>
+                </div>
+                <p class="hero-lead">
+                    Ежегодно с 15 октября по 15 ноября на сервере действует сезонный режим «Тыквенный Спас». В течение этого периода мобы получают тыквенные шлемы с вероятностью 35%, при сборе урожая пшеницы и тыкв выпадают боевые сладости и осколки, в ночное время генерируются закованные в незерит Тыквоголовые Рыцари, а каждые два часа в 45 минут нечетного часа на центральной арене измерения Энда появляется мировой босс Тыквенный Жнец.
+                </p>
+
+                <div class="stat-row" style="margin-top: 28px;">
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Даты события</span>
+                        <span class="stat-chip-val">15.10 по 15.11</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Мобы в тыквах</span>
+                        <span class="stat-chip-val">35% шанс</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Ночной Рыцарь</span>
+                        <span class="stat-chip-val">1.5% ночью</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Тыквенный Жнец</span>
+                        <span class="stat-chip-val">Нечетные часы в :45, с 09:45 до 23:45 МСК</span>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-chip-label">Меню и набор</span>
+                        <span class="stat-chip-val">/halloween и /kit halloween</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="mobs-and-harvest">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Повседневная добыча</div>
+                    <h2 class="section-title">Мобы в тыквенных шляпах и сбор урожая</h2>
+                    <p class="section-desc">
+                        Добывать «Тыквенные осколки» и «Хэллоуинские конфеты» можно двумя путями: сражаясь с монстрами в тыквенных шлемах или собирая урожай на ферме.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <article class="card col-7">
+                        <svg class="card-cobweb" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M100 0L0 100M100 0L40 100M100 0L0 40" stroke="#f59e0b" stroke-width="1.2"/>
+                            <path d="M70 0C72 18 82 28 100 30M35 0C42 38 62 58 100 65M0 0C16 62 38 84 100 100" stroke="#ea580c" stroke-width="1"/>
+                        </svg>
+                        <span class="card-kicker">Шанс появления 35%</span>
+                        <h3 class="card-title">Монстры и жители в тыквенных шлемах</h3>
+                        <p class="card-text">
+                            В период с 15 октября по 15 ноября каждый появляющийся в мире моб из праздничного списка с вероятностью <strong>35%</strong> получает на голову вырезанную тыкву или горящий светильник Джека. Сам тыквенный блок при гибели существа не выпадает, но за убийство любого моба в такой шляпе предусмотрена особая награда.
+                        </p>
+                        <p class="card-text">
+                            Тыквенные шляпы носят враждебные монстры: зомби, скелеты, зимогоры, кадабры, утопленники, зомби-крестьяне, скелеты-иссушители, пиглины, зомбифицированные пиглины, криперы, странники края, ведьмы, поборники и разбойники. Праздничные тыквы также надевают мирные обитатели: деревенские жители, странствующие торговцы, железные големы и снежные големы.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Дроп «Тыквенного осколка»</span>
+                                <span class="stat-chip-val">25% при убийстве</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Дроп «Хэллоуинской конфеты»</span>
+                                <span class="stat-chip-val">8% при убийстве</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-5">
+                        <svg class="card-cobweb" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M100 0L0 100M100 0L40 100M100 0L0 40" stroke="#f59e0b" stroke-width="1.2"/>
+                            <path d="M70 0C72 18 82 28 100 30M35 0C42 38 62 58 100 65" stroke="#ea580c" stroke-width="1"/>
+                        </svg>
+                        <span class="card-kicker">Фермерство и кулинария</span>
+                        <h3 class="card-title">Урожай и свойства сладостей</h3>
+                        <p class="card-text">
+                            Мирные фермеры получают праздничные предметы прямо с грядок. При сборе полностью созревшей пшеницы, а также при разрушении обычных или резных тыкв с вероятностью <strong>8%</strong> выпадает «Хэллоуинская конфета», а с вероятностью <strong>5%</strong> выпадает «Тыквенный осколок».
+                        </p>
+                        <p class="card-text">
+                            «Хэллоуинская конфета» работает как боевой эликсир. Стоит съесть сладость, как игрок мгновенно получает <strong>Скорость II на 15 секунд</strong> и <strong>Регенерацию II на 5 секунд</strong>. Это помогает быстро разорвать дистанцию или восстановить здоровье в разгар схватки.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Скорость II</span>
+                                <span class="stat-chip-val">15 секунд</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Регенерация II</span>
+                                <span class="stat-chip-val">5 секунд</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="spec-table-wrap" style="margin-top: 16px;">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>Источник получения</th>
+                                <th>Условие срабатывания</th>
+                                <th>Шанс «Тыквенного осколка»</th>
+                                <th>Шанс «Хэллоуинской конфеты»</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Любой моб в тыквенной шляпе</strong></td>
+                                <td>Убийство моба с резной тыквой или светильником Джека на голове</td>
+                                <td><span class="chance-badge">25%</span></td>
+                                <td><span class="chance-badge amber">8%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Созревшая пшеница</strong></td>
+                                <td>Сбор полностью выросшего колоса пшеницы на ферме</td>
+                                <td><span class="chance-badge">5%</span></td>
+                                <td><span class="chance-badge amber">8%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Обычная или резная тыква</strong></td>
+                                <td>Разрушение блока тыквы или вырезанной тыквы</td>
+                                <td><span class="chance-badge">5%</span></td>
+                                <td><span class="chance-badge amber">8%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="pumpkin-knight">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Ночной элитный моб</div>
+                    <h2 class="section-title">Тыквоголовый Рыцарь</h2>
+                    <p class="section-desc">
+                        С наступлением темноты в обычном мире вместо рядовых зомби начинают появляться хорошо вооруженные всадники пешего строя, заметные издалека по яркому контурному свечению.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <article class="card col-6">
+                        <svg class="card-cobweb" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M100 0L0 100M100 0L40 100M100 0L0 40" stroke="#f59e0b" stroke-width="1.2"/>
+                            <path d="M70 0C72 18 82 28 100 30M35 0C42 38 62 58 100 65" stroke="#ea580c" stroke-width="1"/>
+                        </svg>
+                        <span class="card-kicker">Механика появления и бой</span>
+                        <h3 class="card-title">Характеристики ночного охотника</h3>
+                        <p class="card-text">
+                            «Тыквоголовый Рыцарь» появляется исключительно ночью в верхнем мире, когда игровое время находится в промежутке от <strong>13 000 до 23 000 тиков</strong>. При каждом естественном спавне обычного зомби с вероятностью <strong>1.5%</strong> вместо него в мир выходит элитный рыцарь.
+                        </p>
+                        <p class="card-text">
+                            Запас его здоровья составляет <strong>60 единиц</strong>, что равно 30 полным сердцам. Голову рыцаря венчает светильник Джека, а тело защищено полным комплектом незеритовой брони с чарами Защита II на нагруднике, поножах и ботинках. В руках он сжимает незеритовый меч с Остротой II и Заговором огня I.
+                        </p>
+                        <p class="card-text">
+                            Рыцарь постоянно находится под действием эффектов <strong>Скорости I</strong> и <strong>Силы I</strong>, а также подсвечивается эффектом свечения, поэтому его силуэт легко заметить даже сквозь листву и стены.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Здоровье</span>
+                                <span class="stat-chip-val">60 HP : 30 сердец</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Шанс спавна</span>
+                                <span class="stat-chip-val">1.5% ночью</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Награда клану</span>
+                                <span class="stat-chip-val">+15 очков</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="col-6">
+                        <div class="spec-table-wrap" style="height: 100%;">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th>Трофей с Рыцаря</th>
+                                        <th>Шанс</th>
+                                        <th>Характеристики и детали</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>«Тыквенный осколок»</strong></td>
+                                        <td><span class="chance-badge guaranteed">100%</span></td>
+                                        <td>Гарантированно выпадает от <strong>2 до 4 штук</strong> при каждой победе над рыцарем.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>«Хэллоуинская конфета»</strong></td>
+                                        <td><span class="chance-badge guaranteed">100%</span></td>
+                                        <td>Гарантированно выпадает от <strong>1 до 3 штук</strong>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>«Клинок Тыквоголового»</strong></td>
+                                        <td><span class="chance-badge">5%</span></td>
+                                        <td>Редкий незеритовый меч с чарами <strong>Острота V, Заговор огня II и Прочность III</strong>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>«Броня Тыквоголового»</strong></td>
+                                        <td><span class="chance-badge">5%</span></td>
+                                        <td>Случайная часть незеритового доспеха: нагрудник, поножи или ботинки с чарами <strong>Защита IV и Прочность III</strong>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Клановая прогрессия</strong></td>
+                                        <td><span class="chance-badge guaranteed">100%</span></td>
+                                        <td>Клан игрока, нанесшего добивающий удар, сразу получает <strong>15 очков прогрессии</strong>.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="pumpkin-reaper">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Главный мировой босс события</div>
+                    <h2 class="section-title">Тыквенный Жнец</h2>
+                    <p class="section-desc">
+                        Восемь раз в сутки, каждые два часа в 45 минут нечетного часа, на центральной арене измерения Энда формируется всадник на скелетном коне, чередуясь по расписанию с Владыкой Бездны. Ниже приведены параметры босса, алгоритмы работы его способностей, ограничения арены и перечень наград.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <article class="card col-8">
+                        <svg class="card-cobweb" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M100 0L0 100M100 0L40 100M100 0L0 40" stroke="#f59e0b" stroke-width="1.2"/>
+                            <path d="M70 0C72 18 82 28 100 30M35 0C42 38 62 58 100 65M0 0C16 62 38 84 100 100" stroke="#ea580c" stroke-width="1"/>
+                        </svg>
+                        <span class="card-kicker">Расписание, координаты и экипировка</span>
+                        <h3 class="card-title">Появление всадника в Энде</h3>
+                        <p class="card-text">
+                            «Тыквенный Жнец» генерируется ежедневно в 45 минут нечетного часа: в <strong>09:45, 11:45, 13:45, 15:45, 17:45, 19:45, 21:45 и 23:45 по московскому времени</strong>. Точка привязки расположена на центральном острове измерения Энда по координатам <code class="inline-cmd">X: 25.5, Y: 65, Z: 25.5</code>. Оповещения в общий чат подаются за <strong>15 минут, 5 минут и 1 минуту</strong> до начала боя. Время жизни босса составляет <strong>30 минут</strong>, по истечении которых непобежденная сущность удаляется с арены.
+                        </p>
+                        <p class="card-text">
+                            Жнец выполнен в виде скелета-иссушителя верхом на Скелетном коне. Запас здоровья всадника составляет <strong>600 единиц</strong>, то есть 300 сердец, при этом действуют полный иммунитет к огню и контурное свечение. Конь имеет запас прочности <strong>100 единиц здоровья</strong> и оснащен алмазной конской броней.
+                        </p>
+                        <p class="card-text">
+                            На боссе установлен полный незеритовый доспех с чарами Прочность III, на голове размещен светильник Джека, а в основной руке находится «Коса Тыквенного Жнеца» с Остротой V и Заговором огня II. Для всадника и его коня программно отключено перемещение через портал Энда.
+                        </p>
+                        <div class="stat-row">
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Здоровье Жнеца</span>
+                                <span class="stat-chip-val">600 HP : 300 сердец</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Здоровье коня</span>
+                                <span class="stat-chip-val">100 HP : 50 сердец</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Координаты Энда</span>
+                                <span class="stat-chip-val">25.5 / 65 / 25.5</span>
+                            </div>
+                            <div class="stat-chip">
+                                <span class="stat-chip-label">Длительность боя</span>
+                                <span class="stat-chip-val">30 минут</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card col-4" style="justify-content: center; align-items: center; text-align: center;">
+                        <svg width="136" height="136" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Коса Тыквенного Жнеца">
+                            <circle cx="60" cy="60" r="52" stroke="#462e1c" stroke-width="1.5" stroke-dasharray="4 4"/>
+                            <path d="M28 96L86 24" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M84 26C62 12 32 16 14 40C34 32 58 34 76 44L84 26Z" fill="#ea580c" stroke="#f59e0b" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="82" cy="29" r="4" fill="#fef3c7"/>
+                            <path d="M36 86L44 92M54 64L62 70" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="card-kicker">Трофейное оружие : 35% шанс</span>
+                        <h3 class="card-title">Коса Тыквенного Жнеца</h3>
+                        <p class="card-text">
+                            Незеритовая мотыга с чарами Острота V, Заговор огня II, Добыча III и Прочность V. Пассивный модификатор «Жатва душ» при каждом попадании дополнительно снимает у цели <strong>3 единицы чистого здоровья в обход брони</strong> и поджигает пламенем душ.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="pumpkin-divider" aria-hidden="true">
+                    <span>Активные способности и защитные механики Жнеца</span>
+                </div>
+
+                <div class="bento-grid">
+                    <article class="card col-4">
+                        <span class="card-kicker">Способность 1 : каждые 12 секунд</span>
+                        <h3 class="card-title">Призыв Стражей Жнеца</h3>
+                        <p class="card-text">
+                            С периодом <strong>12 секунд</strong> во время активного боя Жнец порождает «Стражей Тыквенного Жнеца» в железной броне с мечами и тыквами на голове. Одновременно на арене поддерживается не более <strong>4 стражей</strong>, а после гибели или удаления босса вся свита снимается с арены.
+                        </p>
+                    </article>
+
+                    <article class="card col-4">
+                        <span class="card-kicker">Способность 2 : ближний бой</span>
+                        <h3 class="card-title">Пламя душ и иссушение</h3>
+                        <p class="card-text">
+                            В ближнем бою удары Жнеца и круговой импульс в радиусе <strong>12 блоков</strong> поджигают противников и накладывают эффекты <strong>Тьмы, Замедления II и Иссушения</strong>. При этом во время боя один на один вампиризм от ударов отключен.
+                        </p>
+                    </article>
+
+                    <article class="card col-4">
+                        <span class="card-kicker">Анти-побег : 15 секунд без боя</span>
+                        <h3 class="card-title">Регенерация вне боя</h3>
+                        <p class="card-text">
+                            Если все участники боя погибают или выходят за пределы радиуса <strong>40 блоков</strong> от босса, через <strong>15 секунд</strong> отсутствия целей Жнец переходит в режим восстановления здоровья со скоростью <strong>25 единиц в секунду</strong> вплоть до полных 600 HP.
+                        </p>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Анти-лучник : дистанция более 12 блоков</span>
+                        <h3 class="card-title">Гравитационная жатва душ</h3>
+                        <p class="card-text">
+                            Для исключения расстрела с безопасной дистанции каждые <strong>12 секунд</strong> Жнец принудительно притягивает к себе всех игроков, находящихся в кольцевой зоне от <strong>12 до 35 блоков</strong>, возвращая их в радиус ближнего боя.
+                        </p>
+                    </article>
+
+                    <article class="card col-6">
+                        <span class="card-kicker">Анти-полет : радиус 45 блоков</span>
+                        <h3 class="card-title">Блокировка элитр</h3>
+                        <p class="card-text">
+                            В радиусе <strong>45 блоков</strong> от Жнеца контролируется режим планирования. Любой игрок, раскрывший элитры в этой зоне, принудительно осаживается к поверхности арены с вертикальным ускорением вниз и получает <strong>7 единиц урона</strong>.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="spec-table-wrap" style="margin-top: 24px;">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>Награда за победу над Тыквенным Жнецом</th>
+                                <th>Шанс</th>
+                                <th>Подробное описание трофея</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Выплата из Казны, опыт и вклад в клан</strong></td>
+                                <td><span class="chance-badge guaranteed">100% победителю</span></td>
+                                <td>Победитель, нанесший решающий удар, получает <strong>3 500 ₽ из Казны сервера</strong>, <strong>5 уровней опыта</strong> и начисляет <strong>100 очков прогрессии</strong> своему клану.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>«Шлем Тыквенного Жнеца»</strong></td>
+                                <td><span class="chance-badge guaranteed">100%</span></td>
+                                <td>Трофейный светильник Джека с чарами <strong>Защита V, Прочность V и Подводное дыхание III</strong>.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Праздничные ресурсы и опыт</strong></td>
+                                <td><span class="chance-badge guaranteed">100%</span></td>
+                                <td>В точке гибели босса выпадают <strong>10 «Тыквенных осколков», 15 «Хэллоуинских конфет», 2 незеритовых слитка, 12 алмазов и 1000 единиц опыта</strong>.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>«Коса Тыквенного Жнеца»</strong></td>
+                                <td><span class="chance-badge">35%</span></td>
+                                <td>Трофейная незеритовая мотыга: <strong>Острота V, Заговор огня II, Добыча III, Прочность V</strong>. Модификатор «Жатва душ» снимает <strong>+3 единицы чистого здоровья сквозь броню</strong> при каждом ударе.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Мистическая Сфера стихий</strong></td>
+                                <td><span class="chance-badge amber">35%</span></td>
+                                <td>Случайная из шести Мистических Сфер для основной или второй руки: Силы, Скорости, Жизни, Невидимости, Защиты или Ветра.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="halloween-shop">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">Праздничная лавка и ежедневный набор</div>
+                    <h2 class="section-title">Обменник осколков <code class="inline-cmd">/halloween</code> и набор <code class="inline-cmd">/kit halloween</code></h2>
+                    <p class="section-desc">
+                        Собранные «Тыквенные осколки» обмениваются на ценные ресурсы и легендарное оружие через интерактивное меню в один клик. Даже если с босса не выпала коса с шансом 35%, вы можете гарантированно выкупить ее за 100 осколков.
+                    </p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="col-7">
+                        <div class="spec-table-wrap" style="height: 100%;">
+                            <table class="spec-table">
+                                <thead>
+                                    <tr>
+                                        <th>Стоимость в меню <code class="inline-cmd">/halloween</code></th>
+                                        <th>Получаемая награда</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="chance-badge amber">10 осколков</span></td>
+                                        <td><strong>Малый мешок сладостей:</strong> 3 алмаза и 250 рублей на игровой счет.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge amber">25 осколков</span></td>
+                                        <td><strong>Дары Тыквенного Спаса:</strong> 1 незеритовый слиток, 5 алмазов и 750 рублей на игровой счет.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge">50 осколков</span></td>
+                                        <td><strong>Сокровище Жнеца:</strong> 2 зачарованных золотых яблока, 2 незеритовых слитка и 2000 рублей на игровой счет.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="chance-badge guaranteed">100 осколков</span></td>
+                                        <td><strong>Легендарная «Коса Тыквенного Жнеца»:</strong> незеритовая мотыга с Остротой V, Заговором огня II, Добычей III, Прочностью V и пассивным чистым уроном «Жатва душ».</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <article class="card col-5">
+                        <svg class="card-cobweb" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M100 0L0 100M100 0L40 100M100 0L0 40" stroke="#f59e0b" stroke-width="1.2"/>
+                            <path d="M70 0C72 18 82 28 100 30M35 0C42 38 62 58 100 65" stroke="#ea580c" stroke-width="1"/>
+                        </svg>
+                        <span class="card-kicker">Поддержка игроков каждые 24 часа</span>
+                        <h3 class="card-title">Праздничный набор <code class="inline-cmd">/kit halloween</code></h3>
+                        <p class="card-text">
+                            Раз в <strong>24 часа</strong> каждый игрок сервера может ввести команду <code class="inline-cmd">/kit halloween</code> и бесплатно получить стартовое праздничное снаряжение:
+                        </p>
+                        <p class="card-text">
+                            1. <strong>«Праздничная Тыква»</strong> на голову: вырезанная тыква с чарами Защита III и Прочность III.<br>
+                            2. <strong>Походная «Коса Тыквенного Жнеца»</strong>: железная мотыга с чарами Острота III и Заговор огня I.<br>
+                            3. <strong>Запас провизии</strong>: 8 сытных тыквенных пирогов и 2 золотых яблока.
+                        </p>
+                        <p class="card-text">
+                            Меню обмена открывается командами <code class="inline-cmd">/halloween</code> или <code class="inline-cmd">/halloweenshop</code>. Если в момент покупки в вашем инвентаре нет свободных слотов, полученные предметы аккуратно выпадут прямо под ноги и не пропадут.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&#169; 2026 AZIZLAND</span>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="app.js"></script>
+</body>
+</html>
