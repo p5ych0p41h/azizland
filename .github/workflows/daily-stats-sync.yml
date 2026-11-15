@@ -1,0 +1,43 @@
+name: Daily Stats Sync
+
+on:
+  schedule:
+    - cron: '15 21 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch latest telemetry snapshot
+        run: |
+          git fetch --no-tags --depth=1 origin telemetry
+          git show FETCH_HEAD:stats_data.json > /tmp/telemetry_stats.json
+
+      - name: Sync daily stats into website files
+        run: python3 .github/scripts/sync_daily_stats.py /tmp/telemetry_stats.json
+
+      - name: Commit and push updated stats
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "AzizBot"
+            git config user.email "bot@azizland.ru"
+            git add stats_data.json index.html stats.html
+            git commit -m "Daily site stats sync"
+            git push origin HEAD:main
+          else
+            echo "No stats changes to commit."
+          fi

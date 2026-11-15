@@ -333,13 +333,13 @@
                 <div class="eyebrow">Центральный Банк и аналитика рынка</div>
                 <h1 class="page-title">Живая статистика сервера</h1>
                 <p class="page-lead">
-                    Сводка формируется автоматически напрямую из базы данных сервера каждые пять минут. Здесь отображаются актуальный резерв Казны, денежная масса на руках у игроков, полный баланс покупок и продаж в магазине <code class="inline-cmd">/shop</code>, а также все рейтинги игроков и кланов.
+                    Живая телеметрия собирается из базы данных сервера каждые пять минут, а архивный снимок и встроенные показатели страницы автоматически обновляются раз в сутки. Здесь отображаются актуальный резерв Казны, денежная масса на руках у игроков, полный баланс покупок и продаж в магазине <code class="inline-cmd">/shop</code>, а также все рейтинги игроков и кланов.
                 </p>
 
                 <div class="stats-live-bar">
                     <div class="stats-live-indicator">
                         <span class="live-pulse"></span>
-                        <span>Автоматическая синхронизация с сервером. Срез данных: <strong id="statUpdatedAt" class="mono-num">10.11.2026 08:46 МСК</strong></span>
+                        <span>Автоматическая синхронизация с сервером. Срез данных: <strong id="statUpdatedAt" class="mono-num">16.11.2026 00:39 МСК</strong></span>
                     </div>
                     <button type="button" class="copy-btn" id="btnRefreshStats" onclick="fetchLiveStats(true)">Обновить сводку</button>
                 </div>
@@ -347,37 +347,37 @@
                 <div class="kpi-grid">
                     <div class="kpi-card">
                         <span class="kpi-label">Текущий резерв Казны</span>
-                        <div class="kpi-value val-green" id="kpiTreasuryBalance">6 545 530 ₽</div>
+                        <div class="kpi-value val-green" id="kpiTreasuryBalance">13 723 499 ₽</div>
                         <div class="kpi-sub">
                             <span>Старт: 1 000 000 ₽</span>
-                            <strong id="kpiTreasuryGrowth" style="color:#22c55e;">+5 545 530 ₽</strong>
+                            <strong id="kpiTreasuryGrowth" style="color:#22c55e;">+12 723 499 ₽</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Куплено в магазине /shop</span>
-                        <div class="kpi-value val-gold" id="kpiShopBuyRub">4 546 772 ₽</div>
+                        <div class="kpi-value val-gold" id="kpiShopBuyRub">5 788 445 ₽</div>
                         <div class="kpi-sub">
-                            <span id="kpiShopBuyTx">Сделок: 1 029</span>
-                            <strong id="kpiShopBuyItems">26 517 шт.</strong>
+                            <span id="kpiShopBuyTx">Сделок: 2 295</span>
+                            <strong id="kpiShopBuyItems">42 334 шт.</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Продано на Склад /shop</span>
-                        <div class="kpi-value" id="kpiShopSellRub">159 784 ₽</div>
+                        <div class="kpi-value" id="kpiShopSellRub">575 826 ₽</div>
                         <div class="kpi-sub">
-                            <span id="kpiShopSellTx">Сделок: 148</span>
-                            <strong id="kpiShopSellItems">20 682 шт.</strong>
+                            <span id="kpiShopSellTx">Сделок: 496</span>
+                            <strong id="kpiShopSellItems">63 506 шт.</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Сумма денег у всех игроков</span>
-                        <div class="kpi-value" id="kpiM1Supply">14 071 172 ₽</div>
+                        <div class="kpi-value" id="kpiM1Supply">10 294 637 ₽</div>
                         <div class="kpi-sub">
-                            <span id="kpiPlayersCount">Игроков: 74</span>
-                            <strong id="kpiCoverage" style="color:#22c55e;">Казна: 55.3%</strong>
+                            <span id="kpiPlayersCount">Игроков: 80</span>
+                            <strong id="kpiCoverage" style="color:#22c55e;">Казна: 133.3%</strong>
                         </div>
                     </div>
                 </div>
@@ -385,7 +385,7 @@
                 <div class="kpi-grid" style="margin-top: 16px;">
                     <div class="kpi-card">
                         <span class="kpi-label">Чистая прибыль магазина</span>
-                        <div class="kpi-value val-green" id="kpiShopNetProfit">+4 386 988 ₽</div>
+                        <div class="kpi-value val-green" id="kpiShopNetProfit">+5 212 619 ₽</div>
                         <div class="kpi-sub">
                             <span>Сальдо /shop</span>
                             <strong>Приток в Казну</strong>
@@ -394,28 +394,28 @@
 
                     <div class="kpi-card">
                         <span class="kpi-label">Доход Казны за сегодня</span>
-                        <div class="kpi-value val-green" id="kpiTodayIncome">+34 196 ₽</div>
+                        <div class="kpi-value val-green" id="kpiTodayIncome">0 ₽</div>
                         <div class="kpi-sub">
-                            <span id="kpiTodayBuyLabel">Магазин: 5 196 ₽</span>
-                            <strong id="kpiTodayOtherIncome">Онлайн и услуги: 29 000 ₽</strong>
+                            <span id="kpiTodayBuyLabel">Магазин: 0 ₽</span>
+                            <strong id="kpiTodayOtherIncome">Услуги: 0 ₽</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Расход Казны за сегодня</span>
-                        <div class="kpi-value val-red" id="kpiTodayExpense">-11 013 ₽</div>
+                        <div class="kpi-value val-red" id="kpiTodayExpense">0 ₽</div>
                         <div class="kpi-sub">
-                            <span id="kpiTodaySellLabel">Скупка: 13 ₽</span>
-                            <strong id="kpiTodayRewardsExpense">Премии и призы: 11 000 ₽</strong>
+                            <span id="kpiTodaySellLabel">Скупка: 0 ₽</span>
+                            <strong id="kpiTodayRewardsExpense">Премии: 0 ₽</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Типичный баланс игрока</span>
-                        <div class="kpi-value" id="kpiMedianBalance">7 326 ₽</div>
+                        <div class="kpi-value" id="kpiMedianBalance">4 938 ₽</div>
                         <div class="kpi-sub">
                             <span>Среднее с топом</span>
-                            <strong id="kpiMeanBalance">281 387 ₽</strong>
+                            <strong id="kpiMeanBalance">166 014 ₽</strong>
                         </div>
                     </div>
                 </div>
@@ -428,7 +428,7 @@
                     <div class="eyebrow">Макроэкономическая динамика</div>
                     <h2 class="section-title">График Казны сервера и денежной массы</h2>
                     <p class="section-desc">
-                        Почасовая история состояния Центрального Банка сервера и суммарного капитала активных игроков. После закрытия старых уязвимостей и запуска динамической дефляции резерв Казны вырос с 1 000 000 ₽ до более чем 6 540 000 ₽.
+                        Почасовая история состояния Центрального Банка сервера и суммарного капитала активных игроков. После закрытия старых уязвимостей и запуска динамической дефляции резерв Казны стабильно растет от стартовых 1 000 000 ₽ и отражает реальный оборот экономики.
                     </p>
                 </div>
 
@@ -448,11 +448,11 @@
 
                     <div class="ratio-bar-wrap">
                         <div class="ratio-stats-row">
-                            <span><strong>Приток в Казну от покупок в /shop:</strong> <span id="barBuyLabel" class="mono-num" style="color:#22c55e;">4 546 772 ₽, 96.6% оборота</span></span>
-                            <span><strong>Выплаты из Казны за скупку ресурсов:</strong> <span id="barSellLabel" class="mono-num" style="color:#ef4444;">159 784 ₽, 3.4% оборота</span></span>
+                            <span><strong>Приток в Казну от покупок в /shop:</strong> <span id="barBuyLabel" class="mono-num" style="color:#22c55e;">5 788 445 ₽, 91.0% оборота</span></span>
+                            <span><strong>Выплаты из Казны за скупку ресурсов:</strong> <span id="barSellLabel" class="mono-num" style="color:#ef4444;">575 826 ₽, 9.0% оборота</span></span>
                         </div>
                         <div class="ratio-bar-track">
-                            <div class="ratio-bar-fill-buy" id="ratioBarBuyFill" style="width: 96.6%;"></div>
+                            <div class="ratio-bar-fill-buy" id="ratioBarBuyFill" style="width: 91.0%;"></div>
                         </div>
                         <p class="card-text" style="font-size:0.84rem;">
                             За счет прогрессивного снижения закупочных цен при переполнении Склада и суточного лимита скупки игроки вкладывают в покупку редких книг, спавнеров, алмазных блоков и расходников в десятки раз больше средств, чем выводят через продажу сырья.
@@ -946,368 +946,1759 @@
     <script src="app.js"></script>
     <script>
         let currentStatsData = {
-          "updated_at_iso": "2026-11-11T07:13:03+03:00",
-          "updated_at_human": "11.11.2026 07:13 МСК",
+          "updated_at_iso": "2026-11-16T00:39:39+03:00",
+          "updated_at_human": "16.11.2026 00:39 МСК",
           "online_players": 0,
           "treasury": {
-            "balance_rub": 7787434.67,
-            "initial_rub": 1000000.00,
-            "net_growth_rub": 6787434.67,
-            "growth_multiplier": 7.79,
-            "today_income_rub": 0.00,
-            "today_shop_buy_rub": 0.00,
-            "today_other_income_rub": 0.00,
-            "today_expense_rub": 0.00,
-            "today_shop_sell_rub": 0.00,
-            "today_rewards_expense_rub": 0.00,
-            "today_net_rub": 0.00,
-            "day_key": "2026-11-11",
-            "m1_supply_rub": 14071171.93,
-            "real_players_count": 74,
-            "active_econ_players_count": 56,
-            "mean_balance_rub": 251238.78,
-            "median_balance_rub": 5032.35,
-            "gini": 0.8232,
-            "coverage_ratio_pct": 55.3,
+            "balance_rub": 13723498.97,
+            "initial_rub": 1000000.0,
+            "net_growth_rub": 12723498.97,
+            "growth_multiplier": 13.72,
+            "today_income_rub": 0.0,
+            "today_shop_buy_rub": 0.0,
+            "today_other_income_rub": 0.0,
+            "today_expense_rub": 0.0,
+            "today_shop_sell_rub": 0.0,
+            "today_rewards_expense_rub": 0.0,
+            "today_net_rub": 0.0,
+            "day_key": "2026-11-16",
+            "m1_supply_rub": 10294636.78,
+            "real_players_count": 80,
+            "active_econ_players_count": 62,
+            "mean_balance_rub": 166013.5,
+            "median_balance_rub": 4938.0,
+            "gini": 0.8601,
+            "coverage_ratio_pct": 133.3,
             "wealth_tiers": [
-              {"tier":"Миллионеры: от 1 000 000 ₽","players":6,"total_rub":9223627.02,"avg_rub":1537271.17,"share_rub_pct":65.5,"share_players_pct":8.1},
-              {"tier":"Крупный капитал: от 100 000 до 999 999 ₽","players":9,"total_rub":4418816.94,"avg_rub":490979.66,"share_rub_pct":31.4,"share_players_pct":12.2},
-              {"tier":"Средний класс: от 10 000 до 99 999 ₽","players":7,"total_rub":364284.30,"avg_rub":52040.61,"share_rub_pct":2.6,"share_players_pct":9.5},
-              {"tier":"Рабочий бюджет: от 1 000 до 9 999 ₽","players":11,"total_rub":59146.23,"avg_rub":5376.93,"share_rub_pct":0.4,"share_players_pct":14.9},
-              {"tier":"В обороте и развитии: до 1 000 ₽","players":41,"total_rub":5297.44,"avg_rub":129.21,"share_rub_pct":0.0,"share_players_pct":55.4}
+              {
+                "tier": "Миллионеры: от 1 000 000 ₽",
+                "players": 2,
+                "total_rub": 4135677.59,
+                "avg_rub": 2067838.8,
+                "share_rub_pct": 40.2,
+                "share_players_pct": 2.5
+              },
+              {
+                "tier": "Крупный капитал: от 100 000 до 999 999 ₽",
+                "players": 11,
+                "total_rub": 5546720.34,
+                "avg_rub": 504247.3,
+                "share_rub_pct": 53.9,
+                "share_players_pct": 13.8
+              },
+              {
+                "tier": "Средний класс: от 10 000 до 99 999 ₽",
+                "players": 11,
+                "total_rub": 538110.53,
+                "avg_rub": 48919.14,
+                "share_rub_pct": 5.2,
+                "share_players_pct": 13.8
+              },
+              {
+                "tier": "Рабочий бюджет: от 1 000 до 9 999 ₽",
+                "players": 13,
+                "total_rub": 69317.53,
+                "avg_rub": 5332.12,
+                "share_rub_pct": 0.7,
+                "share_players_pct": 16.3
+              },
+              {
+                "tier": "В обороте и развитии: до 1 000 ₽",
+                "players": 43,
+                "total_rub": 4810.79,
+                "avg_rub": 111.88,
+                "share_rub_pct": 0.0,
+                "share_players_pct": 53.8
+              }
             ]
           },
           "shop": {
-            "buy_tx": 1250,
-            "buy_items": 28277,
-            "buy_rub": 4694687.00,
-            "sell_tx": 247,
-            "sell_items": 32727,
-            "sell_rub": 267661.48,
-            "net_profit_rub": 4427025.52,
+            "buy_tx": 2295,
+            "buy_items": 42334,
+            "buy_rub": 5788445.0,
+            "sell_tx": 496,
+            "sell_items": 63506,
+            "sell_rub": 575826.18,
+            "net_profit_rub": 5212618.82,
             "today_buy_tx": 0,
             "today_buy_items": 0,
-            "today_buy_rub": 0.00,
+            "today_buy_rub": 0.0,
             "today_sell_tx": 0,
             "today_sell_items": 0,
-            "today_sell_rub": 0.00,
+            "today_sell_rub": 0.0,
             "top_bought_by_rub": [
-              {"name":"Алмазный блок","qty":640,"rub":1440000.00,"tx":10},
-              {"name":"Спавнер свиней","qty":15,"rub":750000.00,"tx":2},
-              {"name":"Книга «Починка»","qty":37,"rub":555000.00,"tx":33},
-              {"name":"Зачарованное золотое яблоко","qty":65,"rub":325000.00,"tx":2},
-              {"name":"Тотем бессмертия","qty":82,"rub":205000.00,"tx":19},
-              {"name":"Золотое яблоко","qty":845,"rub":169000.00,"tx":41},
-              {"name":"Книга «Защита IV»","qty":13,"rub":117000.00,"tx":13},
-              {"name":"Книга «Порыв ветра III»","qty":3,"rub":105000.00,"tx":3},
-              {"name":"Булава","qty":3,"rub":105000.00,"tx":3},
-              {"name":"Взрывное зелье","qty":88,"rub":102650.00,"tx":67}
+              {
+                "name": "Алмазный блок",
+                "qty": 641,
+                "rub": 1442250.0,
+                "tx": 11
+              },
+              {
+                "name": "Спавнер свиней",
+                "qty": 17,
+                "rub": 850000.0,
+                "tx": 4
+              },
+              {
+                "name": "Книга «Починка»",
+                "qty": 46,
+                "rub": 690000.0,
+                "tx": 40
+              },
+              {
+                "name": "Зачарованное золотое яблоко",
+                "qty": 65,
+                "rub": 325000.0,
+                "tx": 2
+              },
+              {
+                "name": "Тотем бессмертия",
+                "qty": 82,
+                "rub": 205000.0,
+                "tx": 19
+              },
+              {
+                "name": "Золотое яблоко",
+                "qty": 909,
+                "rub": 181800.0,
+                "tx": 42
+              },
+              {
+                "name": "Взрывное зелье",
+                "qty": 137,
+                "rub": 155200.0,
+                "tx": 116
+              },
+              {
+                "name": "Книга «Защита IV»",
+                "qty": 17,
+                "rub": 153000.0,
+                "tx": 14
+              },
+              {
+                "name": "Элитры",
+                "qty": 5,
+                "rub": 150000.0,
+                "tx": 5
+              },
+              {
+                "name": "Булава",
+                "qty": 4,
+                "rub": 140000.0,
+                "tx": 4
+              }
             ],
             "top_bought_by_qty": [
-              {"name":"Земля","qty":6660,"rub":13320.00,"tx":107},
-              {"name":"Камень","qty":2337,"rub":4674.00,"tx":35},
-              {"name":"Фейерверк","qty":1762,"rub":17600.00,"tx":83},
-              {"name":"Костный блок","qty":1344,"rub":20160.00,"tx":21},
-              {"name":"Сахарный тростник","qty":845,"rub":4225.00,"tx":26},
-              {"name":"Золотое яблоко","qty":845,"rub":169000.00,"tx":41},
-              {"name":"Кирпичи","qty":832,"rub":12480.00,"tx":13},
-              {"name":"Пузырек опыта","qty":675,"rub":50625.00,"tx":13},
-              {"name":"Алмазный блок","qty":640,"rub":1440000.00,"tx":10},
-              {"name":"Еловые доски","qty":640,"rub":1276.00,"tx":10}
+              {
+                "name": "Земля",
+                "qty": 9351,
+                "rub": 18702.0,
+                "tx": 127
+              },
+              {
+                "name": "Камень",
+                "qty": 2337,
+                "rub": 4674.0,
+                "tx": 35
+              },
+              {
+                "name": "Фейерверк",
+                "qty": 1954,
+                "rub": 19520.0,
+                "tx": 86
+              },
+              {
+                "name": "Булыжник",
+                "qty": 1344,
+                "rub": 2688.0,
+                "tx": 2
+              },
+              {
+                "name": "Костный блок",
+                "qty": 1344,
+                "rub": 20160.0,
+                "tx": 21
+              },
+              {
+                "name": "Семена пшеницы",
+                "qty": 1141,
+                "rub": 2176.0,
+                "tx": 9
+              },
+              {
+                "name": "Пузырек опыта",
+                "qty": 1123,
+                "rub": 84225.0,
+                "tx": 20
+              },
+              {
+                "name": "Вишнёвое бревно",
+                "qty": 1024,
+                "rub": 5120.0,
+                "tx": 16
+              },
+              {
+                "name": "Золотое яблоко",
+                "qty": 909,
+                "rub": 181800.0,
+                "tx": 42
+              },
+              {
+                "name": "Багровый стебель",
+                "qty": 902,
+                "rub": 4510.0,
+                "tx": 20
+              }
             ],
             "top_sold_by_rub": [
-              {"name":"Незеритовый блок","qty":32,"rub":144000.00,"tx":4},
-              {"name":"Алмазный блок","qty":162,"rub":43740.00,"tx":3},
-              {"name":"Жареная свинина","qty":11831,"rub":32911.38,"tx":109},
-              {"name":"Алмаз","qty":590,"rub":13380.00,"tx":3},
-              {"name":"Магнетит","qty":267,"rub":10680.00,"tx":2},
-              {"name":"Мак","qty":5018,"rub":3591.14,"tx":5},
-              {"name":"Жареная говядина","qty":1206,"rub":3570.33,"tx":15},
-              {"name":"Редстоуновый блок","qty":652,"rub":2608.00,"tx":5},
-              {"name":"Незеритовый нагрудник","qty":6,"rub":2400.00,"tx":1},
-              {"name":"Незеритовый слиток","qty":4,"rub":2000.00,"tx":1}
+              {
+                "name": "Незеритовый блок",
+                "qty": 63,
+                "rub": 253125.0,
+                "tx": 34
+              },
+              {
+                "name": "Алмазный блок",
+                "qty": 292,
+                "rub": 74925.0,
+                "tx": 38
+              },
+              {
+                "name": "Незеритовый слиток",
+                "qty": 157,
+                "rub": 67510.34,
+                "tx": 23
+              },
+              {
+                "name": "Тяжелое ядро",
+                "qty": 58,
+                "rub": 58000.0,
+                "tx": 4
+              },
+              {
+                "name": "Жареная свинина",
+                "qty": 19619,
+                "rub": 55868.03,
+                "tx": 121
+              },
+              {
+                "name": "Алмаз",
+                "qty": 1069,
+                "rub": 22381.44,
+                "tx": 9
+              },
+              {
+                "name": "Магнетит",
+                "qty": 267,
+                "rub": 10680.0,
+                "tx": 2
+              },
+              {
+                "name": "Жареная говядина",
+                "qty": 2282,
+                "rub": 6397.1,
+                "tx": 23
+              },
+              {
+                "name": "Мак",
+                "qty": 5018,
+                "rub": 3591.14,
+                "tx": 5
+              },
+              {
+                "name": "Редстоуновый блок",
+                "qty": 652,
+                "rub": 2608.0,
+                "tx": 5
+              }
             ],
             "top_sold_by_qty": [
-              {"name":"Жареная свинина","qty":11831,"rub":32911.38,"tx":109},
-              {"name":"Мак","qty":5018,"rub":3591.14,"tx":5},
-              {"name":"Булыжник","qty":3341,"rub":346.01,"tx":8},
-              {"name":"Плотный лед","qty":1535,"rub":1535.00,"tx":10},
-              {"name":"Жареная говядина","qty":1206,"rub":3570.33,"tx":15},
-              {"name":"Железный слиток","qty":1082,"rub":1170.45,"tx":8},
-              {"name":"Гнилая плоть","qty":998,"rub":344.20,"tx":14},
-              {"name":"Редстоуновый блок","qty":652,"rub":2608.00,"tx":5},
-              {"name":"Алмаз","qty":590,"rub":13380.00,"tx":3},
-              {"name":"Доски из темного дуба","qty":576,"rub":288.00,"tx":1}
+              {
+                "name": "Жареная свинина",
+                "qty": 19619,
+                "rub": 55868.03,
+                "tx": 121
+              },
+              {
+                "name": "Эндер-жемчуг",
+                "qty": 10893,
+                "rub": 2167.6,
+                "tx": 49
+              },
+              {
+                "name": "Мак",
+                "qty": 5018,
+                "rub": 3591.14,
+                "tx": 5
+              },
+              {
+                "name": "Булыжник",
+                "qty": 3630,
+                "rub": 393.72,
+                "tx": 16
+              },
+              {
+                "name": "Гнилая плоть",
+                "qty": 2729,
+                "rub": 581.13,
+                "tx": 22
+              },
+              {
+                "name": "Жареная говядина",
+                "qty": 2282,
+                "rub": 6397.1,
+                "tx": 23
+              },
+              {
+                "name": "Плотный лед",
+                "qty": 1535,
+                "rub": 1535.0,
+                "tx": 10
+              },
+              {
+                "name": "Кожа",
+                "qty": 1432,
+                "rub": 1552.5,
+                "tx": 4
+              },
+              {
+                "name": "Кость",
+                "qty": 1233,
+                "rub": 870.31,
+                "tx": 19
+              },
+              {
+                "name": "Стрела",
+                "qty": 1147,
+                "rub": 307.35,
+                "tx": 14
+              }
             ],
             "top_buyers": [
-              {"name":"Farel_Kartel","qty":5113,"rub":1983379.00,"tx":146},
-              {"name":"krotik_pokoyo42","qty":16001,"rub":1637864.00,"tx":487},
-              {"name":"Andrew_Prime","qty":2443,"rub":826264.00,"tx":283},
-              {"name":"Rat_3000","qty":925,"rub":145705.00,"tx":182},
-              {"name":"Goha22","qty":1,"rub":50000.00,"tx":1},
-              {"name":"frostflux","qty":453,"rub":24953.00,"tx":29},
-              {"name":"TiS2015","qty":763,"rub":14591.00,"tx":43},
-              {"name":"ROMANTOP","qty":8,"rub":4800.00,"tx":8},
-              {"name":"MrVoid","qty":2059,"rub":4191.00,"tx":43},
-              {"name":"Sakenzel","qty":1,"rub":1050.00,"tx":1}
+              {
+                "name": "Farel_Kartel",
+                "qty": 7458,
+                "rub": 2034873.0,
+                "tx": 189
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 19141,
+                "rub": 1956915.0,
+                "tx": 639
+              },
+              {
+                "name": "Andrew_Prime",
+                "qty": 3340,
+                "rub": 846226.0,
+                "tx": 488
+              },
+              {
+                "name": "Goha22",
+                "qty": 4,
+                "rub": 250000.0,
+                "tx": 4
+              },
+              {
+                "name": "elemental",
+                "qty": 1765,
+                "rub": 171907.0,
+                "tx": 106
+              },
+              {
+                "name": "Rat_3000",
+                "qty": 925,
+                "rub": 145705.0,
+                "tx": 182
+              },
+              {
+                "name": "Aleks_FR_VIP",
+                "qty": 411,
+                "rub": 126040.0,
+                "tx": 15
+              },
+              {
+                "name": "TiS2015",
+                "qty": 1913,
+                "rub": 77964.0,
+                "tx": 265
+              },
+              {
+                "name": "GroZXC",
+                "qty": 40,
+                "rub": 35313.0,
+                "tx": 5
+              },
+              {
+                "name": "ROMANTOP",
+                "qty": 495,
+                "rub": 25258.0,
+                "tx": 162
+              }
             ],
             "top_sellers": [
-              {"name":"krotik_pokoyo42","qty":7054,"rub":99077.70,"tx":11},
-              {"name":"Andrew_Prime","qty":11460,"rub":62093.65,"tx":125},
-              {"name":"Rat_3000","qty":6700,"rub":55707.03,"tx":66},
-              {"name":"MrVoid","qty":256,"rub":10240.00,"tx":1},
-              {"name":"Max1234567890","qty":3642,"rub":8178.45,"tx":7},
-              {"name":"Cool_Boy1","qty":897,"rub":2334.00,"tx":5},
-              {"name":"Farel_Kartel","qty":1830,"rub":1546.80,"tx":11},
-              {"name":"yar2015","qty":145,"rub":580.00,"tx":2},
-              {"name":"Proverkin","qty":92,"rub":448.65,"tx":4},
-              {"name":"ROMANTOP","qty":120,"rub":381.00,"tx":3}
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 10254,
+                "rub": 173481.69,
+                "tx": 29
+              },
+              {
+                "name": "elemental",
+                "qty": 7488,
+                "rub": 119207.02,
+                "tx": 107
+              },
+              {
+                "name": "Andrew_Prime",
+                "qty": 19378,
+                "rub": 81398.85,
+                "tx": 158
+              },
+              {
+                "name": "Rat_3000",
+                "qty": 6700,
+                "rub": 55707.03,
+                "tx": 66
+              },
+              {
+                "name": "Max1234567890",
+                "qty": 7568,
+                "rub": 16541.53,
+                "tx": 13
+              },
+              {
+                "name": "TiS2015",
+                "qty": 471,
+                "rub": 12521.2,
+                "tx": 8
+              },
+              {
+                "name": "MrVoid",
+                "qty": 256,
+                "rub": 10240.0,
+                "tx": 1
+              },
+              {
+                "name": "Farel_Kartel",
+                "qty": 2155,
+                "rub": 6556.8,
+                "tx": 14
+              },
+              {
+                "name": "TynoDerden",
+                "qty": 112,
+                "rub": 4965.42,
+                "tx": 13
+              },
+              {
+                "name": "GroZXC",
+                "qty": 5,
+                "rub": 2500.0,
+                "tx": 1
+              }
             ],
             "hourly_msk": [
-              {"hour":0,"buy_rub":16942.00,"sell_rub":63669.70,"tx":33},
-              {"hour":1,"buy_rub":850.00,"sell_rub":385.20,"tx":6},
-              {"hour":2,"buy_rub":229350.00,"sell_rub":0.00,"tx":19},
-              {"hour":3,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
-              {"hour":4,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
-              {"hour":5,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
-              {"hour":6,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
-              {"hour":7,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
-              {"hour":8,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
-              {"hour":9,"buy_rub":0.00,"sell_rub":0.00,"tx":0},
-              {"hour":10,"buy_rub":640.00,"sell_rub":0.00,"tx":1},
-              {"hour":11,"buy_rub":354281.00,"sell_rub":0.00,"tx":56},
-              {"hour":12,"buy_rub":64544.00,"sell_rub":0.00,"tx":40},
-              {"hour":13,"buy_rub":358732.00,"sell_rub":1926.00,"tx":205},
-              {"hour":14,"buy_rub":10840.00,"sell_rub":988.00,"tx":12},
-              {"hour":15,"buy_rub":1758521.00,"sell_rub":17623.60,"tx":157},
-              {"hour":16,"buy_rub":1411.00,"sell_rub":1204.45,"tx":49},
-              {"hour":17,"buy_rub":9746.00,"sell_rub":513.98,"tx":55},
-              {"hour":18,"buy_rub":83930.00,"sell_rub":26835.00,"tx":55},
-              {"hour":19,"buy_rub":53690.00,"sell_rub":3356.25,"tx":93},
-              {"hour":20,"buy_rub":184804.00,"sell_rub":81212.20,"tx":241},
-              {"hour":21,"buy_rub":944777.00,"sell_rub":65268.10,"tx":239},
-              {"hour":22,"buy_rub":85693.00,"sell_rub":3144.00,"tx":136},
-              {"hour":23,"buy_rub":535936.00,"sell_rub":1535.00,"tx":100}
+              {
+                "hour": 0,
+                "buy_rub": 22857.0,
+                "sell_rub": 63821.24,
+                "tx": 55
+              },
+              {
+                "hour": 1,
+                "buy_rub": 3696.0,
+                "sell_rub": 385.2,
+                "tx": 29
+              },
+              {
+                "hour": 2,
+                "buy_rub": 241297.0,
+                "sell_rub": 64.0,
+                "tx": 130
+              },
+              {
+                "hour": 3,
+                "buy_rub": 6922.0,
+                "sell_rub": 0.0,
+                "tx": 22
+              },
+              {
+                "hour": 4,
+                "buy_rub": 1770.0,
+                "sell_rub": 0.0,
+                "tx": 9
+              },
+              {
+                "hour": 5,
+                "buy_rub": 0.0,
+                "sell_rub": 0.0,
+                "tx": 0
+              },
+              {
+                "hour": 6,
+                "buy_rub": 0.0,
+                "sell_rub": 0.0,
+                "tx": 0
+              },
+              {
+                "hour": 7,
+                "buy_rub": 0.0,
+                "sell_rub": 0.0,
+                "tx": 0
+              },
+              {
+                "hour": 8,
+                "buy_rub": 0.0,
+                "sell_rub": 0.0,
+                "tx": 0
+              },
+              {
+                "hour": 9,
+                "buy_rub": 200.0,
+                "sell_rub": 0.0,
+                "tx": 10
+              },
+              {
+                "hour": 10,
+                "buy_rub": 1300.0,
+                "sell_rub": 43.6,
+                "tx": 6
+              },
+              {
+                "hour": 11,
+                "buy_rub": 356721.0,
+                "sell_rub": 840.9,
+                "tx": 70
+              },
+              {
+                "hour": 12,
+                "buy_rub": 66579.0,
+                "sell_rub": 237.42,
+                "tx": 83
+              },
+              {
+                "hour": 13,
+                "buy_rub": 365360.0,
+                "sell_rub": 1926.0,
+                "tx": 220
+              },
+              {
+                "hour": 14,
+                "buy_rub": 41914.0,
+                "sell_rub": 3862.0,
+                "tx": 102
+              },
+              {
+                "hour": 15,
+                "buy_rub": 1763973.0,
+                "sell_rub": 17845.5,
+                "tx": 256
+              },
+              {
+                "hour": 16,
+                "buy_rub": 48692.0,
+                "sell_rub": 6128.67,
+                "tx": 105
+              },
+              {
+                "hour": 17,
+                "buy_rub": 299444.0,
+                "sell_rub": 3288.88,
+                "tx": 168
+              },
+              {
+                "hour": 18,
+                "buy_rub": 161442.0,
+                "sell_rub": 27549.65,
+                "tx": 153
+              },
+              {
+                "hour": 19,
+                "buy_rub": 106206.0,
+                "sell_rub": 118961.54,
+                "tx": 250
+              },
+              {
+                "hour": 20,
+                "buy_rub": 223911.0,
+                "sell_rub": 83422.1,
+                "tx": 293
+              },
+              {
+                "hour": 21,
+                "buy_rub": 1110462.0,
+                "sell_rub": 122536.37,
+                "tx": 349
+              },
+              {
+                "hour": 22,
+                "buy_rub": 251746.0,
+                "sell_rub": 63095.09,
+                "tx": 276
+              },
+              {
+                "hour": 23,
+                "buy_rub": 713953.0,
+                "sell_rub": 61818.02,
+                "tx": 205
+              }
             ]
           },
           "warehouse": [
-            {"name":"Алмаз","stock":226,"max":1024,"fill_pct":22,"rate_pct":100},
-            {"name":"Незеритовый слиток","stock":22,"max":128,"fill_pct":17,"rate_pct":100},
-            {"name":"Древний обломок","stock":49,"max":256,"fill_pct":19,"rate_pct":100},
-            {"name":"Железный слиток","stock":582,"max":2048,"fill_pct":28,"rate_pct":100},
-            {"name":"Золотой слиток","stock":488,"max":2048,"fill_pct":24,"rate_pct":100},
-            {"name":"Медный слиток","stock":638,"max":2048,"fill_pct":31,"rate_pct":100},
-            {"name":"Изумруд","stock":412,"max":2048,"fill_pct":20,"rate_pct":100},
-            {"name":"Редстоуновая пыль","stock":544,"max":2048,"fill_pct":27,"rate_pct":100},
-            {"name":"Лазурит","stock":506,"max":2048,"fill_pct":25,"rate_pct":100},
-            {"name":"Уголь","stock":656,"max":2048,"fill_pct":32,"rate_pct":100},
-            {"name":"Пшеница","stock":1238,"max":4096,"fill_pct":30,"rate_pct":100},
-            {"name":"Морковь","stock":1088,"max":4096,"fill_pct":27,"rate_pct":100},
-            {"name":"Картофель","stock":1164,"max":4096,"fill_pct":28,"rate_pct":100},
-            {"name":"Тыква","stock":1012,"max":4096,"fill_pct":25,"rate_pct":100},
-            {"name":"Арбуз","stock":976,"max":4096,"fill_pct":24,"rate_pct":100},
-            {"name":"Сахарный тростник","stock":1276,"max":4096,"fill_pct":31,"rate_pct":100},
-            {"name":"Незерский нарост","stock":864,"max":4096,"fill_pct":21,"rate_pct":100},
-            {"name":"Гнилая плоть","stock":1202,"max":4096,"fill_pct":29,"rate_pct":100},
-            {"name":"Кость","stock":1052,"max":4096,"fill_pct":26,"rate_pct":100},
-            {"name":"Порох","stock":826,"max":4096,"fill_pct":20,"rate_pct":100}
+            {
+              "name": "Алмаз",
+              "stock": 209,
+              "max": 1024,
+              "fill_pct": 20,
+              "rate_pct": 100
+            },
+            {
+              "name": "Незеритовый слиток",
+              "stock": 82,
+              "max": 128,
+              "fill_pct": 64,
+              "rate_pct": 75
+            },
+            {
+              "name": "Древний обломок",
+              "stock": 53,
+              "max": 256,
+              "fill_pct": 21,
+              "rate_pct": 100
+            },
+            {
+              "name": "Железный слиток",
+              "stock": 544,
+              "max": 2048,
+              "fill_pct": 27,
+              "rate_pct": 100
+            },
+            {
+              "name": "Золотой слиток",
+              "stock": 489,
+              "max": 2048,
+              "fill_pct": 24,
+              "rate_pct": 100
+            },
+            {
+              "name": "Медный слиток",
+              "stock": 644,
+              "max": 2048,
+              "fill_pct": 31,
+              "rate_pct": 100
+            },
+            {
+              "name": "Изумруд",
+              "stock": 371,
+              "max": 2048,
+              "fill_pct": 18,
+              "rate_pct": 100
+            },
+            {
+              "name": "Редстоуновая пыль",
+              "stock": 510,
+              "max": 2048,
+              "fill_pct": 25,
+              "rate_pct": 100
+            },
+            {
+              "name": "Лазурит",
+              "stock": 525,
+              "max": 2048,
+              "fill_pct": 26,
+              "rate_pct": 100
+            },
+            {
+              "name": "Уголь",
+              "stock": 649,
+              "max": 2048,
+              "fill_pct": 32,
+              "rate_pct": 100
+            },
+            {
+              "name": "Пшеница",
+              "stock": 1167,
+              "max": 4096,
+              "fill_pct": 28,
+              "rate_pct": 100
+            },
+            {
+              "name": "Морковь",
+              "stock": 1020,
+              "max": 4096,
+              "fill_pct": 25,
+              "rate_pct": 100
+            },
+            {
+              "name": "Картофель",
+              "stock": 1201,
+              "max": 4096,
+              "fill_pct": 29,
+              "rate_pct": 100
+            },
+            {
+              "name": "Тыква",
+              "stock": 961,
+              "max": 4096,
+              "fill_pct": 23,
+              "rate_pct": 100
+            },
+            {
+              "name": "Арбуз",
+              "stock": 1059,
+              "max": 4096,
+              "fill_pct": 26,
+              "rate_pct": 100
+            },
+            {
+              "name": "Сахарный тростник",
+              "stock": 1211,
+              "max": 4096,
+              "fill_pct": 30,
+              "rate_pct": 100
+            },
+            {
+              "name": "Незерский нарост",
+              "stock": 817,
+              "max": 4096,
+              "fill_pct": 20,
+              "rate_pct": 100
+            },
+            {
+              "name": "Гнилая плоть",
+              "stock": 1135,
+              "max": 4096,
+              "fill_pct": 28,
+              "rate_pct": 100
+            },
+            {
+              "name": "Кость",
+              "stock": 982,
+              "max": 4096,
+              "fill_pct": 24,
+              "rate_pct": 100
+            },
+            {
+              "name": "Порох",
+              "stock": 758,
+              "max": 4096,
+              "fill_pct": 19,
+              "rate_pct": 100
+            }
           ],
           "hourly_online_msk": [
-            {"hour":0,"avg":1.0,"peak":3},
-            {"hour":1,"avg":0.4,"peak":1},
-            {"hour":2,"avg":0.1,"peak":1},
-            {"hour":3,"avg":0.0,"peak":0},
-            {"hour":4,"avg":0.0,"peak":0},
-            {"hour":5,"avg":0.0,"peak":0},
-            {"hour":6,"avg":0.0,"peak":0},
-            {"hour":7,"avg":0.0,"peak":0},
-            {"hour":8,"avg":0.0,"peak":0},
-            {"hour":9,"avg":0.2,"peak":1},
-            {"hour":10,"avg":1.0,"peak":1},
-            {"hour":11,"avg":0.9,"peak":1},
-            {"hour":12,"avg":0.0,"peak":0},
-            {"hour":13,"avg":0.0,"peak":0},
-            {"hour":14,"avg":0.0,"peak":1},
-            {"hour":15,"avg":0.1,"peak":1},
-            {"hour":16,"avg":1.4,"peak":3},
-            {"hour":17,"avg":2.0,"peak":5},
-            {"hour":18,"avg":2.6,"peak":6},
-            {"hour":19,"avg":4.0,"peak":6},
-            {"hour":20,"avg":3.1,"peak":6},
-            {"hour":21,"avg":5.0,"peak":7},
-            {"hour":22,"avg":2.5,"peak":4},
-            {"hour":23,"avg":2.6,"peak":3}
+            {
+              "hour": 0,
+              "avg": 2.0,
+              "peak": 3
+            },
+            {
+              "hour": 1,
+              "avg": 2.0,
+              "peak": 2
+            },
+            {
+              "hour": 2,
+              "avg": 2.0,
+              "peak": 2
+            },
+            {
+              "hour": 3,
+              "avg": 2.0,
+              "peak": 2
+            },
+            {
+              "hour": 4,
+              "avg": 0.6,
+              "peak": 1
+            },
+            {
+              "hour": 5,
+              "avg": 0.0,
+              "peak": 0
+            },
+            {
+              "hour": 6,
+              "avg": 0.0,
+              "peak": 0
+            },
+            {
+              "hour": 7,
+              "avg": 0.0,
+              "peak": 0
+            },
+            {
+              "hour": 8,
+              "avg": 0.2,
+              "peak": 1
+            },
+            {
+              "hour": 9,
+              "avg": 0.7,
+              "peak": 1
+            },
+            {
+              "hour": 10,
+              "avg": 1.0,
+              "peak": 1
+            },
+            {
+              "hour": 11,
+              "avg": 0.9,
+              "peak": 1
+            },
+            {
+              "hour": 12,
+              "avg": 1.4,
+              "peak": 6
+            },
+            {
+              "hour": 13,
+              "avg": 1.6,
+              "peak": 7
+            },
+            {
+              "hour": 14,
+              "avg": 1.8,
+              "peak": 6
+            },
+            {
+              "hour": 15,
+              "avg": 1.9,
+              "peak": 6
+            },
+            {
+              "hour": 16,
+              "avg": 2.9,
+              "peak": 5
+            },
+            {
+              "hour": 17,
+              "avg": 2.3,
+              "peak": 5
+            },
+            {
+              "hour": 18,
+              "avg": 4.1,
+              "peak": 7
+            },
+            {
+              "hour": 19,
+              "avg": 4.0,
+              "peak": 6
+            },
+            {
+              "hour": 20,
+              "avg": 3.4,
+              "peak": 6
+            },
+            {
+              "hour": 21,
+              "avg": 5.1,
+              "peak": 7
+            },
+            {
+              "hour": 22,
+              "avg": 2.9,
+              "peak": 4
+            },
+            {
+              "hour": 23,
+              "avg": 2.6,
+              "peak": 3
+            }
           ],
           "quiz": {
-            "total_solved": 100,
+            "total_solved": 114,
             "top_solvers": [
-              {"name":"Farel_Kartel","qty":47,"rub":70500.00,"tx":0},
-              {"name":"abob","qty":23,"rub":34500.00,"tx":0},
-              {"name":"Fortenit","qty":8,"rub":12000.00,"tx":0},
-              {"name":"Sakenzel","qty":6,"rub":9000.00,"tx":0},
-              {"name":"mig_grig","qty":5,"rub":7500.00,"tx":0},
-              {"name":"krotik_pokoyo42","qty":4,"rub":6000.00,"tx":0},
-              {"name":"Aleks_FR_VIP","qty":2,"rub":3000.00,"tx":0},
-              {"name":"Max1234567890","qty":2,"rub":3000.00,"tx":0},
-              {"name":"Goha22","qty":2,"rub":3000.00,"tx":0},
-              {"name":"imica42","qty":1,"rub":1500.00,"tx":0}
+              {
+                "name": "Farel_Kartel",
+                "qty": 48,
+                "rub": 72000.0,
+                "tx": 0
+              },
+              {
+                "name": "abob",
+                "qty": 23,
+                "rub": 34500.0,
+                "tx": 0
+              },
+              {
+                "name": "Fortenit",
+                "qty": 9,
+                "rub": 13500.0,
+                "tx": 0
+              },
+              {
+                "name": "TynoDerden",
+                "qty": 8,
+                "rub": 12000.0,
+                "tx": 0
+              },
+              {
+                "name": "Sakenzel",
+                "qty": 6,
+                "rub": 9000.0,
+                "tx": 0
+              },
+              {
+                "name": "mig_grig",
+                "qty": 5,
+                "rub": 7500.0,
+                "tx": 0
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 4,
+                "rub": 6000.0,
+                "tx": 0
+              },
+              {
+                "name": "elemental",
+                "qty": 3,
+                "rub": 4500.0,
+                "tx": 0
+              },
+              {
+                "name": "Aleks_FR_VIP",
+                "qty": 2,
+                "rub": 3000.0,
+                "tx": 0
+              },
+              {
+                "name": "Max1234567890",
+                "qty": 2,
+                "rub": 3000.0,
+                "tx": 0
+              }
             ]
           },
           "leaderboards": {
             "top_balances": [
-              {"name":"Fortenit","qty":0,"rub":2997926.81,"tx":0},
-              {"name":"krotik_pokoyo42","qty":0,"rub":1864235.90,"tx":0},
-              {"name":"Andrew_Prime","qty":0,"rub":1108411.25,"tx":0},
-              {"name":"Farel_Kartel","qty":0,"rub":1100105.30,"tx":0},
-              {"name":"32423","qty":0,"rub":1078651.78,"tx":0},
-              {"name":"GroZXC","qty":0,"rub":1074295.98,"tx":0},
-              {"name":"imica42","qty":0,"rub":885508.00,"tx":0},
-              {"name":"OmegsBro","qty":0,"rub":835189.22,"tx":0},
-              {"name":"abob","qty":0,"rub":749525.00,"tx":0},
-              {"name":"cthutq110312","qty":0,"rub":684088.27,"tx":0}
+              {
+                "name": "Fortenit",
+                "qty": 0,
+                "rub": 3057025.81,
+                "tx": 0
+              },
+              {
+                "name": "32423",
+                "qty": 0,
+                "rub": 1078651.78,
+                "tx": 0
+              },
+              {
+                "name": "GroZXC",
+                "qty": 0,
+                "rub": 971939.98,
+                "tx": 0
+              },
+              {
+                "name": "OmegsBro",
+                "qty": 0,
+                "rub": 929398.22,
+                "tx": 0
+              },
+              {
+                "name": "imica42",
+                "qty": 0,
+                "rub": 885508.0,
+                "tx": 0
+              },
+              {
+                "name": "abob",
+                "qty": 0,
+                "rub": 749205.0,
+                "tx": 0
+              },
+              {
+                "name": "cthutq110312",
+                "qty": 0,
+                "rub": 711953.46,
+                "tx": 0
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 0,
+                "rub": 440097.89,
+                "tx": 0
+              },
+              {
+                "name": "haizoky",
+                "qty": 0,
+                "rub": 269395.0,
+                "tx": 0
+              },
+              {
+                "name": "Max1234567890",
+                "qty": 0,
+                "rub": 245153.23,
+                "tx": 0
+              }
             ],
             "top_clans": [
-              {"name":"CHAOS","qty":6,"rub":34759.00,"tx":0},
-              {"name":"MIG","qty":4,"rub":11418.00,"tx":0},
-              {"name":"TVARI","qty":3,"rub":1917.00,"tx":0},
-              {"name":"RIBKI","qty":2,"rub":13396.00,"tx":0},
-              {"name":"FF","qty":2,"rub":1084.00,"tx":0},
-              {"name":"INFER","qty":1,"rub":17.00,"tx":0}
+              {
+                "name": "CHAOS",
+                "qty": 6,
+                "rub": 41936.0,
+                "tx": 0
+              },
+              {
+                "name": "RIBKI",
+                "qty": 5,
+                "rub": 46001.0,
+                "tx": 0
+              },
+              {
+                "name": "MIG",
+                "qty": 4,
+                "rub": 15205.0,
+                "tx": 0
+              },
+              {
+                "name": "TVARI",
+                "qty": 3,
+                "rub": 1917.0,
+                "tx": 0
+              },
+              {
+                "name": "FF",
+                "qty": 2,
+                "rub": 1084.0,
+                "tx": 0
+              },
+              {
+                "name": "INFER",
+                "qty": 1,
+                "rub": 17.0,
+                "tx": 0
+              }
             ],
             "top_pvp_kills": [
-              {"name":"Sakenzel","qty":426,"rub":0.00,"tx":0},
-              {"name":"stepa","qty":130,"rub":0.00,"tx":0},
-              {"name":"Fortenit","qty":92,"rub":0.00,"tx":0},
-              {"name":"Farel_Kartel","qty":73,"rub":0.00,"tx":0},
-              {"name":"MrVoid","qty":72,"rub":0.00,"tx":0},
-              {"name":"krotik_pokoyo42","qty":67,"rub":0.00,"tx":0},
-              {"name":"yar2015","qty":65,"rub":0.00,"tx":0},
-              {"name":"Goha22","qty":56,"rub":0.00,"tx":0},
-              {"name":"ilya","qty":37,"rub":0.00,"tx":0},
-              {"name":"imica42","qty":35,"rub":0.00,"tx":0}
+              {
+                "name": "Sakenzel",
+                "qty": 426,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "stepa",
+                "qty": 130,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 97,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Fortenit",
+                "qty": 92,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Farel_Kartel",
+                "qty": 75,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "MrVoid",
+                "qty": 74,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "yar2015",
+                "qty": 65,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Goha22",
+                "qty": 57,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "ilya",
+                "qty": 37,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "imica42",
+                "qty": 35,
+                "rub": 0.0,
+                "tx": 0
+              }
             ],
             "top_mob_kills": [
-              {"name":"cthutq110312","qty":83958,"rub":0.00,"tx":0},
-              {"name":"Sakenzel","qty":30635,"rub":0.00,"tx":0},
-              {"name":"Farel_Kartel","qty":13425,"rub":0.00,"tx":0},
-              {"name":"Fortenit","qty":11954,"rub":0.00,"tx":0},
-              {"name":"MrVoid","qty":10370,"rub":0.00,"tx":0},
-              {"name":"frostflux","qty":10248,"rub":0.00,"tx":0},
-              {"name":"Proverkin","qty":5583,"rub":0.00,"tx":0},
-              {"name":"32423","qty":5330,"rub":0.00,"tx":0},
-              {"name":"Rohan___Kishibe","qty":5136,"rub":0.00,"tx":0},
-              {"name":"mig_grig","qty":4573,"rub":0.00,"tx":0}
+              {
+                "name": "cthutq110312",
+                "qty": 85506,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Sakenzel",
+                "qty": 30635,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Farel_Kartel",
+                "qty": 13571,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Fortenit",
+                "qty": 12619,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "MrVoid",
+                "qty": 10383,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "frostflux",
+                "qty": 10248,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 7644,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Proverkin",
+                "qty": 5593,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "32423",
+                "qty": 5330,
+                "rub": 0.0,
+                "tx": 0
+              },
+              {
+                "name": "Rohan___Kishibe",
+                "qty": 5147,
+                "rub": 0.0,
+                "tx": 0
+              }
             ],
             "top_playtime": [
-              {"name":"cthutq110312","qty":306,"rub":307.00,"tx":0},
-              {"name":"Proverkin","qty":277,"rub":277.40,"tx":0},
-              {"name":"Sakenzel","qty":217,"rub":217.70,"tx":0},
-              {"name":"Fortenit","qty":171,"rub":171.60,"tx":0},
-              {"name":"frostflux","qty":107,"rub":107.30,"tx":0},
-              {"name":"MrVoid","qty":98,"rub":98.10,"tx":0},
-              {"name":"ilya","qty":91,"rub":91.60,"tx":0},
-              {"name":"Aleks_FR_VIP","qty":83,"rub":83.30,"tx":0},
-              {"name":"Farel_Kartel","qty":83,"rub":83.10,"tx":0},
-              {"name":"OmegsBro","qty":75,"rub":75.70,"tx":0}
+              {
+                "name": "cthutq110312",
+                "qty": 308,
+                "rub": 308.1,
+                "tx": 0
+              },
+              {
+                "name": "Proverkin",
+                "qty": 277,
+                "rub": 278.0,
+                "tx": 0
+              },
+              {
+                "name": "Sakenzel",
+                "qty": 217,
+                "rub": 217.7,
+                "tx": 0
+              },
+              {
+                "name": "Fortenit",
+                "qty": 174,
+                "rub": 174.8,
+                "tx": 0
+              },
+              {
+                "name": "frostflux",
+                "qty": 107,
+                "rub": 107.3,
+                "tx": 0
+              },
+              {
+                "name": "MrVoid",
+                "qty": 99,
+                "rub": 99.2,
+                "tx": 0
+              },
+              {
+                "name": "ilya",
+                "qty": 91,
+                "rub": 91.6,
+                "tx": 0
+              },
+              {
+                "name": "Farel_Kartel",
+                "qty": 90,
+                "rub": 90.5,
+                "tx": 0
+              },
+              {
+                "name": "Aleks_FR_VIP",
+                "qty": 84,
+                "rub": 84.2,
+                "tx": 0
+              },
+              {
+                "name": "OmegsBro",
+                "qty": 81,
+                "rub": 81.2,
+                "tx": 0
+              }
             ],
             "top_miners": [
-              {"name":"Sakenzel","qty":3877,"rub":2673.00,"tx":1202},
-              {"name":"Fortenit","qty":1180,"rub":1005.00,"tx":157},
-              {"name":"cthutq110312","qty":509,"rub":507.00,"tx":0},
-              {"name":"Proverkin","qty":281,"rub":236.00,"tx":33},
-              {"name":"32423","qty":203,"rub":163.00,"tx":38},
-              {"name":"mig_grig","qty":191,"rub":191.00,"tx":0},
-              {"name":"Aleks_FR_VIP","qty":125,"rub":90.00,"tx":17},
-              {"name":"ROMANTOP","qty":119,"rub":119.00,"tx":0},
-              {"name":"yar2015","qty":114,"rub":113.00,"tx":1},
-              {"name":"Farel_Kartel","qty":77,"rub":70.00,"tx":0}
+              {
+                "name": "Sakenzel",
+                "qty": 3877,
+                "rub": 2673.0,
+                "tx": 1202
+              },
+              {
+                "name": "Fortenit",
+                "qty": 1180,
+                "rub": 1005.0,
+                "tx": 157
+              },
+              {
+                "name": "cthutq110312",
+                "qty": 509,
+                "rub": 507.0,
+                "tx": 0
+              },
+              {
+                "name": "Proverkin",
+                "qty": 281,
+                "rub": 236.0,
+                "tx": 33
+              },
+              {
+                "name": "32423",
+                "qty": 203,
+                "rub": 163.0,
+                "tx": 38
+              },
+              {
+                "name": "mig_grig",
+                "qty": 191,
+                "rub": 191.0,
+                "tx": 0
+              },
+              {
+                "name": "ROMANTOP",
+                "qty": 158,
+                "rub": 158.0,
+                "tx": 0
+              },
+              {
+                "name": "Aleks_FR_VIP",
+                "qty": 125,
+                "rub": 90.0,
+                "tx": 17
+              },
+              {
+                "name": "yar2015",
+                "qty": 114,
+                "rub": 113.0,
+                "tx": 1
+              },
+              {
+                "name": "OmegsBro",
+                "qty": 112,
+                "rub": 111.0,
+                "tx": 0
+              }
             ],
             "top_quests": [
-              {"name":"Fed52","qty":120,"rub":120.00,"tx":5},
-              {"name":"Max1234567890","qty":109,"rub":109.00,"tx":0},
-              {"name":"Andrew_Prime","qty":84,"rub":84.00,"tx":4},
-              {"name":"Farel_Kartel","qty":64,"rub":64.00,"tx":7},
-              {"name":"krotik_pokoyo42","qty":49,"rub":49.00,"tx":9},
-              {"name":"abob","qty":40,"rub":40.00,"tx":0},
-              {"name":"Rat_3000","qty":37,"rub":37.00,"tx":10},
-              {"name":"ROMANTOP","qty":35,"rub":35.00,"tx":5},
-              {"name":"Sakenzel","qty":35,"rub":35.00,"tx":1},
-              {"name":"stepa","qty":30,"rub":30.00,"tx":2}
+              {
+                "name": "Max1234567890",
+                "qty": 316,
+                "rub": 316.0,
+                "tx": 13
+              },
+              {
+                "name": "Farel_Kartel",
+                "qty": 141,
+                "rub": 141.0,
+                "tx": 12
+              },
+              {
+                "name": "Andrew_Prime",
+                "qty": 141,
+                "rub": 141.0,
+                "tx": 9
+              },
+              {
+                "name": "Fed52",
+                "qty": 120,
+                "rub": 120.0,
+                "tx": 5
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 118,
+                "rub": 118.0,
+                "tx": 16
+              },
+              {
+                "name": "TynoDerden",
+                "qty": 97,
+                "rub": 97.0,
+                "tx": 6
+              },
+              {
+                "name": "GroZXC",
+                "qty": 80,
+                "rub": 80.0,
+                "tx": 6
+              },
+              {
+                "name": "OmegsBro",
+                "qty": 79,
+                "rub": 79.0,
+                "tx": 14
+              },
+              {
+                "name": "cthutq110312",
+                "qty": 70,
+                "rub": 70.0,
+                "tx": 5
+              },
+              {
+                "name": "ItsRealElemental",
+                "qty": 64,
+                "rub": 64.0,
+                "tx": 16
+              }
             ],
             "top_travelers": [
-              {"name":"Sakenzel","qty":1067,"rub":1067.10,"tx":578},
-              {"name":"Proverkin","qty":818,"rub":818.00,"tx":315},
-              {"name":"cthutq110312","qty":817,"rub":817.30,"tx":464},
-              {"name":"Farel_Kartel","qty":755,"rub":754.70,"tx":590},
-              {"name":"MrVoid","qty":574,"rub":573.80,"tx":371},
-              {"name":"Fortenit","qty":380,"rub":380.40,"tx":59},
-              {"name":"krotik_pokoyo42","qty":320,"rub":320.30,"tx":250},
-              {"name":"OmegsBro","qty":262,"rub":262.30,"tx":19},
-              {"name":"Aleks_FR_VIP","qty":242,"rub":241.80,"tx":9},
-              {"name":"abob","qty":228,"rub":227.70,"tx":109}
+              {
+                "name": "Sakenzel",
+                "qty": 1067,
+                "rub": 1067.1,
+                "tx": 578
+              },
+              {
+                "name": "Proverkin",
+                "qty": 819,
+                "rub": 819.3,
+                "tx": 315
+              },
+              {
+                "name": "cthutq110312",
+                "qty": 819,
+                "rub": 818.9,
+                "tx": 464
+              },
+              {
+                "name": "Farel_Kartel",
+                "qty": 780,
+                "rub": 780.3,
+                "tx": 597
+              },
+              {
+                "name": "MrVoid",
+                "qty": 583,
+                "rub": 583.0,
+                "tx": 378
+              },
+              {
+                "name": "Fortenit",
+                "qty": 392,
+                "rub": 392.3,
+                "tx": 64
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 354,
+                "rub": 353.8,
+                "tx": 268
+              },
+              {
+                "name": "OmegsBro",
+                "qty": 279,
+                "rub": 279.3,
+                "tx": 19
+              },
+              {
+                "name": "Aleks_FR_VIP",
+                "qty": 243,
+                "rub": 242.6,
+                "tx": 9
+              },
+              {
+                "name": "abob",
+                "qty": 228,
+                "rub": 228.2,
+                "tx": 109
+              }
             ],
             "top_deaths": [
-              {"name":"Proverkin","qty":1025,"rub":277.40,"tx":0},
-              {"name":"ilya","qty":693,"rub":91.60,"tx":0},
-              {"name":"frostflux","qty":649,"rub":107.30,"tx":0},
-              {"name":"Fortenit","qty":438,"rub":171.60,"tx":0},
-              {"name":"Aleks_FR_VIP","qty":418,"rub":83.30,"tx":0},
-              {"name":"yar2015","qty":402,"rub":53.30,"tx":0},
-              {"name":"Goha22","qty":338,"rub":60.50,"tx":0},
-              {"name":"OmegsBro","qty":309,"rub":75.70,"tx":0},
-              {"name":"Sakenzel","qty":284,"rub":217.70,"tx":0},
-              {"name":"cthutq110312","qty":280,"rub":307.00,"tx":0}
+              {
+                "name": "Proverkin",
+                "qty": 1027,
+                "rub": 278.0,
+                "tx": 0
+              },
+              {
+                "name": "ilya",
+                "qty": 693,
+                "rub": 91.6,
+                "tx": 0
+              },
+              {
+                "name": "frostflux",
+                "qty": 649,
+                "rub": 107.3,
+                "tx": 0
+              },
+              {
+                "name": "Fortenit",
+                "qty": 443,
+                "rub": 174.8,
+                "tx": 0
+              },
+              {
+                "name": "Aleks_FR_VIP",
+                "qty": 418,
+                "rub": 84.2,
+                "tx": 0
+              },
+              {
+                "name": "yar2015",
+                "qty": 406,
+                "rub": 53.7,
+                "tx": 0
+              },
+              {
+                "name": "Goha22",
+                "qty": 359,
+                "rub": 62.2,
+                "tx": 0
+              },
+              {
+                "name": "OmegsBro",
+                "qty": 320,
+                "rub": 81.2,
+                "tx": 0
+              },
+              {
+                "name": "cthutq110312",
+                "qty": 286,
+                "rub": 308.1,
+                "tx": 0
+              },
+              {
+                "name": "Sakenzel",
+                "qty": 284,
+                "rub": 217.7,
+                "tx": 0
+              }
             ]
           },
           "timeseries": [
-            {"time":"09.11 08:00","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 09:00","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 10:00","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 11:00","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 12:00","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 13:00","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 14:00","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 15:04","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 16:04","treasury":6235815.15,"m1":15390048.52,"players":74},
-            {"time":"09.11 17:04","treasury":6248115.15,"m1":15379593.52,"players":74},
-            {"time":"09.11 18:04","treasury":6256155.15,"m1":15372759.52,"players":74},
-            {"time":"09.11 19:00","treasury":6252105.15,"m1":15376202.02,"players":74},
-            {"time":"09.11 20:00","treasury":6276655.15,"m1":15355334.52,"players":74},
-            {"time":"09.11 21:00","treasury":6274100.15,"m1":15357506.27,"players":74},
-            {"time":"09.11 22:00","treasury":6424058.15,"m1":15230041.97,"players":74},
-            {"time":"09.11 23:00","treasury":6484302.15,"m1":15178834.57,"players":74},
-            {"time":"10.11 00:00","treasury":6522347.15,"m1":15146496.32,"players":74},
-            {"time":"10.11 01:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 02:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 03:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 04:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 05:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 06:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 07:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 08:00","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 09:01","treasury":6545530.35,"m1":15126790.60,"players":74},
-            {"time":"10.11 10:01","treasury":6545515.35,"m1":15126803.35,"players":74},
-            {"time":"10.11 11:01","treasury":6563020.35,"m1":15111924.10,"players":74},
-            {"time":"10.11 12:01","treasury":6571505.35,"m1":15104711.85,"players":74},
-            {"time":"10.11 13:01","treasury":6571505.35,"m1":15104711.85,"players":74},
-            {"time":"10.11 14:01","treasury":6571505.35,"m1":15104711.85,"players":74},
-            {"time":"10.11 15:01","treasury":6571505.35,"m1":15104711.85,"players":74},
-            {"time":"10.11 16:01","treasury":6571505.35,"m1":15104711.85,"players":74},
-            {"time":"10.11 17:01","treasury":6545369.62,"m1":15126927.22,"players":74},
-            {"time":"10.11 18:01","treasury":6567684.37,"m1":15107959.68,"players":74},
-            {"time":"10.11 19:01","treasury":6628712.37,"m1":15056085.88,"players":74},
-            {"time":"10.11 20:04","treasury":6723291.97,"m1":14975693.22,"players":74},
-            {"time":"10.11 21:04","treasury":6741471.17,"m1":14960240.90,"players":74},
-            {"time":"10.11 22:04","treasury":8128434.67,"m1":13781321.93,"players":74},
-            {"time":"10.11 23:04","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 00:04","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 01:04","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 02:04","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 03:05","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 04:00","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 05:00","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 06:00","treasury":7787434.67,"m1":14071171.93,"players":74},
-            {"time":"11.11 07:01","treasury":7787434.67,"m1":14071171.93,"players":74}
+            {
+              "time": "14.11 01:00",
+              "treasury": 11445636.62,
+              "m1": 11505519.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 02:00",
+              "treasury": 11496376.62,
+              "m1": 11502856.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 03:00",
+              "treasury": 11534140.62,
+              "m1": 11501015.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 04:00",
+              "treasury": 11585562.62,
+              "m1": 11494153.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 05:00",
+              "treasury": 11604197.62,
+              "m1": 11492458.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 06:00",
+              "treasury": 11604197.62,
+              "m1": 11492458.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 07:00",
+              "treasury": 11604197.62,
+              "m1": 11492458.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 08:00",
+              "treasury": 11604197.62,
+              "m1": 11492458.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 09:00",
+              "treasury": 11602697.62,
+              "m1": 11493958.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 10:00",
+              "treasury": 11614622.62,
+              "m1": 11507458.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 11:00",
+              "treasury": 11646197.62,
+              "m1": 11509958.98,
+              "players": 77
+            },
+            {
+              "time": "14.11 12:00",
+              "treasury": 11663614.47,
+              "m1": 11509542.13,
+              "players": 77
+            },
+            {
+              "time": "14.11 13:00",
+              "treasury": 11688477.05,
+              "m1": 11520679.55,
+              "players": 77
+            },
+            {
+              "time": "14.11 14:00",
+              "treasury": 11725470.05,
+              "m1": 11522161.55,
+              "players": 77
+            },
+            {
+              "time": "14.11 15:00",
+              "treasury": 11746764.05,
+              "m1": 11505392.55,
+              "players": 77
+            },
+            {
+              "time": "14.11 16:00",
+              "treasury": 11785312.15,
+              "m1": 11513344.45,
+              "players": 77
+            },
+            {
+              "time": "14.11 17:00",
+              "treasury": 11835578.93,
+              "m1": 11521677.67,
+              "players": 78
+            },
+            {
+              "time": "14.11 18:00",
+              "treasury": 11844078.93,
+              "m1": 11521677.67,
+              "players": 78
+            },
+            {
+              "time": "14.11 19:00",
+              "treasury": 11883048.93,
+              "m1": 11529662.67,
+              "players": 78
+            },
+            {
+              "time": "14.11 20:00",
+              "treasury": 12044798.61,
+              "m1": 11422187.99,
+              "players": 79
+            },
+            {
+              "time": "14.11 21:00",
+              "treasury": 12118187.19,
+              "m1": 11414654.41,
+              "players": 79
+            },
+            {
+              "time": "14.11 22:02",
+              "treasury": 12748320.72,
+              "m1": 10816547.88,
+              "players": 79
+            },
+            {
+              "time": "14.11 23:00",
+              "treasury": 13438454.72,
+              "m1": 10167676.88,
+              "players": 79
+            },
+            {
+              "time": "15.11 00:00",
+              "treasury": 13404946.5,
+              "m1": 10242500.05,
+              "players": 80
+            },
+            {
+              "time": "15.11 01:00",
+              "treasury": 13342184.21,
+              "m1": 10313759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 02:00",
+              "treasury": 13342184.21,
+              "m1": 10313759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 03:08",
+              "treasury": 13342184.21,
+              "m1": 10338759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 04:03",
+              "treasury": 13342184.21,
+              "m1": 10338759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 05:03",
+              "treasury": 13342184.21,
+              "m1": 10338759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 06:03",
+              "treasury": 13342184.21,
+              "m1": 10338759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 07:03",
+              "treasury": 13342184.21,
+              "m1": 10338759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 08:03",
+              "treasury": 13342184.21,
+              "m1": 10338759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 09:03",
+              "treasury": 13342184.21,
+              "m1": 10338759.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 10:03",
+              "treasury": 13359134.21,
+              "m1": 10338809.29,
+              "players": 80
+            },
+            {
+              "time": "15.11 11:03",
+              "treasury": 13369180.61,
+              "m1": 10345762.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 12:03",
+              "treasury": 13389722.86,
+              "m1": 10349912.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 13:03",
+              "treasury": 13414407.86,
+              "m1": 10350727.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 14:03",
+              "treasury": 13438157.86,
+              "m1": 10352477.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 15:03",
+              "treasury": 13430252.86,
+              "m1": 10394382.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 16:03",
+              "treasury": 13438692.86,
+              "m1": 10394442.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 17:03",
+              "treasury": 13462292.86,
+              "m1": 10396342.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 18:03",
+              "treasury": 13503615.86,
+              "m1": 10396019.89,
+              "players": 80
+            },
+            {
+              "time": "15.11 19:03",
+              "treasury": 13522055.56,
+              "m1": 10394580.19,
+              "players": 80
+            },
+            {
+              "time": "15.11 20:03",
+              "treasury": 13522055.56,
+              "m1": 10394580.19,
+              "players": 80
+            },
+            {
+              "time": "15.11 21:03",
+              "treasury": 13522055.56,
+              "m1": 10394580.19,
+              "players": 80
+            },
+            {
+              "time": "15.11 22:03",
+              "treasury": 13573947.96,
+              "m1": 10384161.79,
+              "players": 80
+            },
+            {
+              "time": "15.11 23:03",
+              "treasury": 13616248.97,
+              "m1": 10394046.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 00:00",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            }
           ]
         };
 
@@ -1335,6 +2726,21 @@
             });
         }
 
+        function escHtml(s) {
+            return String(s || "").replace(/[&<>"']/g, ch => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                "\"": "&quot;",
+                "'": "&#39;"
+            }[ch]));
+        }
+
+        function setHtmlById(id, htmlStr) {
+            const el = document.getElementById(id);
+            if (el) el.innerHTML = htmlStr;
+        }
+
         function cleanItemName(name) {
             return ITEM_NAME_MAP[name] || name;
         }
@@ -1359,12 +2765,16 @@
         function switchItemTab(side, mode) {
             if (side === 'buy') {
                 buySortMode = mode;
-                document.getElementById('btnBuyByRub').classList.toggle('active', mode === 'rub');
-                document.getElementById('btnBuyByQty').classList.toggle('active', mode === 'qty');
+                const btnRub = document.getElementById('btnBuyByRub');
+                const btnQty = document.getElementById('btnBuyByQty');
+                if (btnRub) btnRub.classList.toggle('active', mode === 'rub');
+                if (btnQty) btnQty.classList.toggle('active', mode === 'qty');
             } else {
                 sellSortMode = mode;
-                document.getElementById('btnSellByRub').classList.toggle('active', mode === 'rub');
-                document.getElementById('btnSellByQty').classList.toggle('active', mode === 'qty');
+                const btnRub = document.getElementById('btnSellByRub');
+                const btnQty = document.getElementById('btnSellByQty');
+                if (btnRub) btnRub.classList.toggle('active', mode === 'rub');
+                if (btnQty) btnQty.classList.toggle('active', mode === 'qty');
             }
             renderItemTables(currentStatsData);
         }
@@ -1387,21 +2797,19 @@
             const boughtList = buySortMode === 'rub' ? (shop.top_bought_by_rub || []) : (shop.top_bought_by_qty || []);
             const soldList = sellSortMode === 'rub' ? (shop.top_sold_by_rub || []) : (shop.top_sold_by_qty || []);
 
-            const tbBought = document.getElementById('tableTopBought');
-            tbBought.innerHTML = padRows(boughtList.map((it, idx) => `<tr>
+            setHtmlById('tableTopBought', padRows(boughtList.map((it, idx) => `<tr>
                 <td class="col-rank${medalClass(idx)}">${idx + 1}</td>
-                <td class="col-name"><strong>${cleanItemName(it.name)}</strong></td>
+                <td class="col-name"><strong>${escHtml(cleanItemName(it.name))}</strong></td>
                 <td class="col-mid">${fmtInt(it.qty)} шт.</td>
                 <td class="col-num" style="color:#22c55e;">${fmtRub(it.rub, false)}</td>
-            </tr>`), 10);
+            </tr>`), 10));
 
-            const tbSold = document.getElementById('tableTopSold');
-            tbSold.innerHTML = padRows(soldList.map((it, idx) => `<tr>
+            setHtmlById('tableTopSold', padRows(soldList.map((it, idx) => `<tr>
                 <td class="col-rank${medalClass(idx)}">${idx + 1}</td>
-                <td class="col-name"><strong>${cleanItemName(it.name)}</strong></td>
+                <td class="col-name"><strong>${escHtml(cleanItemName(it.name))}</strong></td>
                 <td class="col-mid">${fmtInt(it.qty)} шт.</td>
                 <td class="col-num" style="color:#f59e0b;">${fmtRub(it.rub, false)}</td>
-            </tr>`), 10);
+            </tr>`), 10));
         }
 
         function pvpRankTitle(kills) {
@@ -1424,25 +2832,19 @@
                 return '#ef4444';
             }
 
-            const elOres = document.getElementById('tableWarehouseOres');
-            if (elOres) {
-                elOres.innerHTML = padRows(ores.map((it, i) => `<tr>
-                    <td class="col-rank">${i + 1}</td>
-                    <td class="col-name"><strong>${it.name}</strong></td>
-                    <td class="col-mid">${fmtInt(it.stock)} / ${fmtInt(it.max)}</td>
-                    <td class="col-num" style="color:${rateBadgeColor(it.rate_pct)};">${it.rate_pct}%</td>
-                </tr>`), 10);
-            }
+            setHtmlById('tableWarehouseOres', padRows(ores.map((it, i) => `<tr>
+                <td class="col-rank">${i + 1}</td>
+                <td class="col-name"><strong>${escHtml(it.name)}</strong></td>
+                <td class="col-mid">${fmtInt(it.stock)} / ${fmtInt(it.max)}</td>
+                <td class="col-num" style="color:${rateBadgeColor(it.rate_pct)};">${it.rate_pct}%</td>
+            </tr>`), 10));
 
-            const elFarms = document.getElementById('tableWarehouseFarms');
-            if (elFarms) {
-                elFarms.innerHTML = padRows(farms.slice(0, 10).map((it, i) => `<tr>
-                    <td class="col-rank">${i + 1}</td>
-                    <td class="col-name"><strong>${it.name}</strong></td>
-                    <td class="col-mid">${fmtInt(it.stock)} / ${fmtInt(it.max)}</td>
-                    <td class="col-num" style="color:${rateBadgeColor(it.rate_pct)};">${it.rate_pct}%</td>
-                </tr>`), 10);
-            }
+            setHtmlById('tableWarehouseFarms', padRows(farms.slice(0, 10).map((it, i) => `<tr>
+                <td class="col-rank">${i + 1}</td>
+                <td class="col-name"><strong>${escHtml(it.name)}</strong></td>
+                <td class="col-mid">${fmtInt(it.stock)} / ${fmtInt(it.max)}</td>
+                <td class="col-num" style="color:${rateBadgeColor(it.rate_pct)};">${it.rate_pct}%</td>
+            </tr>`), 10));
         }
 
         function renderWealthTiers(data) {
@@ -1454,7 +2856,7 @@
             const colors = ['#fbbf24', '#f59e0b', '#22c55e', '#38bdf8', '#a1a1aa'];
             el.innerHTML = tiers.map((tr, i) => `<tr>
                 <td class="col-rank">${i + 1}</td>
-                <td class="col-name"><strong>${tr.tier}</strong></td>
+                <td class="col-name"><strong>${escHtml(tr.tier)}</strong></td>
                 <td class="col-mid">${fmtInt(tr.players)} игр. • ${Number(tr.share_rub_pct || 0).toFixed(1)}% денег</td>
                 <td class="col-num" style="color:${colors[i] || '#f5f5f7'};">${fmtRub(tr.total_rub, false)}</td>
             </tr>`).join('');
@@ -1477,122 +2879,110 @@
             const deaths = filterNonAdmin(lb.top_deaths);
 
             const top10BalSum = balances.slice(0, 10).reduce((s, p) => s + (Number(p.rub) || 0), 0) || 1;
-            document.getElementById('tableTopBalances').innerHTML = padRows(balances.map((p, i) => {
+            setHtmlById('tableTopBalances', padRows(balances.map((p, i) => {
                 const share = ((Number(p.rub || 0) / top10BalSum) * 100).toFixed(1) + '%';
                 return `<tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
                     <td class="col-mid">${share}</td>
                     <td class="col-num" style="color:#f59e0b;">${fmtRub(p.rub, false)}</td>
                 </tr>`;
-            }), 10);
+            }), 10));
 
-            document.getElementById('tableTopQuiz').innerHTML = padRows(quiz.map((p, i) => `
+            setHtmlById('tableTopQuiz', padRows(quiz.map((p, i) => `
                 <tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
                     <td class="col-mid">${fmtInt(p.qty)} шт.</td>
                     <td class="col-num" style="color:#22c55e;">${fmtRub(p.rub || (p.qty * 1500), false)}</td>
                 </tr>
-            `), 10);
+            `), 10));
 
-            document.getElementById('tableTopBuyers').innerHTML = padRows(buyers.map((p, i) => `
+            setHtmlById('tableTopBuyers', padRows(buyers.map((p, i) => `
                 <tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
                     <td class="col-mid">${fmtInt(p.qty)} шт.</td>
                     <td class="col-num" style="color:#22c55e;">${fmtRub(p.rub, false)}</td>
                 </tr>
-            `), 10);
+            `), 10));
 
-            document.getElementById('tableTopSellers').innerHTML = padRows(sellers.map((p, i) => `
+            setHtmlById('tableTopSellers', padRows(sellers.map((p, i) => `
                 <tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
                     <td class="col-mid">${fmtInt(p.qty)} шт.</td>
                     <td class="col-num" style="color:#f59e0b;">${fmtRub(p.rub, false)}</td>
                 </tr>
-            `), 10);
+            `), 10));
 
-            document.getElementById('tableTopClans').innerHTML = padRows(clans.map((c, i) => `
+            setHtmlById('tableTopClans', padRows(clans.map((c, i) => `
                 <tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${c.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(c.name)}</strong></td>
                     <td class="col-mid">Уровень ${fmtInt(c.qty)}</td>
                     <td class="col-num" style="color:#a855f7;">${fmtInt(c.rub)} очк.</td>
                 </tr>
-            `), 10);
+            `), 10));
 
-            document.getElementById('tableTopPvp').innerHTML = padRows(pvp.map((p, i) => `
+            setHtmlById('tableTopPvp', padRows(pvp.map((p, i) => `
                 <tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
                     <td class="col-mid">${pvpRankTitle(Number(p.qty || 0))}</td>
                     <td class="col-num" style="color:#ef4444;">${fmtInt(p.qty)}</td>
                 </tr>
-            `), 10);
+            `), 10));
 
             const top10MobsSum = mobs.slice(0, 10).reduce((s, p) => s + (Number(p.qty) || 0), 0) || 1;
-            document.getElementById('tableTopMobs').innerHTML = padRows(mobs.map((p, i) => {
+            setHtmlById('tableTopMobs', padRows(mobs.map((p, i) => {
                 const share = ((Number(p.qty || 0) / top10MobsSum) * 100).toFixed(1) + '%';
                 return `<tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
                     <td class="col-mid">${share}</td>
                     <td class="col-num" style="color:#38bdf8;">${fmtInt(p.qty)}</td>
                 </tr>`;
-            }), 10);
+            }), 10));
 
-            document.getElementById('tableTopPlaytime').innerHTML = padRows(playtime.map((p, i) => {
+            setHtmlById('tableTopPlaytime', padRows(playtime.map((p, i) => {
                 const hours = Number(p.rub || p.qty) || 0;
                 const days = (hours / 24).toFixed(1) + ' дн.';
                 return `<tr>
                     <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
                     <td class="col-mid">${days}</td>
                     <td class="col-num" style="color:#22c55e;">${hours.toFixed(1)} ч.</td>
                 </tr>`;
-            }), 10);
+            }), 10));
 
-            const elMiners = document.getElementById('tableTopMiners');
-            if (elMiners) {
-                elMiners.innerHTML = padRows(miners.map((p, i) => `<tr>
-                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
-                    <td class="col-mid">${fmtInt(p.tx)} шт.</td>
-                    <td class="col-num" style="color:#38bdf8;">${fmtInt(p.qty)} шт.</td>
-                </tr>`), 10);
-            }
+            setHtmlById('tableTopMiners', padRows(miners.map((p, i) => `<tr>
+                <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
+                <td class="col-mid">${fmtInt(p.tx)} шт.</td>
+                <td class="col-num" style="color:#38bdf8;">${fmtInt(p.qty)} шт.</td>
+            </tr>`), 10));
 
-            const elQuests = document.getElementById('tableTopQuests');
-            if (elQuests) {
-                elQuests.innerHTML = padRows(quests.map((p, i) => `<tr>
-                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
-                    <td class="col-mid">${fmtInt(p.tx)} закр.</td>
-                    <td class="col-num" style="color:#f59e0b;">${fmtInt(p.qty)} ✪</td>
-                </tr>`), 10);
-            }
+            setHtmlById('tableTopQuests', padRows(quests.map((p, i) => `<tr>
+                <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
+                <td class="col-mid">${fmtInt(p.tx)} закр.</td>
+                <td class="col-num" style="color:#f59e0b;">${fmtInt(p.qty)} ✪</td>
+            </tr>`), 10));
 
-            const elTravelers = document.getElementById('tableTopTravelers');
-            if (elTravelers) {
-                elTravelers.innerHTML = padRows(travelers.map((p, i) => `<tr>
-                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
-                    <td class="col-mid">${fmtInt(p.tx)} км</td>
-                    <td class="col-num" style="color:#a855f7;">${fmtInt(p.qty)} км</td>
-                </tr>`), 10);
-            }
+            setHtmlById('tableTopTravelers', padRows(travelers.map((p, i) => `<tr>
+                <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
+                <td class="col-mid">${fmtInt(p.tx)} км</td>
+                <td class="col-num" style="color:#a855f7;">${fmtInt(p.qty)} км</td>
+            </tr>`), 10));
 
-            const elDeaths = document.getElementById('tableTopDeaths');
-            if (elDeaths) {
-                elDeaths.innerHTML = padRows(deaths.map((p, i) => `<tr>
-                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
-                    <td class="col-name"><strong>${p.name}</strong></td>
-                    <td class="col-mid">${Number(p.rub || 0).toFixed(1)} ч.</td>
-                    <td class="col-num" style="color:#ef4444;">${fmtInt(p.qty)}</td>
-                </tr>`), 10);
-            }
+            setHtmlById('tableTopDeaths', padRows(deaths.map((p, i) => `<tr>
+                <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
+                <td class="col-mid">${Number(p.rub || 0).toFixed(1)} ч.</td>
+                <td class="col-num" style="color:#ef4444;">${fmtInt(p.qty)}</td>
+            </tr>`), 10));
         }
 
         function renderTreasuryChart(data) {
@@ -1653,7 +3043,7 @@
                 dotsSvg += `<circle cx="${cx}" cy="${cyM}" r="3" fill="#f59e0b"><title>${p.time} • У игроков: ${fmtRub(p.m1, false)}</title></circle>`;
             });
 
-            document.getElementById('treasuryChartContainer').innerHTML = `
+            setHtmlById('treasuryChartContainer', `
                 <svg viewBox="0 0 ${W} ${H}" class="svg-chart" role="img" aria-label="График Казны сервера и денежной массы">
                     <defs>
                         <linearGradient id="gradTreasury" x1="0" y1="0" x2="0" y2="1">
@@ -1673,7 +3063,7 @@
                     ${dotsSvg}
                     ${xLabelsSvg}
                 </svg>
-            `;
+            `);
         }
 
         function renderHourlyShopChart(data) {
@@ -1716,12 +3106,12 @@
                 barsSvg += `<text x="${(xBase + slotW * 0.5).toFixed(1)}" y="${H - 10}" text-anchor="middle" fill="#a1a1aa" font-size="10.5" font-family="JetBrains Mono, monospace">${String(h.hour).padStart(2,'0')}</text>`;
             });
 
-            document.getElementById('hourlyShopChartContainer').innerHTML = `
+            setHtmlById('hourlyShopChartContainer', `
                 <svg viewBox="0 0 ${W} ${H}" class="svg-chart" role="img" aria-label="Почасовая активность магазина">
                     ${gridSvg}
                     ${barsSvg}
                 </svg>
-            `;
+            `);
         }
 
         function renderHourlyOnlineChart(data) {
@@ -1773,51 +3163,56 @@
             `;
         }
 
+        function setTextById(id, text) {
+            const el = document.getElementById(id);
+            if (el) el.textContent = text;
+        }
+
         function renderAllStats(data) {
             currentStatsData = data;
             const t = data.treasury || {};
             const s = data.shop || {};
 
-            document.getElementById('statUpdatedAt').textContent = data.updated_at_human || 'Актуально';
-            document.getElementById('kpiTreasuryBalance').textContent = fmtRub(t.balance_rub, false);
-            document.getElementById('kpiTreasuryGrowth').textContent = fmtRub(t.net_growth_rub, true);
+            setTextById('statUpdatedAt', data.updated_at_human || 'Актуально');
+            setTextById('kpiTreasuryBalance', fmtRub(t.balance_rub, false));
+            setTextById('kpiTreasuryGrowth', fmtRub(t.net_growth_rub, true));
 
-            document.getElementById('kpiShopBuyRub').textContent = fmtRub(s.buy_rub, false);
-            document.getElementById('kpiShopBuyTx').textContent = 'Сделок: ' + fmtInt(s.buy_tx);
-            document.getElementById('kpiShopBuyItems').textContent = fmtInt(s.buy_items) + ' шт.';
+            setTextById('kpiShopBuyRub', fmtRub(s.buy_rub, false));
+            setTextById('kpiShopBuyTx', 'Сделок: ' + fmtInt(s.buy_tx));
+            setTextById('kpiShopBuyItems', fmtInt(s.buy_items) + ' шт.');
 
-            document.getElementById('kpiShopSellRub').textContent = fmtRub(s.sell_rub, false);
-            document.getElementById('kpiShopSellTx').textContent = 'Сделок: ' + fmtInt(s.sell_tx);
-            document.getElementById('kpiShopSellItems').textContent = fmtInt(s.sell_items) + ' шт.';
+            setTextById('kpiShopSellRub', fmtRub(s.sell_rub, false));
+            setTextById('kpiShopSellTx', 'Сделок: ' + fmtInt(s.sell_tx));
+            setTextById('kpiShopSellItems', fmtInt(s.sell_items) + ' шт.');
 
-            document.getElementById('kpiM1Supply').textContent = fmtRub(t.m1_supply_rub, false);
-            const pCountEl = document.getElementById('kpiPlayersCount');
-            if (pCountEl) pCountEl.textContent = 'Игроков: ' + fmtInt(t.real_players_count || 74);
-            document.getElementById('kpiCoverage').textContent = 'Казна: ' + (t.coverage_ratio_pct || 100).toFixed(1) + '%';
+            setTextById('kpiM1Supply', fmtRub(t.m1_supply_rub, false));
+            setTextById('kpiPlayersCount', 'Игроков: ' + fmtInt(t.real_players_count || 74));
+            setTextById('kpiCoverage', 'Казна: ' + (t.coverage_ratio_pct || 100).toFixed(1) + '%');
 
-            document.getElementById('kpiShopNetProfit').textContent = fmtRub(s.net_profit_rub, true);
-            document.getElementById('kpiTodayIncome').textContent = fmtRub(t.today_income_rub, true);
-            document.getElementById('kpiTodayExpense').textContent = (t.today_expense_rub > 0 ? '-' : '') + fmtRub(t.today_expense_rub, false);
+            setTextById('kpiShopNetProfit', fmtRub(s.net_profit_rub, true));
+            setTextById('kpiTodayIncome', fmtRub(t.today_income_rub, true));
+            setTextById('kpiTodayExpense', (t.today_expense_rub > 0 ? '-' : '') + fmtRub(t.today_expense_rub, false));
 
             const todayShopBuy = Number(t.today_shop_buy_rub != null ? t.today_shop_buy_rub : (s.today_buy_rub || 0));
             const todayOtherInc = Number(t.today_other_income_rub != null ? t.today_other_income_rub : Math.max(0, (t.today_income_rub || 0) - todayShopBuy));
             const todayShopSell = Number(t.today_shop_sell_rub != null ? t.today_shop_sell_rub : (s.today_sell_rub || 0));
             const todayRewardsExp = Number(t.today_rewards_expense_rub != null ? t.today_rewards_expense_rub : Math.max(0, (t.today_expense_rub || 0) - todayShopSell));
 
-            document.getElementById('kpiTodayBuyLabel').textContent = 'Магазин: ' + fmtRub(todayShopBuy, false);
-            document.getElementById('kpiTodayOtherIncome').textContent = 'Услуги: ' + fmtRub(todayOtherInc, false);
-            document.getElementById('kpiTodaySellLabel').textContent = 'Скупка: ' + fmtRub(todayShopSell, false);
-            document.getElementById('kpiTodayRewardsExpense').textContent = 'Премии: ' + fmtRub(todayRewardsExp, false);
+            setTextById('kpiTodayBuyLabel', 'Магазин: ' + fmtRub(todayShopBuy, false));
+            setTextById('kpiTodayOtherIncome', 'Услуги: ' + fmtRub(todayOtherInc, false));
+            setTextById('kpiTodaySellLabel', 'Скупка: ' + fmtRub(todayShopSell, false));
+            setTextById('kpiTodayRewardsExpense', 'Премии: ' + fmtRub(todayRewardsExp, false));
 
-            document.getElementById('kpiMedianBalance').textContent = fmtRub(t.median_balance_rub, false);
-            document.getElementById('kpiMeanBalance').textContent = fmtRub(t.mean_balance_rub, false);
+            setTextById('kpiMedianBalance', fmtRub(t.median_balance_rub, false));
+            setTextById('kpiMeanBalance', fmtRub(t.mean_balance_rub, false));
 
             const totalTurnover = (s.buy_rub || 0) + (s.sell_rub || 0);
             const buyPct = totalTurnover > 0 ? ((s.buy_rub / totalTurnover) * 100).toFixed(1) : '96.6';
             const sellPct = totalTurnover > 0 ? ((s.sell_rub / totalTurnover) * 100).toFixed(1) : '3.4';
-            document.getElementById('barBuyLabel').textContent = `${fmtRub(s.buy_rub, false)}, ${buyPct}% оборота`;
-            document.getElementById('barSellLabel').textContent = `${fmtRub(s.sell_rub, false)}, ${sellPct}% оборота`;
-            document.getElementById('ratioBarBuyFill').style.width = buyPct + '%';
+            setTextById('barBuyLabel', `${fmtRub(s.buy_rub, false)}, ${buyPct}% оборота`);
+            setTextById('barSellLabel', `${fmtRub(s.sell_rub, false)}, ${sellPct}% оборота`);
+            const ratioFillEl = document.getElementById('ratioBarBuyFill');
+            if (ratioFillEl) ratioFillEl.style.width = buyPct + '%';
 
             renderTreasuryChart(data);
             renderWealthTiers(data);
@@ -1828,21 +3223,54 @@
             renderLeaderboards(data);
         }
 
+        async function fetchJsonWithTimeout(url, timeoutMs) {
+            const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+            const timer = ctrl && timeoutMs > 0 ? setTimeout(() => ctrl.abort(), timeoutMs) : null;
+            try {
+                const resp = await fetch(url, {
+                    cache: 'no-store',
+                    signal: ctrl ? ctrl.signal : undefined
+                });
+                if (!resp.ok) return null;
+                return await resp.json();
+            } catch (_) {
+                return null;
+            } finally {
+                if (timer) clearTimeout(timer);
+            }
+        }
+
+        function isIncomingStatsAtLeastCurrent(incomingIso, bestIso) {
+            if (!bestIso) return true;
+            if (!incomingIso) return false;
+            const tIn = Date.parse(incomingIso);
+            const tBest = Date.parse(bestIso);
+            if (!Number.isNaN(tIn) && !Number.isNaN(tBest)) {
+                return tIn >= tBest;
+            }
+            return incomingIso >= bestIso;
+        }
+
+        function applyStatsIfFresh(fresh) {
+            if (!fresh || typeof fresh !== 'object') return false;
+            const bestIso = String((currentStatsData && currentStatsData.updated_at_iso) || '');
+            const incomingIso = String(fresh.updated_at_iso || '');
+            if (!isIncomingStatsAtLeastCurrent(incomingIso, bestIso)) return false;
+            renderAllStats(fresh);
+            return true;
+        }
+
         async function fetchLiveStats(manual) {
             const btn = document.getElementById('btnRefreshStats');
             if (manual && btn) btn.textContent = 'Обновление...';
             try {
-                let resp = null;
-                try {
-                    resp = await fetch('https://raw.githubusercontent.com/p5ych0p41h/azizland/telemetry/stats_data.json?t=' + Date.now(), { cache: 'no-store' });
-                } catch (_) {}
-                if (!resp || !resp.ok) {
-                    resp = await fetch('stats_data.json?t=' + Date.now(), { cache: 'no-store' });
-                }
-                if (resp.ok) {
-                    const fresh = await resp.json();
-                    renderAllStats(fresh);
-                }
+                const ts = Date.now();
+                const localPromise = fetchJsonWithTimeout('stats_data.json?t=' + ts, 5000).then(applyStatsIfFresh);
+                const telePromise = fetchJsonWithTimeout(
+                    'https://raw.githubusercontent.com/p5ych0p41h/azizland/telemetry/stats_data.json?t=' + ts,
+                    2500
+                ).then(applyStatsIfFresh);
+                await Promise.allSettled([localPromise, telePromise]);
             } catch (e) {
             } finally {
                 if (manual && btn) {
