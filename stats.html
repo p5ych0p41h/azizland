@@ -339,7 +339,7 @@
                 <div class="stats-live-bar">
                     <div class="stats-live-indicator">
                         <span class="live-pulse"></span>
-                        <span>Автоматическая синхронизация с сервером. Срез данных: <strong id="statUpdatedAt" class="mono-num">16.11.2026 00:44 МСК</strong></span>
+                        <span>Автоматическая синхронизация с сервером. Срез данных: <strong id="statUpdatedAt" class="mono-num">17.11.2026 06:45 МСК</strong></span>
                     </div>
                     <button type="button" class="copy-btn" id="btnRefreshStats" onclick="fetchLiveStats(true)">Обновить сводку</button>
                 </div>
@@ -347,37 +347,37 @@
                 <div class="kpi-grid">
                     <div class="kpi-card">
                         <span class="kpi-label">Текущий резерв Казны</span>
-                        <div class="kpi-value val-green" id="kpiTreasuryBalance">13 723 499 ₽</div>
+                        <div class="kpi-value val-green" id="kpiTreasuryBalance">13 707 804 ₽</div>
                         <div class="kpi-sub">
                             <span>Старт: 1 000 000 ₽</span>
-                            <strong id="kpiTreasuryGrowth" style="color:#22c55e;">+12 723 499 ₽</strong>
+                            <strong id="kpiTreasuryGrowth" style="color:#22c55e;">+12 707 804 ₽</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Куплено в магазине /shop</span>
-                        <div class="kpi-value val-gold" id="kpiShopBuyRub">5 788 445 ₽</div>
+                        <div class="kpi-value val-gold" id="kpiShopBuyRub">5 793 996 ₽</div>
                         <div class="kpi-sub">
-                            <span id="kpiShopBuyTx">Сделок: 2 295</span>
-                            <strong id="kpiShopBuyItems">42 334 шт.</strong>
+                            <span id="kpiShopBuyTx">Сделок: 2 363</span>
+                            <strong id="kpiShopBuyItems">42 863 шт.</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Продано на Склад /shop</span>
-                        <div class="kpi-value" id="kpiShopSellRub">575 826 ₽</div>
+                        <div class="kpi-value" id="kpiShopSellRub">579 853 ₽</div>
                         <div class="kpi-sub">
-                            <span id="kpiShopSellTx">Сделок: 496</span>
-                            <strong id="kpiShopSellItems">63 506 шт.</strong>
+                            <span id="kpiShopSellTx">Сделок: 499</span>
+                            <strong id="kpiShopSellItems">63 562 шт.</strong>
                         </div>
                     </div>
 
                     <div class="kpi-card">
                         <span class="kpi-label">Сумма денег у всех игроков</span>
-                        <div class="kpi-value" id="kpiM1Supply">10 294 637 ₽</div>
+                        <div class="kpi-value" id="kpiM1Supply">10 333 231 ₽</div>
                         <div class="kpi-sub">
                             <span id="kpiPlayersCount">Игроков: 80</span>
-                            <strong id="kpiCoverage" style="color:#22c55e;">Казна: 133.3%</strong>
+                            <strong id="kpiCoverage" style="color:#22c55e;">Казна: 132.7%</strong>
                         </div>
                     </div>
                 </div>
@@ -385,7 +385,7 @@
                 <div class="kpi-grid" style="margin-top: 16px;">
                     <div class="kpi-card">
                         <span class="kpi-label">Чистая прибыль магазина</span>
-                        <div class="kpi-value val-green" id="kpiShopNetProfit">+5 212 619 ₽</div>
+                        <div class="kpi-value val-green" id="kpiShopNetProfit">+5 214 143 ₽</div>
                         <div class="kpi-sub">
                             <span>Сальдо /shop</span>
                             <strong>Приток в Казну</strong>
@@ -415,7 +415,7 @@
                         <div class="kpi-value" id="kpiMedianBalance">4 938 ₽</div>
                         <div class="kpi-sub">
                             <span>Среднее с топом</span>
-                            <strong id="kpiMeanBalance">166 014 ₽</strong>
+                            <strong id="kpiMeanBalance">166 636 ₽</strong>
                         </div>
                     </div>
                 </div>
@@ -448,11 +448,11 @@
 
                     <div class="ratio-bar-wrap">
                         <div class="ratio-stats-row">
-                            <span><strong>Приток в Казну от покупок в /shop:</strong> <span id="barBuyLabel" class="mono-num" style="color:#22c55e;">5 788 445 ₽, 91.0% оборота</span></span>
-                            <span><strong>Выплаты из Казны за скупку ресурсов:</strong> <span id="barSellLabel" class="mono-num" style="color:#ef4444;">575 826 ₽, 9.0% оборота</span></span>
+                            <span><strong>Приток в Казну от покупок в /shop:</strong> <span id="barBuyLabel" class="mono-num" style="color:#22c55e;">5 793 996 ₽, 90.9% оборота</span></span>
+                            <span><strong>Выплаты из Казны за скупку ресурсов:</strong> <span id="barSellLabel" class="mono-num" style="color:#ef4444;">579 853 ₽, 9.1% оборота</span></span>
                         </div>
                         <div class="ratio-bar-track">
-                            <div class="ratio-bar-fill-buy" id="ratioBarBuyFill" style="width: 91.0%;"></div>
+                            <div class="ratio-bar-fill-buy" id="ratioBarBuyFill" style="width: 90.9%;"></div>
                         </div>
                         <p class="card-text" style="font-size:0.84rem;">
                             За счет прогрессивного снижения закупочных цен при переполнении Склада и суточного лимита скупки игроки вкладывают в покупку редких книг, спавнеров, алмазных блоков и расходников в десятки раз больше средств, чем выводят через продажу сырья.
@@ -946,14 +946,14 @@
     <script src="app.js"></script>
     <script>
         let currentStatsData = {
-          "updated_at_iso": "2026-11-16T00:44:39+03:00",
-          "updated_at_human": "16.11.2026 00:44 МСК",
+          "updated_at_iso": "2026-11-17T06:45:28+03:00",
+          "updated_at_human": "17.11.2026 06:45 МСК",
           "online_players": 0,
           "treasury": {
-            "balance_rub": 13723498.97,
+            "balance_rub": 13707803.52,
             "initial_rub": 1000000.0,
-            "net_growth_rub": 12723498.97,
-            "growth_multiplier": 13.72,
+            "net_growth_rub": 12707803.52,
+            "growth_multiplier": 13.71,
             "today_income_rub": 0.0,
             "today_shop_buy_rub": 0.0,
             "today_other_income_rub": 0.0,
@@ -961,65 +961,65 @@
             "today_shop_sell_rub": 0.0,
             "today_rewards_expense_rub": 0.0,
             "today_net_rub": 0.0,
-            "day_key": "2026-11-16",
-            "m1_supply_rub": 10294636.78,
+            "day_key": "2026-11-17",
+            "m1_supply_rub": 10333231.23,
             "real_players_count": 80,
             "active_econ_players_count": 62,
-            "mean_balance_rub": 166013.5,
+            "mean_balance_rub": 166635.99,
             "median_balance_rub": 4938.0,
-            "gini": 0.8601,
-            "coverage_ratio_pct": 133.3,
+            "gini": 0.8594,
+            "coverage_ratio_pct": 132.7,
             "wealth_tiers": [
               {
                 "tier": "Миллионеры: от 1 000 000 ₽",
                 "players": 2,
                 "total_rub": 4135677.59,
                 "avg_rub": 2067838.8,
-                "share_rub_pct": 40.2,
+                "share_rub_pct": 40.0,
                 "share_players_pct": 2.5
               },
               {
                 "tier": "Крупный капитал: от 100 000 до 999 999 ₽",
                 "players": 11,
-                "total_rub": 5546720.34,
-                "avg_rub": 504247.3,
-                "share_rub_pct": 53.9,
+                "total_rub": 5581757.34,
+                "avg_rub": 507432.49,
+                "share_rub_pct": 54.0,
                 "share_players_pct": 13.8
               },
               {
                 "tier": "Средний класс: от 10 000 до 99 999 ₽",
                 "players": 11,
-                "total_rub": 538110.53,
-                "avg_rub": 48919.14,
+                "total_rub": 536190.53,
+                "avg_rub": 48744.59,
                 "share_rub_pct": 5.2,
                 "share_players_pct": 13.8
               },
               {
                 "tier": "Рабочий бюджет: от 1 000 до 9 999 ₽",
-                "players": 13,
-                "total_rub": 69317.53,
-                "avg_rub": 5332.12,
+                "players": 14,
+                "total_rub": 74902.18,
+                "avg_rub": 5350.16,
                 "share_rub_pct": 0.7,
-                "share_players_pct": 16.3
+                "share_players_pct": 17.5
               },
               {
                 "tier": "В обороте и развитии: до 1 000 ₽",
-                "players": 43,
-                "total_rub": 4810.79,
-                "avg_rub": 111.88,
+                "players": 42,
+                "total_rub": 4703.59,
+                "avg_rub": 111.99,
                 "share_rub_pct": 0.0,
-                "share_players_pct": 53.8
+                "share_players_pct": 52.5
               }
             ]
           },
           "shop": {
-            "buy_tx": 2295,
-            "buy_items": 42334,
-            "buy_rub": 5788445.0,
-            "sell_tx": 496,
-            "sell_items": 63506,
-            "sell_rub": 575826.18,
-            "net_profit_rub": 5212618.82,
+            "buy_tx": 2363,
+            "buy_items": 42863,
+            "buy_rub": 5793996.0,
+            "sell_tx": 499,
+            "sell_items": 63562,
+            "sell_rub": 579852.63,
+            "net_profit_rub": 5214143.37,
             "today_buy_tx": 0,
             "today_buy_items": 0,
             "today_buy_rub": 0.0,
@@ -1091,9 +1091,9 @@
             "top_bought_by_qty": [
               {
                 "name": "Земля",
-                "qty": 9351,
-                "rub": 18702.0,
-                "tx": 127
+                "qty": 9735,
+                "rub": 19470.0,
+                "tx": 133
               },
               {
                 "name": "Камень",
@@ -1109,9 +1109,9 @@
               },
               {
                 "name": "Булыжник",
-                "qty": 1344,
-                "rub": 2688.0,
-                "tx": 2
+                "qty": 1408,
+                "rub": 2816.0,
+                "tx": 3
               },
               {
                 "name": "Костный блок",
@@ -1165,9 +1165,9 @@
               },
               {
                 "name": "Незеритовый слиток",
-                "qty": 157,
-                "rub": 67510.34,
-                "tx": 23
+                "qty": 165,
+                "rub": 71510.34,
+                "tx": 24
               },
               {
                 "name": "Тяжелое ядро",
@@ -1283,9 +1283,9 @@
               },
               {
                 "name": "krotik_pokoyo42",
-                "qty": 19141,
-                "rub": 1956915.0,
-                "tx": 639
+                "qty": 19146,
+                "rub": 1956968.0,
+                "tx": 644
               },
               {
                 "name": "Andrew_Prime",
@@ -1319,9 +1319,9 @@
               },
               {
                 "name": "TiS2015",
-                "qty": 1913,
-                "rub": 77964.0,
-                "tx": 265
+                "qty": 2012,
+                "rub": 78917.0,
+                "tx": 281
               },
               {
                 "name": "GroZXC",
@@ -1331,9 +1331,9 @@
               },
               {
                 "name": "ROMANTOP",
-                "qty": 495,
-                "rub": 25258.0,
-                "tx": 162
+                "qty": 919,
+                "rub": 29728.0,
+                "tx": 208
               }
             ],
             "top_sellers": [
@@ -1369,9 +1369,9 @@
               },
               {
                 "name": "TiS2015",
-                "qty": 471,
-                "rub": 12521.2,
-                "tx": 8
+                "qty": 479,
+                "rub": 16521.2,
+                "tx": 9
               },
               {
                 "name": "MrVoid",
@@ -1503,15 +1503,15 @@
               },
               {
                 "hour": 17,
-                "buy_rub": 299444.0,
+                "buy_rub": 299576.0,
                 "sell_rub": 3288.88,
-                "tx": 168
+                "tx": 201
               },
               {
                 "hour": 18,
-                "buy_rub": 161442.0,
-                "sell_rub": 27549.65,
-                "tx": 153
+                "buy_rub": 165855.0,
+                "sell_rub": 27576.1,
+                "tx": 169
               },
               {
                 "hour": 19,
@@ -1539,151 +1539,151 @@
               },
               {
                 "hour": 23,
-                "buy_rub": 713953.0,
-                "sell_rub": 61818.02,
-                "tx": 205
+                "buy_rub": 714959.0,
+                "sell_rub": 65818.02,
+                "tx": 227
               }
             ]
           },
           "warehouse": [
             {
               "name": "Алмаз",
-              "stock": 209,
+              "stock": 242,
               "max": 1024,
-              "fill_pct": 20,
+              "fill_pct": 24,
               "rate_pct": 100
             },
             {
               "name": "Незеритовый слиток",
-              "stock": 82,
+              "stock": 38,
               "max": 128,
-              "fill_pct": 64,
-              "rate_pct": 75
+              "fill_pct": 30,
+              "rate_pct": 100
             },
             {
               "name": "Древний обломок",
-              "stock": 53,
+              "stock": 55,
               "max": 256,
               "fill_pct": 21,
               "rate_pct": 100
             },
             {
               "name": "Железный слиток",
-              "stock": 544,
+              "stock": 569,
               "max": 2048,
-              "fill_pct": 27,
+              "fill_pct": 28,
               "rate_pct": 100
             },
             {
               "name": "Золотой слиток",
-              "stock": 489,
-              "max": 2048,
-              "fill_pct": 24,
-              "rate_pct": 100
-            },
-            {
-              "name": "Медный слиток",
-              "stock": 644,
-              "max": 2048,
-              "fill_pct": 31,
-              "rate_pct": 100
-            },
-            {
-              "name": "Изумруд",
-              "stock": 371,
-              "max": 2048,
-              "fill_pct": 18,
-              "rate_pct": 100
-            },
-            {
-              "name": "Редстоуновая пыль",
-              "stock": 510,
+              "stock": 502,
               "max": 2048,
               "fill_pct": 25,
               "rate_pct": 100
             },
             {
-              "name": "Лазурит",
-              "stock": 525,
+              "name": "Медный слиток",
+              "stock": 608,
+              "max": 2048,
+              "fill_pct": 30,
+              "rate_pct": 100
+            },
+            {
+              "name": "Изумруд",
+              "stock": 382,
+              "max": 2048,
+              "fill_pct": 19,
+              "rate_pct": 100
+            },
+            {
+              "name": "Редстоуновая пыль",
+              "stock": 529,
               "max": 2048,
               "fill_pct": 26,
               "rate_pct": 100
             },
             {
-              "name": "Уголь",
-              "stock": 649,
+              "name": "Лазурит",
+              "stock": 502,
               "max": 2048,
-              "fill_pct": 32,
+              "fill_pct": 25,
+              "rate_pct": 100
+            },
+            {
+              "name": "Уголь",
+              "stock": 637,
+              "max": 2048,
+              "fill_pct": 31,
               "rate_pct": 100
             },
             {
               "name": "Пшеница",
-              "stock": 1167,
+              "stock": 1288,
+              "max": 4096,
+              "fill_pct": 31,
+              "rate_pct": 100
+            },
+            {
+              "name": "Морковь",
+              "stock": 1146,
               "max": 4096,
               "fill_pct": 28,
               "rate_pct": 100
             },
             {
-              "name": "Морковь",
-              "stock": 1020,
-              "max": 4096,
-              "fill_pct": 25,
-              "rate_pct": 100
-            },
-            {
               "name": "Картофель",
-              "stock": 1201,
+              "stock": 1172,
               "max": 4096,
               "fill_pct": 29,
               "rate_pct": 100
             },
             {
               "name": "Тыква",
-              "stock": 961,
-              "max": 4096,
-              "fill_pct": 23,
-              "rate_pct": 100
-            },
-            {
-              "name": "Арбуз",
-              "stock": 1059,
+              "stock": 1052,
               "max": 4096,
               "fill_pct": 26,
               "rate_pct": 100
             },
             {
-              "name": "Сахарный тростник",
-              "stock": 1211,
+              "name": "Арбуз",
+              "stock": 1042,
               "max": 4096,
-              "fill_pct": 30,
+              "fill_pct": 25,
+              "rate_pct": 100
+            },
+            {
+              "name": "Сахарный тростник",
+              "stock": 1320,
+              "max": 4096,
+              "fill_pct": 32,
               "rate_pct": 100
             },
             {
               "name": "Незерский нарост",
-              "stock": 817,
+              "stock": 847,
               "max": 4096,
-              "fill_pct": 20,
+              "fill_pct": 21,
               "rate_pct": 100
             },
             {
               "name": "Гнилая плоть",
-              "stock": 1135,
+              "stock": 1171,
               "max": 4096,
-              "fill_pct": 28,
+              "fill_pct": 29,
               "rate_pct": 100
             },
             {
               "name": "Кость",
-              "stock": 982,
+              "stock": 1063,
               "max": 4096,
-              "fill_pct": 24,
+              "fill_pct": 26,
               "rate_pct": 100
             },
             {
               "name": "Порох",
-              "stock": 758,
+              "stock": 802,
               "max": 4096,
-              "fill_pct": 19,
+              "fill_pct": 20,
               "rate_pct": 100
             }
           ],
@@ -1921,7 +1921,7 @@
               {
                 "name": "krotik_pokoyo42",
                 "qty": 0,
-                "rub": 440097.89,
+                "rub": 473604.89,
                 "tx": 0
               },
               {
@@ -1933,7 +1933,7 @@
               {
                 "name": "Max1234567890",
                 "qty": 0,
-                "rub": 245153.23,
+                "rub": 246683.23,
                 "tx": 0
               }
             ],
@@ -1947,13 +1947,13 @@
               {
                 "name": "RIBKI",
                 "qty": 5,
-                "rub": 46001.0,
+                "rub": 46458.0,
                 "tx": 0
               },
               {
                 "name": "MIG",
                 "qty": 4,
-                "rub": 15205.0,
+                "rub": 15236.0,
                 "tx": 0
               },
               {
@@ -2076,7 +2076,7 @@
               },
               {
                 "name": "krotik_pokoyo42",
-                "qty": 7644,
+                "qty": 7847,
                 "rub": 0.0,
                 "tx": 0
               },
@@ -2226,9 +2226,15 @@
             "top_quests": [
               {
                 "name": "Max1234567890",
-                "qty": 316,
-                "rub": 316.0,
-                "tx": 13
+                "qty": 321,
+                "rub": 321.0,
+                "tx": 1
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 203,
+                "rub": 203.0,
+                "tx": 8
               },
               {
                 "name": "Farel_Kartel",
@@ -2249,16 +2255,10 @@
                 "tx": 5
               },
               {
-                "name": "krotik_pokoyo42",
-                "qty": 118,
-                "rub": 118.0,
-                "tx": 16
-              },
-              {
                 "name": "TynoDerden",
                 "qty": 97,
                 "rub": 97.0,
-                "tx": 6
+                "tx": 0
               },
               {
                 "name": "GroZXC",
@@ -2318,14 +2318,14 @@
               },
               {
                 "name": "Fortenit",
-                "qty": 392,
-                "rub": 392.3,
-                "tx": 64
+                "qty": 393,
+                "rub": 392.6,
+                "tx": 65
               },
               {
                 "name": "krotik_pokoyo42",
                 "qty": 354,
-                "rub": 353.8,
+                "rub": 354.2,
                 "tx": 268
               },
               {
@@ -2411,186 +2411,6 @@
             ]
           },
           "timeseries": [
-            {
-              "time": "14.11 01:00",
-              "treasury": 11445636.62,
-              "m1": 11505519.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 02:00",
-              "treasury": 11496376.62,
-              "m1": 11502856.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 03:00",
-              "treasury": 11534140.62,
-              "m1": 11501015.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 04:00",
-              "treasury": 11585562.62,
-              "m1": 11494153.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 05:00",
-              "treasury": 11604197.62,
-              "m1": 11492458.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 06:00",
-              "treasury": 11604197.62,
-              "m1": 11492458.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 07:00",
-              "treasury": 11604197.62,
-              "m1": 11492458.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 08:00",
-              "treasury": 11604197.62,
-              "m1": 11492458.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 09:00",
-              "treasury": 11602697.62,
-              "m1": 11493958.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 10:00",
-              "treasury": 11614622.62,
-              "m1": 11507458.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 11:00",
-              "treasury": 11646197.62,
-              "m1": 11509958.98,
-              "players": 77
-            },
-            {
-              "time": "14.11 12:00",
-              "treasury": 11663614.47,
-              "m1": 11509542.13,
-              "players": 77
-            },
-            {
-              "time": "14.11 13:00",
-              "treasury": 11688477.05,
-              "m1": 11520679.55,
-              "players": 77
-            },
-            {
-              "time": "14.11 14:00",
-              "treasury": 11725470.05,
-              "m1": 11522161.55,
-              "players": 77
-            },
-            {
-              "time": "14.11 15:00",
-              "treasury": 11746764.05,
-              "m1": 11505392.55,
-              "players": 77
-            },
-            {
-              "time": "14.11 16:00",
-              "treasury": 11785312.15,
-              "m1": 11513344.45,
-              "players": 77
-            },
-            {
-              "time": "14.11 17:00",
-              "treasury": 11835578.93,
-              "m1": 11521677.67,
-              "players": 78
-            },
-            {
-              "time": "14.11 18:00",
-              "treasury": 11844078.93,
-              "m1": 11521677.67,
-              "players": 78
-            },
-            {
-              "time": "14.11 19:00",
-              "treasury": 11883048.93,
-              "m1": 11529662.67,
-              "players": 78
-            },
-            {
-              "time": "14.11 20:00",
-              "treasury": 12044798.61,
-              "m1": 11422187.99,
-              "players": 79
-            },
-            {
-              "time": "14.11 21:00",
-              "treasury": 12118187.19,
-              "m1": 11414654.41,
-              "players": 79
-            },
-            {
-              "time": "14.11 22:02",
-              "treasury": 12748320.72,
-              "m1": 10816547.88,
-              "players": 79
-            },
-            {
-              "time": "14.11 23:00",
-              "treasury": 13438454.72,
-              "m1": 10167676.88,
-              "players": 79
-            },
-            {
-              "time": "15.11 00:00",
-              "treasury": 13404946.5,
-              "m1": 10242500.05,
-              "players": 80
-            },
-            {
-              "time": "15.11 01:00",
-              "treasury": 13342184.21,
-              "m1": 10313759.29,
-              "players": 80
-            },
-            {
-              "time": "15.11 02:00",
-              "treasury": 13342184.21,
-              "m1": 10313759.29,
-              "players": 80
-            },
-            {
-              "time": "15.11 03:08",
-              "treasury": 13342184.21,
-              "m1": 10338759.29,
-              "players": 80
-            },
-            {
-              "time": "15.11 04:03",
-              "treasury": 13342184.21,
-              "m1": 10338759.29,
-              "players": 80
-            },
-            {
-              "time": "15.11 05:03",
-              "treasury": 13342184.21,
-              "m1": 10338759.29,
-              "players": 80
-            },
-            {
-              "time": "15.11 06:03",
-              "treasury": 13342184.21,
-              "m1": 10338759.29,
-              "players": 80
-            },
             {
               "time": "15.11 07:03",
               "treasury": 13342184.21,
@@ -2697,6 +2517,186 @@
               "time": "16.11 00:00",
               "treasury": 13723498.97,
               "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 01:04",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 02:03",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 03:05",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 04:00",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 05:00",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 06:00",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 07:00",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 08:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 09:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 10:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 11:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 12:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 13:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 14:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 15:01",
+              "treasury": 13723498.97,
+              "m1": 10294636.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 16:01",
+              "treasury": 13723683.97,
+              "m1": 10296151.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 17:01",
+              "treasury": 13725383.97,
+              "m1": 10296151.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 18:01",
+              "treasury": 13729300.97,
+              "m1": 10296034.78,
+              "players": 80
+            },
+            {
+              "time": "16.11 19:01",
+              "treasury": 13739387.52,
+              "m1": 10294148.23,
+              "players": 80
+            },
+            {
+              "time": "16.11 20:01",
+              "treasury": 13736887.52,
+              "m1": 10296648.23,
+              "players": 80
+            },
+            {
+              "time": "16.11 21:01",
+              "treasury": 13736887.52,
+              "m1": 10296648.23,
+              "players": 80
+            },
+            {
+              "time": "16.11 22:01",
+              "treasury": 13736887.52,
+              "m1": 10296648.23,
+              "players": 80
+            },
+            {
+              "time": "16.11 23:00",
+              "treasury": 13738587.52,
+              "m1": 10296648.23,
+              "players": 80
+            },
+            {
+              "time": "17.11 00:00",
+              "treasury": 13707803.52,
+              "m1": 10333231.23,
+              "players": 80
+            },
+            {
+              "time": "17.11 01:00",
+              "treasury": 13707803.52,
+              "m1": 10333231.23,
+              "players": 80
+            },
+            {
+              "time": "17.11 02:00",
+              "treasury": 13707803.52,
+              "m1": 10333231.23,
+              "players": 80
+            },
+            {
+              "time": "17.11 03:05",
+              "treasury": 13707803.52,
+              "m1": 10333231.23,
+              "players": 80
+            },
+            {
+              "time": "17.11 04:00",
+              "treasury": 13707803.52,
+              "m1": 10333231.23,
+              "players": 80
+            },
+            {
+              "time": "17.11 05:00",
+              "treasury": 13707803.52,
+              "m1": 10333231.23,
+              "players": 80
+            },
+            {
+              "time": "17.11 06:00",
+              "treasury": 13707803.52,
+              "m1": 10333231.23,
               "players": 80
             }
           ]
