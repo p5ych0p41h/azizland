@@ -339,7 +339,7 @@
                 <div class="stats-live-bar">
                     <div class="stats-live-indicator">
                         <span class="live-pulse"></span>
-                        <span>Автоматическая синхронизация с сервером. Срез данных: <strong id="statUpdatedAt" class="mono-num">27.11.2026 06:35 МСК</strong></span>
+                        <span>Автоматическая синхронизация с сервером. Срез данных: <strong id="statUpdatedAt" class="mono-num">27.11.2026 15:31 МСК</strong></span>
                     </div>
                     <button type="button" class="copy-btn" id="btnRefreshStats" onclick="fetchLiveStats(true)">Обновить сводку</button>
                 </div>
@@ -663,7 +663,7 @@
                     <div class="eyebrow">Все рейтинги сервера</div>
                     <h2 class="section-title">Таблицы лидеров по всем направлениям</h2>
                     <p class="section-desc">
-                        Полный свод рейтингов сервера: состояние игроков, решенные задачи викторины, торговый оборот в магазине, развитие кланов, боевая статистика и время в игре. Все таблицы выровнены по единой симметричной сетке.
+                        Полный свод рейтингов сервера: состояние игроков, решенные задачи викторины, торговый оборот в магазине, развитие кланов, боевая статистика, время в игре и отбытые сроки в тюрьме. Все таблицы выровнены по единой симметричной сетке.
                     </p>
                 </div>
 
@@ -931,6 +931,28 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="card col-6">
+                        <div class="table-card-head">
+                            <div class="table-card-head-titles">
+                                <span class="card-kicker" style="color:#f97316;">Тюрьма «Чёрный дельфин»</span>
+                                <h3 class="card-title" style="margin:0;">Топ по сроку в тюрьме</h3>
+                            </div>
+                        </div>
+                        <div class="compact-table-wrap">
+                            <table class="compact-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-rank">#</th>
+                                        <th class="col-name">Игрок</th>
+                                        <th class="col-mid">Ходок</th>
+                                        <th class="col-num">Отсижено</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableTopJailed"></tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -946,8 +968,8 @@
     <script src="app.js"></script>
     <script>
         let currentStatsData = {
-          "updated_at_iso": "2026-11-27T06:35:28+03:00",
-          "updated_at_human": "27.11.2026 06:35 МСК",
+          "updated_at_iso": "2026-11-27T15:31:40+03:00",
+          "updated_at_human": "27.11.2026 15:31 МСК",
           "online_players": 0,
           "treasury": {
             "balance_rub": 11951457.11,
@@ -2414,63 +2436,32 @@
                 "rub": 309.0,
                 "tx": 0
               }
+            ],
+            "top_jailed": [
+              {
+                "name": "elemental",
+                "qty": 5990,
+                "rub": 99.84,
+                "tx": 2,
+                "active": true
+              },
+              {
+                "name": "krotik_pokoyo42",
+                "qty": 3251,
+                "rub": 54.19,
+                "tx": 3,
+                "active": false
+              },
+              {
+                "name": "Farel_Kartel",
+                "qty": 1013,
+                "rub": 16.89,
+                "tx": 3,
+                "active": false
+              }
             ]
           },
           "timeseries": [
-            {
-              "time": "25.11 07:00",
-              "treasury": 11885426.46,
-              "m1": 12274131.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 08:00",
-              "treasury": 11885426.46,
-              "m1": 12274131.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 09:00",
-              "treasury": 11885426.46,
-              "m1": 12274131.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 10:00",
-              "treasury": 11885426.46,
-              "m1": 12274131.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 11:00",
-              "treasury": 11885426.46,
-              "m1": 12274131.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 12:00",
-              "treasury": 11885426.46,
-              "m1": 12274131.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 13:00",
-              "treasury": 11894882.46,
-              "m1": 12274700.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 14:00",
-              "treasury": 11894232.46,
-              "m1": 12284750.26,
-              "players": 103
-            },
-            {
-              "time": "25.11 15:00",
-              "treasury": 11841107.46,
-              "m1": 12343400.26,
-              "players": 103
-            },
             {
               "time": "25.11 16:00",
               "treasury": 11871384.61,
@@ -2704,6 +2695,60 @@
               "treasury": 11951457.11,
               "m1": 12386100.61,
               "players": 103
+            },
+            {
+              "time": "27.11 07:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 08:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 09:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 10:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 11:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 12:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 13:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 14:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
+            },
+            {
+              "time": "27.11 15:00",
+              "treasury": 11951457.11,
+              "m1": 12386100.61,
+              "players": 103
             }
           ]
         };
@@ -2868,6 +2913,17 @@
             </tr>`).join('');
         }
 
+        function jailWalksLabel(p) {
+            const n = Math.round(Number((p && p.tx) || 0));
+            if (p && p.active) return fmtInt(Math.max(1, n)) + ' • в камере';
+            const m100 = n % 100;
+            const m10 = n % 10;
+            let word = 'ходок';
+            if (m10 === 1 && m100 !== 11) word = 'ходка';
+            else if (m10 >= 2 && m10 <= 4 && !(m100 >= 12 && m100 <= 14)) word = 'ходки';
+            return fmtInt(n) + ' ' + word;
+        }
+
         function renderLeaderboards(data) {
             const shop = data.shop || {};
             const lb = data.leaderboards || {};
@@ -2883,6 +2939,7 @@
             const quests = filterNonAdmin(lb.top_quests);
             const travelers = filterNonAdmin(lb.top_travelers);
             const deaths = filterNonAdmin(lb.top_deaths);
+            const jailed = filterNonAdmin(lb.top_jailed);
 
             const top10BalSum = balances.slice(0, 10).reduce((s, p) => s + (Number(p.rub) || 0), 0) || 1;
             setHtmlById('tableTopBalances', padRows(balances.map((p, i) => {
@@ -2989,6 +3046,19 @@
                 <td class="col-mid">${Number(p.rub || 0).toFixed(1)} ч.</td>
                 <td class="col-num" style="color:#ef4444;">${fmtInt(p.qty)}</td>
             </tr>`), 10));
+
+            setHtmlById('tableTopJailed', padRows(jailed.map((p, i) => {
+                const hours = Number(p.rub || 0);
+                const durText = hours >= 1
+                    ? hours.toFixed(1) + ' ч.'
+                    : Math.max(1, Math.round(Number(p.qty) || 1)) + ' мин.';
+                return `<tr>
+                    <td class="col-rank${medalClass(i)}">${i + 1}</td>
+                    <td class="col-name"><strong>${escHtml(p.name)}</strong></td>
+                    <td class="col-mid">${jailWalksLabel(p)}</td>
+                    <td class="col-num" style="color:#f97316;">${durText}</td>
+                </tr>`;
+            }), 10));
         }
 
         function renderTreasuryChart(data) {
